@@ -61,7 +61,7 @@ final class CountriesViewController: UIViewController {
             ])
         } else {
             NSLayoutConstraint.activate([
-                tableCountries.topAnchor.constraint(equalTo: view.topAnchor)
+                tableCountries.topAnchor.constraint(equalTo: view.topAnchor, constant: 20)
             ])
         }
     }

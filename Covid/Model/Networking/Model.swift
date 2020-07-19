@@ -15,10 +15,12 @@ import UIKit
 struct GlobalModel: Decodable {
     let global: Global
     let date: String
+    let countries: [Countries]
     
     enum CodingKeys: String, CodingKey {
         case global = "Global"
         case date = "Date"
+        case countries = "Countries"
     }
 }
 
