@@ -19,13 +19,22 @@
 		ED34DD0324C0AB6700A7E6E3 /* StatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD0224C0AB6700A7E6E3 /* StatisticsData.swift */; };
 		ED34DD0524C0ADD100A7E6E3 /* StatisticsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD0424C0ADD100A7E6E3 /* StatisticsViewOutput.swift */; };
 		ED34DD0724C0ADE400A7E6E3 /* StatisticsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD0624C0ADE400A7E6E3 /* StatisticsViewInput.swift */; };
-		ED34DD1224C1CA4600A7E6E3 /* StatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1124C1CA4600A7E6E3 /* StatisticsInteractor.swift */; };
-		ED34DD1424C1CA7200A7E6E3 /* StatisticsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1324C1CA7200A7E6E3 /* StatisticsInteractorInput.swift */; };
-		ED34DD1624C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1524C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift */; };
+		ED34DD1224C1CA4600A7E6E3 /* StatisticsIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1124C1CA4600A7E6E3 /* StatisticsIteractor.swift */; };
+		ED34DD1424C1CA7200A7E6E3 /* StatisticsIteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1324C1CA7200A7E6E3 /* StatisticsIteractorInput.swift */; };
+		ED34DD1624C1CAA400A7E6E3 /* StatisticsIteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1524C1CAA400A7E6E3 /* StatisticsIteractorOutput.swift */; };
 		ED34DD1824C1CAC100A7E6E3 /* StatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1724C1CAC100A7E6E3 /* StatisticsRouter.swift */; };
 		ED34DD1A24C1CADA00A7E6E3 /* StatisticsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1924C1CADA00A7E6E3 /* StatisticsRouterInput.swift */; };
 		ED34DD1F24C1DAE100A7E6E3 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD1E24C1DAE100A7E6E3 /* Formatter.swift */; };
 		ED34DD2124C1DAF500A7E6E3 /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD2024C1DAF500A7E6E3 /* Integer.swift */; };
+		ED34DD2B24C50EDF00A7E6E3 /* CountriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD2A24C50EDF00A7E6E3 /* CountriesRouter.swift */; };
+		ED34DD2D24C50EF600A7E6E3 /* CountriesRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD2C24C50EF600A7E6E3 /* CountriesRouterInput.swift */; };
+		ED34DD2F24C50F1200A7E6E3 /* CountriesIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD2E24C50F1200A7E6E3 /* CountriesIteractor.swift */; };
+		ED34DD3124C50F9300A7E6E3 /* CountriesIteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3024C50F9300A7E6E3 /* CountriesIteractorInput.swift */; };
+		ED34DD3324C50FA400A7E6E3 /* CountriesIteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3224C50FA400A7E6E3 /* CountriesIteractorOutput.swift */; };
+		ED34DD3524C50FBE00A7E6E3 /* CountriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3424C50FBE00A7E6E3 /* CountriesPresenter.swift */; };
+		ED34DD3724C50FE400A7E6E3 /* CountriesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3624C50FE400A7E6E3 /* CountriesViewOutput.swift */; };
+		ED34DD3924C50FF500A7E6E3 /* CountriesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3824C50FF500A7E6E3 /* CountriesViewInput.swift */; };
+		ED34DD3B24C5100600A7E6E3 /* CountriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34DD3A24C5100600A7E6E3 /* CountriesAssembly.swift */; };
 		ED48446524B5C12A000030C7 /* iconMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = ED48446424B5C12A000030C7 /* iconMenu.png */; };
 		ED48446B24B5D28D000030C7 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED48446A24B5D28D000030C7 /* CountriesViewController.swift */; };
 		ED61437324BC9D7A0019E45C /* mainIcon120.png in Resources */ = {isa = PBXBuildFile; fileRef = ED61437224BC9D7A0019E45C /* mainIcon120.png */; };
@@ -75,13 +84,22 @@
 		ED34DD0224C0AB6700A7E6E3 /* StatisticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsData.swift; sourceTree = "<group>"; };
 		ED34DD0424C0ADD100A7E6E3 /* StatisticsViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewOutput.swift; sourceTree = "<group>"; };
 		ED34DD0624C0ADE400A7E6E3 /* StatisticsViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewInput.swift; sourceTree = "<group>"; };
-		ED34DD1124C1CA4600A7E6E3 /* StatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsInteractor.swift; sourceTree = "<group>"; };
-		ED34DD1324C1CA7200A7E6E3 /* StatisticsInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsInteractorInput.swift; sourceTree = "<group>"; };
-		ED34DD1524C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsInteractorOutput.swift; sourceTree = "<group>"; };
+		ED34DD1124C1CA4600A7E6E3 /* StatisticsIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsIteractor.swift; sourceTree = "<group>"; };
+		ED34DD1324C1CA7200A7E6E3 /* StatisticsIteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsIteractorInput.swift; sourceTree = "<group>"; };
+		ED34DD1524C1CAA400A7E6E3 /* StatisticsIteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsIteractorOutput.swift; sourceTree = "<group>"; };
 		ED34DD1724C1CAC100A7E6E3 /* StatisticsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRouter.swift; sourceTree = "<group>"; };
 		ED34DD1924C1CADA00A7E6E3 /* StatisticsRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsRouterInput.swift; sourceTree = "<group>"; };
 		ED34DD1E24C1DAE100A7E6E3 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		ED34DD2024C1DAF500A7E6E3 /* Integer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
+		ED34DD2A24C50EDF00A7E6E3 /* CountriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesRouter.swift; sourceTree = "<group>"; };
+		ED34DD2C24C50EF600A7E6E3 /* CountriesRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesRouterInput.swift; sourceTree = "<group>"; };
+		ED34DD2E24C50F1200A7E6E3 /* CountriesIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesIteractor.swift; sourceTree = "<group>"; };
+		ED34DD3024C50F9300A7E6E3 /* CountriesIteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesIteractorInput.swift; sourceTree = "<group>"; };
+		ED34DD3224C50FA400A7E6E3 /* CountriesIteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesIteractorOutput.swift; sourceTree = "<group>"; };
+		ED34DD3424C50FBE00A7E6E3 /* CountriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesPresenter.swift; sourceTree = "<group>"; };
+		ED34DD3624C50FE400A7E6E3 /* CountriesViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewOutput.swift; sourceTree = "<group>"; };
+		ED34DD3824C50FF500A7E6E3 /* CountriesViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewInput.swift; sourceTree = "<group>"; };
+		ED34DD3A24C5100600A7E6E3 /* CountriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesAssembly.swift; sourceTree = "<group>"; };
 		ED48446424B5C12A000030C7 /* iconMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMenu.png; sourceTree = "<group>"; };
 		ED48446A24B5D28D000030C7 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		ED61437224BC9D7A0019E45C /* mainIcon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainIcon120.png; sourceTree = "<group>"; };
@@ -194,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				ED34DD0D24C1AF1400A7E6E3 /* Router */,
-				ED34DD0C24C1AF0A00A7E6E3 /* Interactor */,
+				ED34DD0C24C1AF0A00A7E6E3 /* Iteractor */,
 				ED34DD0B24C1AF0500A7E6E3 /* Presenter */,
 				ED34DD0A24C1AEFF00A7E6E3 /* View */,
 				ED34DD0924C1AEE100A7E6E3 /* Assembly */,
@@ -228,14 +246,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		ED34DD0C24C1AF0A00A7E6E3 /* Interactor */ = {
+		ED34DD0C24C1AF0A00A7E6E3 /* Iteractor */ = {
 			isa = PBXGroup;
 			children = (
-				ED34DD1124C1CA4600A7E6E3 /* StatisticsInteractor.swift */,
-				ED34DD1324C1CA7200A7E6E3 /* StatisticsInteractorInput.swift */,
-				ED34DD1524C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift */,
+				ED34DD1124C1CA4600A7E6E3 /* StatisticsIteractor.swift */,
+				ED34DD1324C1CA7200A7E6E3 /* StatisticsIteractorInput.swift */,
+				ED34DD1524C1CAA400A7E6E3 /* StatisticsIteractorOutput.swift */,
 			);
-			path = Interactor;
+			path = Iteractor;
 			sourceTree = "<group>";
 		};
 		ED34DD0D24C1AF1400A7E6E3 /* Router */ = {
@@ -260,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				ED34DD2724C4E38500A7E6E3 /* Router */,
-				ED34DD2424C4E34400A7E6E3 /* Interactor */,
+				ED34DD2424C4E34400A7E6E3 /* Iteractor */,
 				ED34DD2624C4E37A00A7E6E3 /* Presenter */,
 				ED34DD1024C1AF6400A7E6E3 /* View */,
 				ED34DD2524C4E36000A7E6E3 /* Assembly */,
@@ -273,6 +291,8 @@
 			children = (
 				EDA81A5B24B5DB650005BEC0 /* Cell */,
 				ED48446A24B5D28D000030C7 /* CountriesViewController.swift */,
+				ED34DD3624C50FE400A7E6E3 /* CountriesViewOutput.swift */,
+				ED34DD3824C50FF500A7E6E3 /* CountriesViewInput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,16 +306,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		ED34DD2424C4E34400A7E6E3 /* Interactor */ = {
+		ED34DD2424C4E34400A7E6E3 /* Iteractor */ = {
 			isa = PBXGroup;
 			children = (
+				ED34DD2E24C50F1200A7E6E3 /* CountriesIteractor.swift */,
+				ED34DD3024C50F9300A7E6E3 /* CountriesIteractorInput.swift */,
+				ED34DD3224C50FA400A7E6E3 /* CountriesIteractorOutput.swift */,
 			);
-			path = Interactor;
+			path = Iteractor;
 			sourceTree = "<group>";
 		};
 		ED34DD2524C4E36000A7E6E3 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				ED34DD3A24C5100600A7E6E3 /* CountriesAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -303,6 +327,7 @@
 		ED34DD2624C4E37A00A7E6E3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				ED34DD3424C50FBE00A7E6E3 /* CountriesPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -310,6 +335,8 @@
 		ED34DD2724C4E38500A7E6E3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				ED34DD2A24C50EDF00A7E6E3 /* CountriesRouter.swift */,
+				ED34DD2C24C50EF600A7E6E3 /* CountriesRouterInput.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -528,25 +555,34 @@
 			files = (
 				ED0C0D4B24AB29E9008646D6 /* StatisticsViewController.swift in Sources */,
 				ED34DCFB24C07A1100A7E6E3 /* Colors.swift in Sources */,
+				ED34DD2F24C50F1200A7E6E3 /* CountriesIteractor.swift in Sources */,
+				ED34DD3324C50FA400A7E6E3 /* CountriesIteractorOutput.swift in Sources */,
 				ED0C0D4724AB29E9008646D6 /* AppDelegate.swift in Sources */,
 				ED34DD0324C0AB6700A7E6E3 /* StatisticsData.swift in Sources */,
+				ED34DD3124C50F9300A7E6E3 /* CountriesIteractorInput.swift in Sources */,
 				ED61437F24BDB7C20019E45C /* StatisticsPresenter.swift in Sources */,
-				ED34DD1224C1CA4600A7E6E3 /* StatisticsInteractor.swift in Sources */,
+				ED34DD1224C1CA4600A7E6E3 /* StatisticsIteractor.swift in Sources */,
 				ED34DD2124C1DAF500A7E6E3 /* Integer.swift in Sources */,
 				ED34DD1F24C1DAE100A7E6E3 /* Formatter.swift in Sources */,
 				EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */,
-				ED34DD1424C1CA7200A7E6E3 /* StatisticsInteractorInput.swift in Sources */,
-				ED34DD1624C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift in Sources */,
+				ED34DD1424C1CA7200A7E6E3 /* StatisticsIteractorInput.swift in Sources */,
+				ED34DD1624C1CAA400A7E6E3 /* StatisticsIteractorOutput.swift in Sources */,
 				ED34DD0024C0988400A7E6E3 /* Covid.xcdatamodeld in Sources */,
+				ED34DD2D24C50EF600A7E6E3 /* CountriesRouterInput.swift in Sources */,
 				EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */,
+				ED34DD2B24C50EDF00A7E6E3 /* CountriesRouter.swift in Sources */,
 				EDA81A5E24B5DEFF0005BEC0 /* Model.swift in Sources */,
 				ED34DD1A24C1CADA00A7E6E3 /* StatisticsRouterInput.swift in Sources */,
 				ED61437C24BCC4550019E45C /* TabBarController.swift in Sources */,
 				ED48446B24B5D28D000030C7 /* CountriesViewController.swift in Sources */,
 				ED34DD0724C0ADE400A7E6E3 /* StatisticsViewInput.swift in Sources */,
+				ED34DD3524C50FBE00A7E6E3 /* CountriesPresenter.swift in Sources */,
+				ED34DD3B24C5100600A7E6E3 /* CountriesAssembly.swift in Sources */,
 				EDA81A6224B5E3000005BEC0 /* CountryCellModel.swift in Sources */,
 				ED34DD1824C1CAC100A7E6E3 /* StatisticsRouter.swift in Sources */,
+				ED34DD3924C50FF500A7E6E3 /* CountriesViewInput.swift in Sources */,
 				ED34DD0524C0ADD100A7E6E3 /* StatisticsViewOutput.swift in Sources */,
+				ED34DD3724C50FE400A7E6E3 /* CountriesViewOutput.swift in Sources */,
 				EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */,
 				ED34DCFD24C07FE100A7E6E3 /* Texts.swift in Sources */,
 				ED61438724BE4CFD0019E45C /* StatisticsAssembly.swift in Sources */,

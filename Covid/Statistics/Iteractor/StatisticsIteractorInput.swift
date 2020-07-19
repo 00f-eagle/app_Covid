@@ -1,5 +1,5 @@
 //
-//  StatisticsInteractorInput.swift
+//  StatisticsIteractorInput.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 17.07.2020.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol StatisticsInteractorInput {
+protocol StatisticsIteractorInput {
     func getData()
 }

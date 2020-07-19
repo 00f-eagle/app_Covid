@@ -1,5 +1,5 @@
 //
-//  StatisticsInteractor.swift
+//  StatisticsIteractor.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 17.07.2020.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-final class StatisticsInteractor {
+final class StatisticsIteractor {
     
     // MARK: Properties
     
-    weak var presenter: StatisticsInteractorOutput!
+    weak var presenter: StatisticsIteractorOutput!
 }
 
 
 // MARK: - StatisticsInteractorInput
-extension StatisticsInteractor: StatisticsInteractorInput {
+extension StatisticsIteractor: StatisticsIteractorInput {
     
     func getData() {
         let ns = NetworkService()

@@ -13,7 +13,7 @@ final class StatisticsPresenter {
     // MARK: - Properties
     
     weak var view: StatisticsViewInput!
-    var iteractor: StatisticsInteractorInput!
+    var iteractor: StatisticsIteractorInput!
     var router: StatisticsRouterInput!
     
 }
@@ -33,7 +33,7 @@ extension StatisticsPresenter: StatisticsViewOutput {
 
 
 // MARK: - StatisticsInteractorOutput
-extension StatisticsPresenter: StatisticsInteractorOutput {
+extension StatisticsPresenter: StatisticsIteractorOutput {
     
     func succes(numberGlobal: [String], numberCountries: [String]) {
         view.succes(numberGlobal: numberGlobal, numberCountries: numberCountries)

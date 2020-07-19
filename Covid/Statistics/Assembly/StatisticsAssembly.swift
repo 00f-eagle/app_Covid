@@ -17,7 +17,7 @@ final class StatisticsAssembly {
         view.presenter = presenter
         presenter.view = view
         
-        let interactor = StatisticsInteractor()
+        let interactor = StatisticsIteractor()
         interactor.presenter = presenter
         presenter.iteractor = interactor
         
