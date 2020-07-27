@@ -1,5 +1,5 @@
 //
-//  StatisticsStackView.swift
+//  StatisticsView.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 15.07.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class StatisticsStackView: UIView {
+final class StatisticsView: UIView {
     
     // MARK: - Properties
     
@@ -33,8 +33,6 @@ final class StatisticsStackView: UIView {
         configureLabel(label: numberRecoveredLabel, text: Texts.unknown, color: Colors.green)
         configureLabel(label: incRecoveredLabel, text: Texts.unknown, color: Colors.green)
         
-        let stack = UIStackView()
-        
         let titleConfirmedLabel = configureTitleStatusLabel(text: Texts.confirmed, color: Colors.orange)
         let titleDeathsLabel = configureTitleStatusLabel(text: Texts.deaths, color: Colors.red)
         let titleRecoveredLabel = configureTitleStatusLabel(text: Texts.recovered, color: Colors.green)
@@ -47,6 +45,7 @@ final class StatisticsStackView: UIView {
         let deathsStack = configureNumberAndTitleStack(label: titleDeathsLabel, numberStack: numberAndIncDeathsStack)
         let recoveredStack = configureNumberAndTitleStack(label: titleRecoveredLabel, numberStack: numberAndIncRecoveredStack)
         
+        let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 25
@@ -58,14 +57,12 @@ final class StatisticsStackView: UIView {
     }
     
     private func configureTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = Texts.unknown
         titleLabel.textColor = Colors.white
         titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
     }
     
     private func configureLabel(label: UILabel, text: String, color: UIColor){
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = color
         label.text = text
         label.font = .systemFont(ofSize: 20, weight: .heavy)
@@ -79,7 +76,6 @@ final class StatisticsStackView: UIView {
     
     private func configureNumberAndIncStack(labelOne: UILabel, labelTwo: UILabel) -> UIStackView {
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.addArrangedSubview(labelOne)
         stack.addArrangedSubview(labelTwo)
@@ -99,7 +95,6 @@ final class StatisticsStackView: UIView {
     
     private func configureNumberAndTitleStack(label: UILabel, numberStack: UIStackView) -> UIStackView{
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 20
         stack.addArrangedSubview(label)

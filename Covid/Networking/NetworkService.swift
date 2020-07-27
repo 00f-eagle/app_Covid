@@ -17,9 +17,11 @@ final class NetworkService {
         static let dayOne = URL(string: "https://api.covid19api.com/dayone/country")!
     }
     
-    // MARK: - loadData
-    
-    func getGlobal(completionHandler: @escaping (_ model: GlobalModel?) -> ()) {
+}
+
+// MARK: - NetworkServiceProtocol
+extension NetworkService: NetworkServiceProtocol {
+    func getSummary(completionHandler: @escaping (_ model: [CountryModel]?) -> ()) {
         let task = URLSession.shared.dataTask(with: Urls.summary) { data, response, error in
 
             if !self.checkErrors(data: data, response: response, error: error) {
@@ -28,46 +30,14 @@ final class NetworkService {
             }
             
             do {
-                let global = try JSONDecoder().decode(GlobalModel.self, from: data!)
-                completionHandler(global)
-            } catch {
-                print("JSON error!")
-            }
-            
-        }
-        task.resume()
-    }
-    
-    func getCountries(completionHandler: @escaping (_ model: CountriesModel?) -> ()) {
-        let task = URLSession.shared.dataTask(with: Urls.summary) { data, response, error in
-
-            if !self.checkErrors(data: data, response: response, error: error) {
-                completionHandler(nil)
-                return
-            }
-            
-            do {
-                let countries = try JSONDecoder().decode(CountriesModel.self, from: data!)
+                let summaryModel = try JSONDecoder().decode(SummaryModel.self, from: data!)
+                
+                let global = CountryModel(country: "World", countryCode: "WORLD", slug: "", newConfirmed: summaryModel.global.newConfirmed, totalConfirmed: summaryModel.global.totalConfirmed, newDeaths: summaryModel.global.newDeaths, totalDeaths: summaryModel.global.totalDeaths, newRecovered: summaryModel.global.newRecovered, totalRecovered: summaryModel.global.totalRecovered, date: summaryModel.date)
+                
+                var countries = summaryModel.countries
+                countries.append(global)
+                
                 completionHandler(countries)
-            } catch {
-                print("JSON error!")
-            }
-            
-        }
-        task.resume()
-    }
-    
-    func getSummary(completionHandler: @escaping (_ model: SummaryModel?) -> ()) {
-        let task = URLSession.shared.dataTask(with: Urls.summary) { data, response, error in
-
-            if !self.checkErrors(data: data, response: response, error: error) {
-                completionHandler(nil)
-                return
-            }
-            
-            do {
-                let summary = try JSONDecoder().decode(SummaryModel.self, from: data!)
-                completionHandler(summary)
             } catch {
                 print("JSON error!")
             }

@@ -19,7 +19,7 @@ final class TabBarController: UITabBarController {
         statisticsViewController.tabBarItem = UITabBarItem(title: "Статистика", image: nil, tag: 0)
         statisticsViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -15)
         
-        let countriesViewController = CountriesViewController()
+        let countriesViewController = CountriesAssembly.assembly()
         countriesViewController.tabBarItem = UITabBarItem(title: "Все страны", image: nil, tag: 1)
         countriesViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -15)
         

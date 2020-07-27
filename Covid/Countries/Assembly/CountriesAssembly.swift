@@ -9,5 +9,24 @@
 import UIKit
 
 class CountriesAssembly {
-
+    
+    static func assembly() -> UIViewController {
+        let view = CountriesViewController()
+        let presenter = CountriesPresenter()
+        
+        view.presenter = presenter
+        presenter.view = view
+        
+        let statisticsData = StatisticsData()
+        
+        let interactor = CountriesInteractor(statisticData: statisticsData)
+        interactor.presenter = presenter
+        presenter.interactor = interactor
+        
+        let router = CountriesRouter()
+        router.view = view
+        presenter.router = router
+        
+        return view
+    }
 }

@@ -10,7 +10,6 @@ import UIKit
 
 enum Texts {
     static let world = "Мир"
-    static let country = "Россия"
     static let confirmed = "Подтверждено"
     static let deaths = "Смертей"
     static let recovered = "Выздоровлений"

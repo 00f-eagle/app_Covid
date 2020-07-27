@@ -8,6 +8,20 @@
 
 import UIKit
 
-class CountriesRouter {
+final class CountriesRouter {
+    
+    // MARK: - Properties
+    
+    weak var view: CountriesViewController!
+}
 
+
+
+// MARK: - StatisticsRouterInput
+extension CountriesRouter: CountriesRouterInput {
+    func presentFailureAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        view.present(alert, animated: true, completion: nil)
+    }
 }

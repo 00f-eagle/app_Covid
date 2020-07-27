@@ -13,7 +13,7 @@ final class StatisticsPresenter {
     // MARK: - Properties
     
     weak var view: StatisticsViewInput!
-    var iteractor: StatisticsIteractorInput!
+    var interactor: StatisticsInteractorInput!
     var router: StatisticsRouterInput!
     
 }
@@ -21,22 +21,25 @@ final class StatisticsPresenter {
 
 // MARK: - StatisticsViewOutput
 extension StatisticsPresenter: StatisticsViewOutput {
-    
-    func updateView() {
-        iteractor.getData()
+    func presentFailureAlert(title: String, message: String) {
+        router.presentFailureAlert(title: title, message: message)
     }
     
-    func exampleForRouter() {
-        router.exampleForRouter()
+    func changeCountry() {
+        router.showCountry()
+    }
+    
+    func getData() {
+        interactor.loadData()
     }
 }
 
 
 // MARK: - StatisticsInteractorOutput
-extension StatisticsPresenter: StatisticsIteractorOutput {
+extension StatisticsPresenter: StatisticsInteractorOutput {
     
-    func succes(numberGlobal: [String], numberCountries: [String]) {
-        view.succes(numberGlobal: numberGlobal, numberCountries: numberCountries)
+    func succes(global: Statistics, country: Statistics) {
+        view.succes(global: global, country: country)
     }
     
     func failure() {

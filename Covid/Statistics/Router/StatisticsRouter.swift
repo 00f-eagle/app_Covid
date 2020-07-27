@@ -18,7 +18,13 @@ final class StatisticsRouter {
 
 // MARK: - StatisticsRouterInput
 extension StatisticsRouter: StatisticsRouterInput {
-    func exampleForRouter() {
-        // Логика переключения view
+    func presentFailureAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        view.present(alert, animated: true, completion: nil)
+    }
+    
+    func showCountry() {
+        // Логика появления списка стран
     }
 }

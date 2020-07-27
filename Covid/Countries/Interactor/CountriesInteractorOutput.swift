@@ -1,5 +1,5 @@
 //
-//  CountriesIteractorOutput.swift
+//  CountriesInteractorOutput.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 20.07.2020.
@@ -8,6 +8,7 @@
 
 import UIKit
 
-class CountriesIteractorOutput {
-
+protocol CountriesInteractorOutput: AnyObject {
+    func succes(countries: [Statistics])
+    func failure()
 }

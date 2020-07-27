@@ -8,6 +8,7 @@
 
 import UIKit
 
-class CountriesViewInput {
-
+protocol CountriesViewInput: AnyObject {
+    func succes(countries: [Statistics])
+    func failure()
 }

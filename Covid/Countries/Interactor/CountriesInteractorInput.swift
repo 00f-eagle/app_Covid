@@ -1,5 +1,5 @@
 //
-//  CountriesViewOutput.swift
+//  CountriesInteractorInput.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 20.07.2020.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol CountriesViewOutput {
+protocol CountriesInteractorInput {
     func loadData(status: Status)
-    func searchCountry(text: String, status: Status)
-    func presentFailureAlert(title: String, message: String)
+    func seachCountry(text: String, status: Status)
 }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol StatisticsViewOutput: AnyObject {
-    func updateView()
-    func exampleForRouter()
+protocol StatisticsViewOutput {
+    func getData()
+    func changeCountry()
+    func presentFailureAlert(title: String, message: String)
 }

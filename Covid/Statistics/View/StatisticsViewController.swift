@@ -16,37 +16,38 @@ final class StatisticsViewController: UIViewController {
     
     private let contentView = UIView()
     private let scrollView = UIScrollView()
-    private let statisticsStackViewOne = StatisticsStackView()
-    private let statisticsStackViewTwo = StatisticsStackView()
+    private let countryStatisticsView = StatisticsView()
+    private let globalStatisticsView = StatisticsView()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.black
-        setupView()
-        presenter.updateView()
         
-        // Где-то в этом классе будет вызов presenter.exampleForRouter()
+        setupView()
+        presenter.getData()
     }
     
     // MARK: - Configurations View
     
     private func setupView() {
+
         configureScrollView()
         configureContentView()
-        let stackOne = statisticsStackViewOne.configureStatisticsStackView()
-        let stackTwo = statisticsStackViewTwo.configureStatisticsStackView()
         
-        contentView.addSubview(stackOne)
-        contentView.addSubview(stackTwo)
+        let countryStackView = countryStatisticsView.configureStatisticsStackView()
+        let globalStackView = globalStatisticsView.configureStatisticsStackView()
+        addGestureByCountryStackView()
+        contentView.addSubview(countryStackView)
+        contentView.addSubview(globalStackView)
         
         NSLayoutConstraint.activate([
-            stackOne.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
-            stackOne.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            stackTwo.topAnchor.constraint(equalTo: stackOne.bottomAnchor, constant: 25),
-            stackTwo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            stackTwo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            countryStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
+            countryStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            globalStackView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor, constant: 25),
+            globalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            globalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
@@ -70,31 +71,44 @@ final class StatisticsViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
         }
     }
+    
+    private func addGestureByCountryStackView() {
+        countryStatisticsView.titleLabel.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapChangeCountry))
+        countryStatisticsView.titleLabel.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    // MARK: - Active
+    
+    @objc private func tapChangeCountry() {
+        presenter.changeCountry()
+    }
 }
 
 
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
     
-    func succes(numberGlobal: [String], numberCountries: [String]) {
-        statisticsStackViewOne.titleLabel.text = "Россия"
-        statisticsStackViewOne.numberConfirmedLabel.text = numberCountries[0]
-        statisticsStackViewOne.numberDeathsLabel.text = numberCountries[1]
-        statisticsStackViewOne.numberRecoveredLabel.text = numberCountries[2]
-        statisticsStackViewOne.incConfirmedLabel.text = numberCountries[3]
-        statisticsStackViewOne.incDeathsLabel.text = numberCountries[4]
-        statisticsStackViewOne.incRecoveredLabel.text = numberCountries[5]
+    func succes(global: Statistics, country: Statistics) {
         
-        statisticsStackViewTwo.titleLabel.text = "Мир"
-        statisticsStackViewTwo.numberConfirmedLabel.text = numberGlobal[0]
-        statisticsStackViewTwo.numberDeathsLabel.text = numberGlobal[1]
-        statisticsStackViewTwo.numberRecoveredLabel.text = numberGlobal[2]
-        statisticsStackViewTwo.incConfirmedLabel.text = numberGlobal[3]
-        statisticsStackViewTwo.incDeathsLabel.text = numberGlobal[4]
-        statisticsStackViewTwo.incRecoveredLabel.text = numberGlobal[5]
+        countryStatisticsView.titleLabel.text = country.country
+        countryStatisticsView.numberConfirmedLabel.text = "\(Int(country.confirmed).formattedWithSeparator)"
+        countryStatisticsView.numberDeathsLabel.text = "\(Int(country.deaths).formattedWithSeparator)"
+        countryStatisticsView.numberRecoveredLabel.text = "\(Int(country.recovered).formattedWithSeparator)"
+        countryStatisticsView.incConfirmedLabel.text = "+\(Int(country.incConfirmed).formattedWithSeparator)"
+        countryStatisticsView.incDeathsLabel.text = "+\(Int(country.incDeaths).formattedWithSeparator)"
+        countryStatisticsView.incRecoveredLabel.text = "+\(Int(country.incRecoverded).formattedWithSeparator)"
+        
+        globalStatisticsView.titleLabel.text = global.country
+        globalStatisticsView.numberConfirmedLabel.text = "\(Int(global.confirmed).formattedWithSeparator)"
+        globalStatisticsView.numberDeathsLabel.text = "\(Int(global.deaths).formattedWithSeparator)"
+        globalStatisticsView.numberRecoveredLabel.text = "\(Int(global.recovered).formattedWithSeparator)"
+        globalStatisticsView.incConfirmedLabel.text = "+\(Int(global.incConfirmed).formattedWithSeparator)"
+        globalStatisticsView.incDeathsLabel.text = "+\(Int(global.incDeaths).formattedWithSeparator)"
+        globalStatisticsView.incRecoveredLabel.text = "+\(Int(global.incRecoverded).formattedWithSeparator)"
     }
     
     func failure() {
-        print("Сделать аллерт с ошибкой получения данных!")
+        presenter.presentFailureAlert(title: "Ошибка", message: "Не удалось получить данные")
     }
 }

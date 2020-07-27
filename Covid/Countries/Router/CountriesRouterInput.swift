@@ -8,6 +8,6 @@
 
 import UIKit
 
-class CountriesRouterInput {
-
+protocol CountriesRouterInput {
+    func presentFailureAlert(title: String, message: String)
 }

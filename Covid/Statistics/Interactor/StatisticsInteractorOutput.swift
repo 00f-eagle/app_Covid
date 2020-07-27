@@ -1,5 +1,5 @@
 //
-//  StatisticsIteractorOutput.swift
+//  StatisticsInteractorOutput.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 17.07.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol StatisticsIteractorOutput: AnyObject {
-    func succes(numberGlobal: [String], numberCountries: [String])
+protocol StatisticsInteractorOutput: AnyObject {
+    func succes(global: Statistics, country: Statistics)
     func failure()
 }
