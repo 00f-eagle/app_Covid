@@ -9,6 +9,6 @@
 import UIKit
 
 protocol StatisticsInteractorOutput: AnyObject {
-    func succes(global: Statistics, country: Statistics)
+    func success(global: Statistics, country: Statistics)
     func failure()
 }

@@ -13,16 +13,17 @@ final class CountriesViewController: UIViewController {
     // MARK: - Constants
     
     private let identifier = "CountryCell"
+    private let items = [Texts.confirmed, Texts.deaths, Texts.recovered]
     
     // MARK: - Properties
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     var presenter: CountriesViewOutput!
     
     private var status: Status?
-    
-    private let confirmedButton = UIButton()
-    private let deathsButton = UIButton()
-    private let recoveredButton = UIButton()
     
     private let headerStackView = UIStackView()
     
@@ -40,16 +41,14 @@ final class CountriesViewController: UIViewController {
         view.backgroundColor = Colors.black
         
         setupView()
-        tapConfirmedButton()
+        
+        status = Status.confirmed
+        presenter.loadData(status: status!)
     }
     
     // MARK: - Configurations
     
     private func setupView() {
-        
-        configureButton(button: confirmedButton, text: Texts.confirmed, color: Colors.orange, tap: #selector(tapConfirmedButton))
-        configureButton(button: deathsButton, text: Texts.deaths, color: Colors.red, tap: #selector(tapDeathsButton))
-        configureButton(button: recoveredButton, text: Texts.recovered, color: Colors.green, tap: #selector(tapRecoveredButton))
         
         configureHeaderStackView()
         configureTableView()
@@ -59,45 +58,38 @@ final class CountriesViewController: UIViewController {
             headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             tableCountries.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableCountries.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
         ])
         
         if #available(iOS 11.0, *) {
             headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
             tableCountries.topAnchor.constraint(equalTo: headerStackView.safeAreaLayoutGuide.bottomAnchor, constant: 5).isActive = true
+            tableCountries.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         } else {
             headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
             tableCountries.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 5).isActive = true
+            tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         }
     }
     
-    private func configureButton(button: UIButton, text: String, color: UIColor, tap: Selector) {
-        button.layer.cornerRadius = 3
-        button.layer.borderWidth = 1
-        button.backgroundColor = color
-        button.setTitle(text, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        button.addTarget(self, action: tap, for: .touchUpInside)
-    }
-    
     private func configureHeaderStackView() {
+        
+        let statusSegmentedControl = configureSegmentedControl()
         let countrySearchBar = configureSearchBar()
-        let statusButtonStackView = setupStatusButtonStackView()
         headerStackView.addArrangedSubview(countrySearchBar)
-        headerStackView.addArrangedSubview(statusButtonStackView)
+        headerStackView.addArrangedSubview(statusSegmentedControl)
         headerStackView.axis = .vertical
         headerStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerStackView)
     }
     
-    private func setupStatusButtonStackView() -> UIStackView{
-        let stack = UIStackView()
-        stack.addArrangedSubview(confirmedButton)
-        stack.addArrangedSubview(deathsButton)
-        stack.addArrangedSubview(recoveredButton)
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        return stack
+    private func configureSegmentedControl() -> UISegmentedControl {
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.addTarget(self, action: #selector(selectedStatus), for: .valueChanged)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.black], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.white], for: .normal)
+        return segmentedControl
     }
     
     private func configureSearchBar() -> UISearchBar {
@@ -105,8 +97,11 @@ final class CountriesViewController: UIViewController {
         searchBar.delegate = self
         searchBar.barTintColor = Colors.black
         searchBar.placeholder = "Поиск страны"
-        let textField = searchBar.value(forKey: "searchField") as? UITextField
-        textField?.textColor = Colors.white
+        
+        if #available(iOS 11.0, *) {
+            let textField = searchBar.value(forKey: "searchField") as? UITextField
+            textField?.textColor = Colors.white
+        }
         return searchBar
     }
     
@@ -120,30 +115,22 @@ final class CountriesViewController: UIViewController {
         view.addSubview(tableCountries)
     }
     
-    private func changeButton(buttonOne: UIButton, buttonTwo: UIButton, buttonThree: UIButton) {
-        buttonOne.titleLabel?.font = .systemFont(ofSize: 15, weight: .heavy)
-        buttonTwo.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-        buttonThree.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
-    }
-    
     // MARK: - Active
     
-    @objc private func tapConfirmedButton() {
-        status = Status.confirmed
-        changeButton(buttonOne: confirmedButton, buttonTwo: deathsButton, buttonThree: recoveredButton)
-        presenter.loadData(status: status!)
-    }
-    
-    @objc private func tapDeathsButton() {
-        status = Status.deaths
-        changeButton(buttonOne: deathsButton, buttonTwo: confirmedButton, buttonThree: recoveredButton)
-        presenter.loadData(status: status!)
-    }
-    
-    @objc private func tapRecoveredButton() {
-        status = Status.recoverded
-        changeButton(buttonOne: recoveredButton, buttonTwo: confirmedButton, buttonThree: deathsButton)
-        presenter.loadData(status: status!)
+    @objc private func selectedStatus(_ segmentedControl: UISegmentedControl) {
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            status = Status.confirmed
+            presenter.loadData(status: status!)
+        case 1:
+            status = Status.deaths
+            presenter.loadData(status: status!)
+        case 2:
+            status = Status.recoverded
+            presenter.loadData(status: status!)
+        default:
+            break
+        }
     }
 }
 
@@ -156,12 +143,14 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CountryCell {
-            let countryModel = cellCountry[indexPath.row]
-            cell.updateContent(countryModel: countryModel, status: status!)
-            return cell
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CountryCell, let status = status else {
+            return UITableViewCell()
         }
-        return UITableViewCell()
+        
+        let countryModel = cellCountry[indexPath.row]
+        cell.updateContent(countryModel: countryModel, status: status)
+        return cell
     }
 }
 

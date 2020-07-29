@@ -23,7 +23,7 @@ final class CountriesPresenter {
 extension CountriesPresenter: CountriesViewOutput {
     
     func searchCountry(text: String, status: Status) {
-        interactor.seachCountry(text: text, status: status)
+        interactor.searchCountry(text: text, status: status)
     }
 
     func loadData(status: Status) {
@@ -39,7 +39,7 @@ extension CountriesPresenter: CountriesViewOutput {
 // MARK: - CountriesInteractorOutput
 extension CountriesPresenter: CountriesInteractorOutput {
     
-    func succes(countries: [Statistics]) {
+    func success(countries: [Statistics]) {
         view.succes(countries: countries)
     }
     

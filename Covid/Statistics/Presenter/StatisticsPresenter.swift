@@ -38,7 +38,7 @@ extension StatisticsPresenter: StatisticsViewOutput {
 // MARK: - StatisticsInteractorOutput
 extension StatisticsPresenter: StatisticsInteractorOutput {
     
-    func succes(global: Statistics, country: Statistics) {
+    func success(global: Statistics, country: Statistics) {
         view.succes(global: global, country: country)
     }
     

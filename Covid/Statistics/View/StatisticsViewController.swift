@@ -12,6 +12,10 @@ final class StatisticsViewController: UIViewController {
     
     // MARK: - Properties
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var presenter: StatisticsViewOutput!
     
     private let contentView = UIView()
@@ -68,7 +72,7 @@ final class StatisticsViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         } else {
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         }
     }
     
@@ -91,24 +95,21 @@ extension StatisticsViewController: StatisticsViewInput {
     
     func succes(global: Statistics, country: Statistics) {
         
-        countryStatisticsView.titleLabel.text = country.country
-        countryStatisticsView.numberConfirmedLabel.text = "\(Int(country.confirmed).formattedWithSeparator)"
-        countryStatisticsView.numberDeathsLabel.text = "\(Int(country.deaths).formattedWithSeparator)"
-        countryStatisticsView.numberRecoveredLabel.text = "\(Int(country.recovered).formattedWithSeparator)"
-        countryStatisticsView.incConfirmedLabel.text = "+\(Int(country.incConfirmed).formattedWithSeparator)"
-        countryStatisticsView.incDeathsLabel.text = "+\(Int(country.incDeaths).formattedWithSeparator)"
-        countryStatisticsView.incRecoveredLabel.text = "+\(Int(country.incRecoverded).formattedWithSeparator)"
-        
-        globalStatisticsView.titleLabel.text = global.country
-        globalStatisticsView.numberConfirmedLabel.text = "\(Int(global.confirmed).formattedWithSeparator)"
-        globalStatisticsView.numberDeathsLabel.text = "\(Int(global.deaths).formattedWithSeparator)"
-        globalStatisticsView.numberRecoveredLabel.text = "\(Int(global.recovered).formattedWithSeparator)"
-        globalStatisticsView.incConfirmedLabel.text = "+\(Int(global.incConfirmed).formattedWithSeparator)"
-        globalStatisticsView.incDeathsLabel.text = "+\(Int(global.incDeaths).formattedWithSeparator)"
-        globalStatisticsView.incRecoveredLabel.text = "+\(Int(global.incRecoverded).formattedWithSeparator)"
+        changeStatisticsView(statisticsView: countryStatisticsView, statistics: country)
+        changeStatisticsView(statisticsView: globalStatisticsView, statistics: global)
     }
     
     func failure() {
         presenter.presentFailureAlert(title: "Ошибка", message: "Не удалось получить данные")
+    }
+    
+    private func changeStatisticsView(statisticsView: StatisticsView, statistics: Statistics) {
+        statisticsView.titleLabel.text = statistics.country
+        statisticsView.numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
+        statisticsView.numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"
+        statisticsView.numberRecoveredLabel.text = "\(Int(statistics.recovered).formattedWithSeparator)"
+        statisticsView.incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
+        statisticsView.incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
+        statisticsView.incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
     }
 }

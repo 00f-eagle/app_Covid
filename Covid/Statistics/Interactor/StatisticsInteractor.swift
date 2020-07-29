@@ -41,7 +41,7 @@ extension StatisticsInteractor: StatisticsInteractorInput {
                 }
                 
                 if let global = self?.statisticData.getDataByCountry(country: "World"), let country = self?.statisticData.getDataByCountry(country: "Russian Federation") {
-                    self?.presenter.succes(global: global, country: country)
+                    self?.presenter.success(global: global, country: country)
                 } else {
                     self?.presenter.failure()
                 }

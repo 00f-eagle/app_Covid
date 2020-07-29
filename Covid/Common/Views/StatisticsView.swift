@@ -59,13 +59,13 @@ final class StatisticsView: UIView {
     private func configureTitleLabel() {
         titleLabel.text = Texts.unknown
         titleLabel.textColor = Colors.white
-        titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 30, weight: .heavy)
     }
     
     private func configureLabel(label: UILabel, text: String, color: UIColor){
         label.textColor = color
         label.text = text
-        label.font = .systemFont(ofSize: 20, weight: .heavy)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     private func configureTitleStatusLabel(text: String, color: UIColor) -> UILabel {

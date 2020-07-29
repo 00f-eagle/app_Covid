@@ -44,8 +44,9 @@ final class StatisticsData: StatisticsDataProtocol {
     func getDataByCountry(country: String) -> Statistics? {
         let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "country = %@", country)
+        fetchRequest.fetchLimit = 1
         do {
-            return try DataManager.shared.context.fetch(fetchRequest)[0]
+            return try DataManager.shared.context.fetch(fetchRequest).first
         } catch {
             return nil
         }

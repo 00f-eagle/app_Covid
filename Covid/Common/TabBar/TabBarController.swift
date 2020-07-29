@@ -10,22 +10,29 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
+    // MARK: - Properties
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let statisticsViewController = StatisticsAssembly.assembly()
-        statisticsViewController.tabBarItem = UITabBarItem(title: "Статистика", image: nil, tag: 0)
-        statisticsViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -15)
+        statisticsViewController.tabBarItem = UITabBarItem(title: "Статистика", image: UIImage(named: "statistics.png"), tag: 0)
         
         let countriesViewController = CountriesAssembly.assembly()
-        countriesViewController.tabBarItem = UITabBarItem(title: "Все страны", image: nil, tag: 1)
-        countriesViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -15)
+        countriesViewController.tabBarItem = UITabBarItem(title: "Все страны", image: UIImage(named: "countries.png"), tag: 1)
         
         let tabBarList = [statisticsViewController, countriesViewController]
         
-        tabBar.barTintColor = Colors.black
+        tabBar.barTintColor = .clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        
         viewControllers = tabBarList
     }
 }
