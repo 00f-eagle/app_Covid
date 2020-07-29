@@ -21,13 +21,14 @@ final class CountriesPresenter {
 
 // MARK: - CountriesViewOutput
 extension CountriesPresenter: CountriesViewOutput {
-    
-    func searchCountry(text: String, status: Status) {
-        interactor.searchCountry(text: text, status: status)
-    }
 
-    func loadData(status: Status) {
-        interactor.loadData(status: status)
+    func loadData(text: String, status: Status) {
+        if text.isEmpty {
+            interactor.loadData(status: status)
+        }
+        else {
+            interactor.searchCountry(text: text, status: status)
+        }
     }
     
     func presentFailureAlert(title: String, message: String) {
@@ -40,7 +41,7 @@ extension CountriesPresenter: CountriesViewOutput {
 extension CountriesPresenter: CountriesInteractorOutput {
     
     func success(countries: [Statistics]) {
-        view.succes(countries: countries)
+        view.success(countries: countries)
     }
     
     func failure() {

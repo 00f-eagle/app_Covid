@@ -49,11 +49,10 @@ extension CountriesInteractor: CountriesInteractorInput {
     
     func searchCountry(text: String, status: Status) {
         
-        guard let countries = statisticsData.getDataByCountries() else {
+        guard let countries = statisticsData.searchData(text: text) else {
             presenter.failure()
             return
         }
-        
         let countriesSorted: [Statistics]
         switch status {
         case .confirmed:

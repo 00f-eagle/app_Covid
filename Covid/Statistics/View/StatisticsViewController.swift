@@ -72,7 +72,7 @@ final class StatisticsViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         } else {
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -49).isActive = true
         }
     }
     
@@ -93,7 +93,7 @@ final class StatisticsViewController: UIViewController {
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
     
-    func succes(global: Statistics, country: Statistics) {
+    func success(global: Statistics, country: Statistics) {
         
         changeStatisticsView(statisticsView: countryStatisticsView, statistics: country)
         changeStatisticsView(statisticsView: globalStatisticsView, statistics: global)

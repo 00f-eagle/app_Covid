@@ -39,7 +39,7 @@ extension StatisticsPresenter: StatisticsViewOutput {
 extension StatisticsPresenter: StatisticsInteractorOutput {
     
     func success(global: Statistics, country: Statistics) {
-        view.succes(global: global, country: country)
+        view.success(global: global, country: country)
     }
     
     func failure() {

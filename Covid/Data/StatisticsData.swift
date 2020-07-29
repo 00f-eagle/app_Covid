@@ -64,7 +64,7 @@ final class StatisticsData: StatisticsDataProtocol {
     
     func searchData(text: String) -> [Statistics]? {
         let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "country BEGINSWITH[c] %@", text)
+        fetchRequest.predicate = NSPredicate(format: "country != %@ && country BEGINSWITH[cd] %@", "World", text)
         do {
             return try DataManager.shared.context.fetch(fetchRequest)
         } catch {

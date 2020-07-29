@@ -23,7 +23,8 @@ final class CountriesViewController: UIViewController {
     
     var presenter: CountriesViewOutput!
     
-    private var status: Status?
+    private var status: Status!
+    private var searchText = ""
     
     private let headerStackView = UIStackView()
     
@@ -43,7 +44,7 @@ final class CountriesViewController: UIViewController {
         setupView()
         
         status = Status.confirmed
-        presenter.loadData(status: status!)
+        presenter.loadData(text: searchText, status: status)
     }
     
     // MARK: - Configurations
@@ -68,7 +69,7 @@ final class CountriesViewController: UIViewController {
         } else {
             headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
             tableCountries.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 5).isActive = true
-            tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -49).isActive = true
         }
     }
     
@@ -97,7 +98,8 @@ final class CountriesViewController: UIViewController {
         searchBar.delegate = self
         searchBar.barTintColor = Colors.black
         searchBar.placeholder = "Поиск страны"
-        
+        searchBar.returnKeyType = .done
+        searchBar.enablesReturnKeyAutomatically = false
         if #available(iOS 11.0, *) {
             let textField = searchBar.value(forKey: "searchField") as? UITextField
             textField?.textColor = Colors.white
@@ -121,13 +123,13 @@ final class CountriesViewController: UIViewController {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             status = Status.confirmed
-            presenter.loadData(status: status!)
+            presenter.loadData(text: searchText, status: Status.confirmed)
         case 1:
             status = Status.deaths
-            presenter.loadData(status: status!)
+            presenter.loadData(text: searchText, status: status)
         case 2:
             status = Status.recoverded
-            presenter.loadData(status: status!)
+            presenter.loadData(text: searchText, status: status)
         default:
             break
         }
@@ -158,31 +160,20 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension CountriesViewController: UISearchBarDelegate {
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        presenter.searchCountry(text: searchBar.text!, status: status!)
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        presenter.loadData(status: status!)
-        searchBar.text = nil
-        searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.searchCountry(text: searchText, status: status!)
+        self.searchText = searchText
+        presenter.loadData(text: searchText, status: status)
     }
 }
 
 
 // MARK: - StatisticsViewInput
 extension CountriesViewController: CountriesViewInput {
-    func succes(countries: [Statistics]) {
+    func success(countries: [Statistics]) {
         cellCountry = countries
     }
     
