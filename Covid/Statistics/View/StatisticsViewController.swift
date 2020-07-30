@@ -20,8 +20,9 @@ final class StatisticsViewController: UIViewController {
     
     private let contentView = UIView()
     private let scrollView = UIScrollView()
-    private let countryStatisticsView = StatisticsView()
-    private let globalStatisticsView = StatisticsView()
+    private let indicator = UIActivityIndicatorView()
+    private let countryStatisticsStackView = StatisticsStackView()
+    private let globalStatisticsStackView = StatisticsStackView()
     
     // MARK: - Lifecycle
     
@@ -36,27 +37,39 @@ final class StatisticsViewController: UIViewController {
     // MARK: - Configurations View
     
     private func setupView() {
+        
+        activityIndicator()
+        indicator.startAnimating()
 
         configureScrollView()
         configureContentView()
-        
-        let countryStackView = countryStatisticsView.configureStatisticsStackView()
-        let globalStackView = globalStatisticsView.configureStatisticsStackView()
+
+        contentView.addSubview(countryStatisticsStackView)
         addGestureByCountryStackView()
-        contentView.addSubview(countryStackView)
-        contentView.addSubview(globalStackView)
+        contentView.addSubview(globalStatisticsStackView)
         
         NSLayoutConstraint.activate([
-            countryStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
-            countryStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            globalStackView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor, constant: 25),
-            globalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            globalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            countryStatisticsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
+            countryStatisticsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            globalStatisticsStackView.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: 25),
+            globalStatisticsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            globalStatisticsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    func activityIndicator() {
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.backgroundColor = Colors.black
+        indicator.style = .white
+        indicator.hidesWhenStopped = true
+        view.addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     private func configureContentView() {
         scrollView.addSubview(contentView)
+        scrollView.isHidden = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
@@ -77,9 +90,9 @@ final class StatisticsViewController: UIViewController {
     }
     
     private func addGestureByCountryStackView() {
-        countryStatisticsView.titleLabel.isUserInteractionEnabled = true
+        countryStatisticsStackView.titleLabel.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapChangeCountry))
-        countryStatisticsView.titleLabel.addGestureRecognizer(tapGestureRecognizer)
+        countryStatisticsStackView.titleLabel.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: - Active
@@ -95,15 +108,20 @@ extension StatisticsViewController: StatisticsViewInput {
     
     func success(global: Statistics, country: Statistics) {
         
-        changeStatisticsView(statisticsView: countryStatisticsView, statistics: country)
-        changeStatisticsView(statisticsView: globalStatisticsView, statistics: global)
+        changeStatisticsView(statisticsView: countryStatisticsStackView, statistics: country)
+        changeStatisticsView(statisticsView: globalStatisticsStackView, statistics: global)
+        
+        indicator.stopAnimating()
+        scrollView.isHidden = false
     }
     
     func failure() {
+        indicator.stopAnimating()
         presenter.presentFailureAlert(title: "Ошибка", message: "Не удалось получить данные")
     }
     
-    private func changeStatisticsView(statisticsView: StatisticsView, statistics: Statistics) {
+    private func changeStatisticsView(statisticsView: StatisticsStackView, statistics: Statistics) {
+        
         statisticsView.titleLabel.text = statistics.country
         statisticsView.numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
         statisticsView.numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"

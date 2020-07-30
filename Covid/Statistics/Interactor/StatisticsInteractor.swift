@@ -36,8 +36,6 @@ extension StatisticsInteractor: StatisticsInteractorInput {
                 
                 if let model = response {
                     self?.statisticData.addData(data: model)
-                } else {
-                    print("Error!")
                 }
                 
                 if let global = self?.statisticData.getDataByCountry(country: "World"), let country = self?.statisticData.getDataByCountry(country: "Russian Federation") {

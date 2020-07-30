@@ -53,7 +53,7 @@
 		ED7AC42C24D080C800279807 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42A24D080C800279807 /* statistics.png */; };
 		EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */; };
 		EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */; };
-		EDDA369A24BF477700AD3C1C /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsView.swift */; };
+		EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +126,7 @@
 		ED7AC42A24D080C800279807 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
 		EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EDDA369924BF477700AD3C1C /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,7 +382,7 @@
 		ED34DD2824C501B100A7E6E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EDDA369924BF477700AD3C1C /* StatisticsView.swift */,
+				EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 				ED34DD0024C0988400A7E6E3 /* Covid.xcdatamodeld in Sources */,
 				ED34DD2D24C50EF600A7E6E3 /* CountriesRouterInput.swift in Sources */,
 				ED196F1A24C9781700C60C4F /* StatisticsDataProtocol.swift in Sources */,
-				EDDA369A24BF477700AD3C1C /* StatisticsView.swift in Sources */,
+				EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */,
 				ED196F2E24C9AACE00C60C4F /* Statistics+CoreDataProperties.swift in Sources */,
 				ED34DD2B24C50EDF00A7E6E3 /* CountriesRouter.swift in Sources */,
 				ED196F2D24C9AACE00C60C4F /* Statistics+CoreDataClass.swift in Sources */,
