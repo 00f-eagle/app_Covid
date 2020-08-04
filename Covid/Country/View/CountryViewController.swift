@@ -21,6 +21,7 @@ final class CountryViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     private let backButton = UIButton()
+    private let defaultCountryButton = UIButton()
     private let countryStatisticsStackView = StatisticsStackView()
     
     // MARK: - Lifecycle
@@ -37,7 +38,11 @@ final class CountryViewController: UIViewController {
     
     private func setupView() {
         
-        configureBackButton()
+        
+        configureButton(button: backButton, text: "< Назад", action: #selector(backAction))
+        configureButton(button: defaultCountryButton, text: "По умолчанию", action: #selector(defaultCountryAction))
+        configureButtonsConstraint()
+        
         configureScrollView()
         
         NSLayoutConstraint.activate([
@@ -48,18 +53,24 @@ final class CountryViewController: UIViewController {
         ])
     }
     
-    private func configureBackButton() {
-        view.addSubview(backButton)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.setTitle("< Назад", for: .normal)
-        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
-        
-        var constraints = [backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView)]
+    private func configureButton(button: UIButton, text: String, action: Selector) {
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(text, for: .normal)
+        button.titleLabel?.textColor = Colors.white
+        button.titleLabel?.font = .systemFont(ofSize: 13)
+        button.addTarget(self, action: action, for: .touchUpInside)
+    }
+    
+    private func configureButtonsConstraint() {
+        var constraints = [backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView), defaultCountryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView)]
         
         if #available(iOS 11.0, *) {
             constraints.append(backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
+            constraints.append(defaultCountryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         } else {
             constraints.append(backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constraints.safeAreaTop))
+            constraints.append(defaultCountryButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constraints.safeAreaTop))
         }
         
         NSLayoutConstraint.activate(constraints)
@@ -89,6 +100,10 @@ final class CountryViewController: UIViewController {
     
     @objc private func backAction() {
         presenter.dismissView()
+    }
+    
+    @objc private func defaultCountryAction() {
+        presenter.changeDefaultCountry(country: country)
     }
     
 }

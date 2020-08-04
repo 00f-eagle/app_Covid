@@ -28,15 +28,20 @@ final class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.black
-        
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        scrollView.isHidden = true
+        indicator.startAnimating()
         presenter.getData()
     }
     
     // MARK: - Configurations View
     
     private func setupView() {
+        view.backgroundColor = Colors.black
         
         activityIndicator()
         configureScrollView()
@@ -62,7 +67,6 @@ final class StatisticsViewController: UIViewController {
             indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        indicator.startAnimating()
     }
     
     private func configureScrollView() {
@@ -70,7 +74,6 @@ final class StatisticsViewController: UIViewController {
         scrollView.addSubview(countryStatisticsStackView)
         scrollView.addSubview(globalStatisticsStackView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.isHidden = true
         
         var constraints = [
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),

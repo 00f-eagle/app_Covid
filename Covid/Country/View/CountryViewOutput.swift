@@ -10,4 +10,5 @@ protocol CountryViewOutput {
     func loadData(country: String)
     func dismissView()
     func presentFailureAlert(title: String, message: String)
+    func changeDefaultCountry(country: String)
 }

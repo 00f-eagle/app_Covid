@@ -9,5 +9,6 @@
 protocol CountryInteractorInput {
     
     func getData(country: String)
+    func changeDefaultCountry(country: String)
     
 }

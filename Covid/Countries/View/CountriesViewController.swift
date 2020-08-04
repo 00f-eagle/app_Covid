@@ -26,7 +26,7 @@ final class CountriesViewController: UIViewController {
     
     var presenter: CountriesViewOutput!
     
-    private var status: Status!
+    private var status = Status.confirmed
     private var searchText = ""
     
     private let headerStackView = UIStackView()
@@ -42,21 +42,21 @@ final class CountriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.black
-        
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        status = Status.confirmed
         presenter.loadData(text: searchText, status: status)
     }
     
     // MARK: - Configurations
     
     private func setupView() {
-        
+        view.backgroundColor = Colors.black
         configureHeaderStackView()
         configureTableView()
-
         
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
@@ -119,7 +119,6 @@ final class CountriesViewController: UIViewController {
         tableCountries.dataSource = self
         tableCountries.delegate = self
         tableCountries.register(CountryCell.self, forCellReuseIdentifier: Constants.identifier)
-        
         tableCountries.backgroundColor = Colors.black
         tableCountries.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableCountries)
@@ -154,7 +153,7 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath) as? CountryCell, let status = status else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath) as? CountryCell else {
             return UITableViewCell()
         }
         
@@ -164,7 +163,7 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showCountry(country: cellCountry[indexPath.row].country!)
+        presenter.showCountry(country: cellCountry[indexPath.row].country)
     }
 }
 

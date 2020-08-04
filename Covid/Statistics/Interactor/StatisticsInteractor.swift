@@ -16,12 +16,14 @@ final class StatisticsInteractor {
     
     private let loadCovidNetworking: NetworkServiceProtocol
     private let statisticData: StatisticsDataProtocol
+    private let userData: UserDataProtocol
     
     // MARK: - Init
     
-    init(loadCovidNetworking: NetworkServiceProtocol, statisticData: StatisticsDataProtocol) {
+    init(loadCovidNetworking: NetworkServiceProtocol, statisticData: StatisticsDataProtocol, userData: UserDataProtocol) {
         self.loadCovidNetworking = loadCovidNetworking
         self.statisticData = statisticData
+        self.userData = userData
     }
 }
 
@@ -38,12 +40,22 @@ extension StatisticsInteractor: StatisticsInteractorInput {
                     self?.statisticData.addData(data: model)
                 }
                 
-                if let global = self?.statisticData.getDataByCountry(country: "World"), let country = self?.statisticData.getDataByCountry(country: "Russian Federation") {
-                    self?.presenter.success(global: global, country: country)
+                if let country = self?.getCountry(), let globalStatistics = self?.statisticData.getDataByCountry(country: "World"), let countryStatistics = self?.statisticData.getDataByCountry(country: country) {
+                    self?.presenter.success(global: globalStatistics, country: countryStatistics)
                 } else {
                     self?.presenter.failure()
                 }
             }
+        }
+    }
+    
+    private func getCountry() -> String {
+        
+        if let country = userData.getData() {
+            return country
+        } else {
+            userData.addData(country: "Russian Federation")
+            return userData.getData()!
         }
     }
 }

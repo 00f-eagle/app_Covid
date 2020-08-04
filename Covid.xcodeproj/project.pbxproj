@@ -64,6 +64,10 @@
 		EDA6AE9C24D7319800485082 /* CountryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AE9B24D7319800485082 /* CountryRouter.swift */; };
 		EDA6AE9E24D731C500485082 /* CountryRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AE9D24D731C500485082 /* CountryRouterInput.swift */; };
 		EDA6AEA624D9861F00485082 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEA524D9861F00485082 /* Constraints.swift */; };
+		EDA6AEB024D9A55900485082 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEAF24D9A55900485082 /* UserData.swift */; };
+		EDA6AEB724D9A67F00485082 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB524D9A67F00485082 /* User+CoreDataClass.swift */; };
+		EDA6AEB824D9A67F00485082 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB624D9A67F00485082 /* User+CoreDataProperties.swift */; };
+		EDA6AEBA24D9A7DC00485082 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB924D9A7DC00485082 /* UserDataProtocol.swift */; };
 		EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */; };
 		EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */; };
 		EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */; };
@@ -150,6 +154,10 @@
 		EDA6AE9B24D7319800485082 /* CountryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRouter.swift; sourceTree = "<group>"; };
 		EDA6AE9D24D731C500485082 /* CountryRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRouterInput.swift; sourceTree = "<group>"; };
 		EDA6AEA524D9861F00485082 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		EDA6AEAF24D9A55900485082 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		EDA6AEB524D9A67F00485082 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EDA6AEB624D9A67F00485082 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EDA6AEB924D9A7DC00485082 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
 		EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStackView.swift; sourceTree = "<group>"; };
@@ -214,7 +222,6 @@
 				ED34DD1D24C1DACA00A7E6E3 /* Extensions */,
 				ED196F1D24C984D200C60C4F /* DataManager */,
 				EDA81A5C24B5DEE00005BEC0 /* Networking */,
-				ED7AC40424CECC0800279807 /* Data */,
 			);
 			path = Covid;
 			sourceTree = "<group>";
@@ -268,6 +275,8 @@
 		ED34DD0124C0A86200A7E6E3 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				EDA6AEB524D9A67F00485082 /* User+CoreDataClass.swift */,
+				EDA6AEB624D9A67F00485082 /* User+CoreDataProperties.swift */,
 				ED196F2B24C9AACE00C60C4F /* Statistics+CoreDataClass.swift */,
 				ED196F2C24C9AACE00C60C4F /* Statistics+CoreDataProperties.swift */,
 				ED34DCFE24C0988400A7E6E3 /* Covid.xcdatamodeld */,
@@ -442,6 +451,7 @@
 				ED7AC40224CEB51C00279807 /* CountryModel.swift */,
 				ED196F0F24C9703800C60C4F /* SummaryModel.swift */,
 				ED196F1124C9707500C60C4F /* DayOneModel.swift */,
+				ED7AC40424CECC0800279807 /* Data */,
 				ED34DD0124C0A86200A7E6E3 /* CoreData */,
 			);
 			path = Model;
@@ -476,8 +486,10 @@
 		ED7AC40424CECC0800279807 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				ED196F1924C9781700C60C4F /* StatisticsDataProtocol.swift */,
 				ED34DD0224C0AB6700A7E6E3 /* StatisticsData.swift */,
+				ED196F1924C9781700C60C4F /* StatisticsDataProtocol.swift */,
+				EDA6AEAF24D9A55900485082 /* UserData.swift */,
+				EDA6AEB924D9A7DC00485082 /* UserDataProtocol.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -683,6 +695,7 @@
 			files = (
 				ED0C0D4B24AB29E9008646D6 /* StatisticsViewController.swift in Sources */,
 				ED196F1C24C97F9400C60C4F /* DataManager.swift in Sources */,
+				EDA6AEB024D9A55900485082 /* UserData.swift in Sources */,
 				ED34DCFB24C07A1100A7E6E3 /* Colors.swift in Sources */,
 				EDA6AEA624D9861F00485082 /* Constraints.swift in Sources */,
 				ED34DD2F24C50F1200A7E6E3 /* CountriesInteractor.swift in Sources */,
@@ -690,6 +703,7 @@
 				ED34DD3324C50FA400A7E6E3 /* CountriesInteractorOutput.swift in Sources */,
 				ED0C0D4724AB29E9008646D6 /* AppDelegate.swift in Sources */,
 				ED34DD0324C0AB6700A7E6E3 /* StatisticsData.swift in Sources */,
+				EDA6AEB824D9A67F00485082 /* User+CoreDataProperties.swift in Sources */,
 				ED34DD3124C50F9300A7E6E3 /* CountriesInteractorInput.swift in Sources */,
 				ED61437F24BDB7C20019E45C /* StatisticsPresenter.swift in Sources */,
 				ED34DD1224C1CA4600A7E6E3 /* StatisticsInteractor.swift in Sources */,
@@ -699,6 +713,7 @@
 				EDA6AE9E24D731C500485082 /* CountryRouterInput.swift in Sources */,
 				ED34DD1F24C1DAE100A7E6E3 /* Formatter.swift in Sources */,
 				EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */,
+				EDA6AEB724D9A67F00485082 /* User+CoreDataClass.swift in Sources */,
 				ED34DD1424C1CA7200A7E6E3 /* StatisticsInteractorInput.swift in Sources */,
 				ED34DD1624C1CAA400A7E6E3 /* StatisticsInteractorOutput.swift in Sources */,
 				ED196F1224C9707500C60C4F /* DayOneModel.swift in Sources */,
@@ -711,6 +726,7 @@
 				ED34DD2B24C50EDF00A7E6E3 /* CountriesRouter.swift in Sources */,
 				ED196F2D24C9AACE00C60C4F /* Statistics+CoreDataClass.swift in Sources */,
 				EDA6AE7B24D2FF2E00485082 /* Errors.swift in Sources */,
+				EDA6AEBA24D9A7DC00485082 /* UserDataProtocol.swift in Sources */,
 				ED34DD1A24C1CADA00A7E6E3 /* StatisticsRouterInput.swift in Sources */,
 				ED61437C24BCC4550019E45C /* TabBarController.swift in Sources */,
 				EDA6AE9624D7314100485082 /* CountryInteractor.swift in Sources */,

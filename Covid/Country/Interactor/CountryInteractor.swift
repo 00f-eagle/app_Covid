@@ -12,11 +12,13 @@ final class CountryInteractor {
     
     weak var presenter: CountryInteractorOutput!
     private let statisticsData: StatisticsDataProtocol
+    private let userData: UserDataProtocol
     
     // MARK: - Init
     
-    init(statisticsData: StatisticsDataProtocol) {
+    init(statisticsData: StatisticsDataProtocol, userData: UserDataProtocol) {
         self.statisticsData = statisticsData
+        self.userData = userData
     }
     
 }
@@ -24,6 +26,9 @@ final class CountryInteractor {
 
 // MARK: - CountryInteractorInput
 extension CountryInteractor: CountryInteractorInput {
+    func changeDefaultCountry(country: String) {
+        userData.addData(country: country)
+    }
     
     func getData(country: String) {
         if let country = statisticsData.getDataByCountry(country: country) {

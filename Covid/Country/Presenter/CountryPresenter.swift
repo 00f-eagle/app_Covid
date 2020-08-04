@@ -19,6 +19,9 @@ final class CountryPresenter {
 
 //MARK: = CountryViewOutput
 extension CountryPresenter: CountryViewOutput {
+    func changeDefaultCountry(country: String) {
+        interactor.changeDefaultCountry(country: country)
+    }
     
     func loadData(country: String) {
         interactor.getData(country: country)

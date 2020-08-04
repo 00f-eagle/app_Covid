@@ -19,8 +19,9 @@ class CountryAssembly {
         presenter.view = view
         
         let statisticsData = StatisticsData()
+        let userData = UserData()
         
-        let interactor = CountryInteractor(statisticsData: statisticsData)
+        let interactor = CountryInteractor(statisticsData: statisticsData, userData: userData)
         interactor.presenter = presenter
         presenter.interactor = interactor
         
