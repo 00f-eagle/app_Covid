@@ -130,7 +130,7 @@ final class CountriesViewController: UIViewController {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             status = Status.confirmed
-            presenter.loadData(text: searchText, status: Status.confirmed)
+            presenter.loadData(text: searchText, status: status)
         case 1:
             status = Status.deaths
             presenter.loadData(text: searchText, status: status)
