@@ -6,8 +6,6 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
-import UIKit
-
 enum Texts {
     static let world = "Мир"
     static let confirmed = "Подтверждено"

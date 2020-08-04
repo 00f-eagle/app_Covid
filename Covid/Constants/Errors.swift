@@ -6,8 +6,6 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
-import UIKit
-
 enum Errors {
     static let error = "Ошибка"
     static let network = "Не удалось получить данные по сети"

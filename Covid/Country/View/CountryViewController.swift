@@ -41,9 +41,10 @@ final class CountryViewController: UIViewController {
         configureScrollView()
         
         NSLayoutConstraint.activate([
-            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            countryStatisticsStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            countryStatisticsStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
+            countryStatisticsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
@@ -53,12 +54,12 @@ final class CountryViewController: UIViewController {
         backButton.setTitle("< Назад", for: .normal)
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         
-        var constraints = [backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)]
+        var constraints = [backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView)]
         
         if #available(iOS 11.0, *) {
             constraints.append(backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         } else {
-            constraints.append(backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20))
+            constraints.append(backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constraints.safeAreaTop))
         }
         
         NSLayoutConstraint.activate(constraints)
@@ -71,14 +72,14 @@ final class CountryViewController: UIViewController {
         
         var constraints = [
             scrollView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView)
         ]
         
         if #available(iOS 11.0, *) {
-            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constraints.BottomOfView))
         } else {
-            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -49))
+            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constraints.BottomOfView))
         }
         
         NSLayoutConstraint.activate(constraints)
@@ -96,13 +97,7 @@ final class CountryViewController: UIViewController {
 // MARK: - CountryViewInput
 extension CountryViewController: CountryViewInput {
     func success(statistics: Statistics) {
-        countryStatisticsStackView.titleLabel.text = statistics.country
-        countryStatisticsStackView.numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
-        countryStatisticsStackView.numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"
-        countryStatisticsStackView.numberRecoveredLabel.text = "\(Int(statistics.recovered).formattedWithSeparator)"
-        countryStatisticsStackView.incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
-        countryStatisticsStackView.incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
-        countryStatisticsStackView.incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
+        countryStatisticsStackView.changeStatisticsView(statistics: statistics)
     }
     
     func failure() {

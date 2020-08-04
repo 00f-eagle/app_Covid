@@ -12,30 +12,28 @@ final class StatisticsStackView: UIStackView {
     
     // MARK: - Properties
     
-    let titleLabel = UILabel()
-    let numberConfirmedLabel = UILabel()
-    let numberDeathsLabel = UILabel()
-    let numberRecoveredLabel = UILabel()
-    let incConfirmedLabel = UILabel()
-    let incDeathsLabel = UILabel()
-    let incRecoveredLabel = UILabel()
+    private let titleLabel = UILabel()
+    private let numberConfirmedLabel = UILabel()
+    private let numberDeathsLabel = UILabel()
+    private let numberRecoveredLabel = UILabel()
+    private let incConfirmedLabel = UILabel()
+    private let incDeathsLabel = UILabel()
+    private let incRecoveredLabel = UILabel()
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configureStatisticsStackView()
     }
     
-    @available(*, unavailable)
     required init(coder: NSCoder) {
         super.init(coder: coder)
     }
     
     // MARK: - Configurations
     
-    func configureStatisticsStackView() {
+    private func configureStatisticsStackView() {
         
         configureTitleLabel()
         
@@ -90,13 +88,7 @@ final class StatisticsStackView: UIStackView {
         stack.axis = .horizontal
         stack.addArrangedSubview(labelOne)
         stack.addArrangedSubview(labelTwo)
-        
-        if #available(iOS 11.0, *) {
-            stack.setCustomSpacing(10, after: labelOne)
-        } else {
-            stack.spacing = 10
-        }
-        
+        stack.spacing = 10
         labelOne.setContentHuggingPriority(.defaultHigh, for: .vertical)
         labelOne.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         labelTwo.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
@@ -111,5 +103,15 @@ final class StatisticsStackView: UIStackView {
         stack.addArrangedSubview(label)
         stack.addArrangedSubview(numberStack)
         return stack
+    }
+    
+    func changeStatisticsView(statistics: Statistics) {
+        titleLabel.text = statistics.country
+        numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
+        numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"
+        numberRecoveredLabel.text = "\(Int(statistics.recovered).formattedWithSeparator)"
+        incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
+        incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
+        incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
     }
 }

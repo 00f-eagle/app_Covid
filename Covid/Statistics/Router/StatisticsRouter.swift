@@ -25,7 +25,7 @@ extension StatisticsRouter: StatisticsRouterInput {
     }
     
     func showCountry() {
-        let picker = PickerViewController()
-        view.present(picker, animated: true)
+        //let picker = PickerViewController()
+        //view.present(picker, animated: true)
     }
 }
