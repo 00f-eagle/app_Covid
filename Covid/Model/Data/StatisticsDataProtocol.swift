@@ -18,6 +18,8 @@ protocol StatisticsDataProtocol {
     
     func searchData(text: String) -> [Statistics]?
     
+    func getCountries() -> [String]?
+    
     func removeAll()
 
 }

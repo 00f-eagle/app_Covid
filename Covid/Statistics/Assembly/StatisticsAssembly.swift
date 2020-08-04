@@ -18,9 +18,10 @@ final class StatisticsAssembly {
         presenter.view = view
         
         let statisticsData = StatisticsData()
+        let userData = UserData()
         let networkService = NetworkService()
         
-        let interactor = StatisticsInteractor(loadCovidNetworking: networkService, statisticData: statisticsData)
+        let interactor = StatisticsInteractor(loadCovidNetworking: networkService, statisticData: statisticsData, userData: userData)
         interactor.presenter = presenter
         presenter.interactor = interactor
 

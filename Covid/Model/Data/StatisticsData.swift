@@ -6,7 +6,6 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
 final class StatisticsData: StatisticsDataProtocol {
@@ -20,7 +19,7 @@ final class StatisticsData: StatisticsDataProtocol {
                 let fetchResults = try DataManager.shared.context.fetch(fetchRequest)
                 let statistic: Statistics
                 if !fetchResults.isEmpty {
-                    statistic = fetchResults[0]
+                    statistic = fetchResults.first!
                 } else {
                     statistic = Statistics(context: DataManager.shared.context)
                 }
@@ -37,7 +36,7 @@ final class StatisticsData: StatisticsDataProtocol {
             DataManager.shared.saveContext()
             
         } catch {
-            print("Error addData")
+            print("Неожиданная ошибка: \(error).")
         }
     }
     
@@ -64,9 +63,21 @@ final class StatisticsData: StatisticsDataProtocol {
     
     func searchData(text: String) -> [Statistics]? {
         let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "country BEGINSWITH[c] %@", text)
+        fetchRequest.predicate = NSPredicate(format: "country != %@ && country BEGINSWITH[cd] %@", "World", text)
         do {
             return try DataManager.shared.context.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+    }
+    
+    func getCountries() -> [String]? {
+        let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "country != %@", "World")
+        do {
+            var countries: [String] = []
+            try DataManager.shared.context.fetch(fetchRequest).forEach( { countries.append($0.country) })
+            return countries
         } catch {
             return nil
         }
@@ -79,7 +90,7 @@ final class StatisticsData: StatisticsDataProtocol {
             try DataManager.shared.context.execute(deleteRequest)
             DataManager.shared.saveContext()
         } catch {
-            print("Error removeAll")
+            print("Неожиданная ошибка: \(error).")
         }
     }
 }

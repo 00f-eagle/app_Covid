@@ -18,74 +18,77 @@ final class StatisticsViewController: UIViewController {
     
     var presenter: StatisticsViewOutput!
     
-    private let contentView = UIView()
+    private let indicator = UIActivityIndicatorView()
+    
+    private let countryStatisticsStackView = StatisticsStackView()
+    private let globalStatisticsStackView = StatisticsStackView()
     private let scrollView = UIScrollView()
-    private let countryStatisticsView = StatisticsView()
-    private let globalStatisticsView = StatisticsView()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.black
-        
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        scrollView.isHidden = true
+        indicator.startAnimating()
         presenter.getData()
     }
     
     // MARK: - Configurations View
     
     private func setupView() {
-
-        configureScrollView()
-        configureContentView()
+        view.backgroundColor = Colors.black
         
-        let countryStackView = countryStatisticsView.configureStatisticsStackView()
-        let globalStackView = globalStatisticsView.configureStatisticsStackView()
-        addGestureByCountryStackView()
-        contentView.addSubview(countryStackView)
-        contentView.addSubview(globalStackView)
+        activityIndicator()
+        configureScrollView()
         
         NSLayoutConstraint.activate([
-            countryStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
-            countryStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            globalStackView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor, constant: 25),
-            globalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            globalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
+            globalStatisticsStackView.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: Constraints.spacingCountryAndGlobalStack),
+            globalStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            globalStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
+            globalStatisticsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
-    private func configureContentView() {
-        scrollView.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    func activityIndicator() {
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.backgroundColor = Colors.black
+        indicator.style = .white
+        indicator.hidesWhenStopped = true
+        view.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func configureScrollView() {
         view.addSubview(scrollView)
+        scrollView.addSubview(countryStatisticsStackView)
+        scrollView.addSubview(globalStatisticsStackView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        var constraints = [
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView)
+        ]
+        
         if #available(iOS 11.0, *) {
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            constraints.append(scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.topOfView))
+            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
         } else {
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            constraints.append(scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constraints.safeAreaTop + Constraints.safeAreaTop))
+            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constraints.heightOfTabBar))
         }
-    }
-    
-    private func addGestureByCountryStackView() {
-        countryStatisticsView.titleLabel.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapChangeCountry))
-        countryStatisticsView.titleLabel.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    // MARK: - Active
-    
-    @objc private func tapChangeCountry() {
-        presenter.changeCountry()
+        
+        NSLayoutConstraint.activate(constraints)
     }
 }
 
@@ -93,23 +96,18 @@ final class StatisticsViewController: UIViewController {
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
     
-    func succes(global: Statistics, country: Statistics) {
+    func success(global: Statistics, country: Statistics) {
         
-        changeStatisticsView(statisticsView: countryStatisticsView, statistics: country)
-        changeStatisticsView(statisticsView: globalStatisticsView, statistics: global)
+        countryStatisticsStackView.changeStatisticsView(statistics: country)
+        globalStatisticsStackView.changeStatisticsView(statistics: global)
+        
+        indicator.stopAnimating()
+        scrollView.isHidden = false
     }
     
     func failure() {
-        presenter.presentFailureAlert(title: "Ошибка", message: "Не удалось получить данные")
-    }
-    
-    private func changeStatisticsView(statisticsView: StatisticsView, statistics: Statistics) {
-        statisticsView.titleLabel.text = statistics.country
-        statisticsView.numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
-        statisticsView.numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"
-        statisticsView.numberRecoveredLabel.text = "\(Int(statistics.recovered).formattedWithSeparator)"
-        statisticsView.incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
-        statisticsView.incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
-        statisticsView.incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
+        indicator.stopAnimating()
+        scrollView.isHidden = false
+        presenter.presentFailureAlert(title: Errors.error, message: Errors.network)
     }
 }

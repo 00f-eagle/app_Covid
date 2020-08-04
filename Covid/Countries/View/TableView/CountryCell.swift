@@ -21,50 +21,44 @@ final class CountryCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = Colors.black
-        
-        nameCountryLabel.textColor = Colors.white
-        
-        numberStatusLabel.font = .systemFont(ofSize: 15, weight: .medium)
-        incStatusLabel.font = .systemFont(ofSize: 15, weight: .medium)
-        
-        configureStack()
+        selectionStyle = .none
+        configureNameCountryLabel()
+        configureNumberAndIncStack()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     // MARK: - Configurations
     
-    private func configureStack() {
-        
-        let numberAndIncConfirmedStack = configureNumberAndIncStack()
-        
-        
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.addArrangedSubview(nameCountryLabel)
-        stack.addArrangedSubview(numberAndIncConfirmedStack)
-        
-        addSubview(stack)
+    private func configureNameCountryLabel() {
+        nameCountryLabel.textColor = Colors.white
+        nameCountryLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(nameCountryLabel)
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            stack.topAnchor.constraint(equalTo: topAnchor),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor)
+            nameCountryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            nameCountryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            nameCountryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
         ])
     }
     
-    private func configureNumberAndIncStack() -> UIStackView{
+    private func configureNumberAndIncStack() {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.alignment = .trailing
+        stack.spacing = 5
         stack.addArrangedSubview(numberStatusLabel)
         stack.addArrangedSubview(incStatusLabel)
-        return stack
+        addSubview(stack)
+        
+        NSLayoutConstraint.activate([
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            stack.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
     }
     
     func updateContent(countryModel: Statistics, status: Status) {

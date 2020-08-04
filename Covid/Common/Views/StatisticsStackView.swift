@@ -8,30 +8,41 @@
 
 import UIKit
 
-final class StatisticsView: UIView {
+final class StatisticsStackView: UIStackView {
     
     // MARK: - Properties
     
-    let titleLabel = UILabel()
-    let numberConfirmedLabel = UILabel()
-    let numberDeathsLabel = UILabel()
-    let numberRecoveredLabel = UILabel()
-    let incConfirmedLabel = UILabel()
-    let incDeathsLabel = UILabel()
-    let incRecoveredLabel = UILabel()
+    private let titleLabel = UILabel()
+    private let numberConfirmedLabel = UILabel()
+    private let numberDeathsLabel = UILabel()
+    private let numberRecoveredLabel = UILabel()
+    private let incConfirmedLabel = UILabel()
+    private let incDeathsLabel = UILabel()
+    private let incRecoveredLabel = UILabel()
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureStatisticsStackView()
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     // MARK: - Configurations
     
-    func configureStatisticsStackView() -> UIStackView{
+    private func configureStatisticsStackView() {
         
         configureTitleLabel()
         
-        configureLabel(label: numberConfirmedLabel, text: Texts.unknown, color: Colors.orange)
-        configureLabel(label: incConfirmedLabel, text: Texts.unknown, color: Colors.orange)
-        configureLabel(label: numberDeathsLabel, text: Texts.unknown, color: Colors.red)
-        configureLabel(label: incDeathsLabel, text: Texts.unknown, color: Colors.red)
-        configureLabel(label: numberRecoveredLabel, text: Texts.unknown, color: Colors.green)
-        configureLabel(label: incRecoveredLabel, text: Texts.unknown, color: Colors.green)
+        configureLabel(label: numberConfirmedLabel, text: Texts.null, color: Colors.orange)
+        configureLabel(label: incConfirmedLabel, text: "+\(Texts.null)", color: Colors.orange)
+        configureLabel(label: numberDeathsLabel, text: Texts.null, color: Colors.red)
+        configureLabel(label: incDeathsLabel, text: "+\(Texts.null)", color: Colors.red)
+        configureLabel(label: numberRecoveredLabel, text: Texts.null, color: Colors.green)
+        configureLabel(label: incRecoveredLabel, text: "+\(Texts.null)", color: Colors.green)
         
         let titleConfirmedLabel = configureTitleStatusLabel(text: Texts.confirmed, color: Colors.orange)
         let titleDeathsLabel = configureTitleStatusLabel(text: Texts.deaths, color: Colors.red)
@@ -45,24 +56,22 @@ final class StatisticsView: UIView {
         let deathsStack = configureNumberAndTitleStack(label: titleDeathsLabel, numberStack: numberAndIncDeathsStack)
         let recoveredStack = configureNumberAndTitleStack(label: titleRecoveredLabel, numberStack: numberAndIncRecoveredStack)
         
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = 25
-        stack.addArrangedSubview(titleLabel)
-        stack.addArrangedSubview(confirmedStack)
-        stack.addArrangedSubview(deathsStack)
-        stack.addArrangedSubview(recoveredStack)
-        return stack
+        translatesAutoresizingMaskIntoConstraints = false
+        axis = .vertical
+        spacing = 25
+        addArrangedSubview(titleLabel)
+        addArrangedSubview(confirmedStack)
+        addArrangedSubview(deathsStack)
+        addArrangedSubview(recoveredStack)
     }
     
     private func configureTitleLabel() {
-        titleLabel.text = Texts.unknown
         titleLabel.textColor = Colors.white
         titleLabel.font = .systemFont(ofSize: 30, weight: .heavy)
+        titleLabel.numberOfLines = 0
     }
     
-    private func configureLabel(label: UILabel, text: String, color: UIColor){
+    private func configureLabel(label: UILabel, text: String, color: UIColor) {
         label.textColor = color
         label.text = text
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -79,13 +88,7 @@ final class StatisticsView: UIView {
         stack.axis = .horizontal
         stack.addArrangedSubview(labelOne)
         stack.addArrangedSubview(labelTwo)
-        
-        if #available(iOS 11.0, *) {
-            stack.setCustomSpacing(10, after: labelOne)
-        } else {
-            stack.spacing = 10
-        }
-        
+        stack.spacing = 10
         labelOne.setContentHuggingPriority(.defaultHigh, for: .vertical)
         labelOne.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         labelTwo.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
@@ -93,12 +96,22 @@ final class StatisticsView: UIView {
         return stack
     }
     
-    private func configureNumberAndTitleStack(label: UILabel, numberStack: UIStackView) -> UIStackView{
+    private func configureNumberAndTitleStack(label: UILabel, numberStack: UIStackView) -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20
         stack.addArrangedSubview(label)
         stack.addArrangedSubview(numberStack)
         return stack
+    }
+    
+    func changeStatisticsView(statistics: Statistics) {
+        titleLabel.text = statistics.country
+        numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
+        numberDeathsLabel.text = "\(Int(statistics.deaths).formattedWithSeparator)"
+        numberRecoveredLabel.text = "\(Int(statistics.recovered).formattedWithSeparator)"
+        incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
+        incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
+        incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
     }
 }

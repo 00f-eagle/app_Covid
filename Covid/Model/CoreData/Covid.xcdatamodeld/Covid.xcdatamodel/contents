@@ -9,7 +9,7 @@
         <attribute name="incRecoverded" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="recovered" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String"/>
     </entity>
     <elements>

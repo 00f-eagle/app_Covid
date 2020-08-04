@@ -1,31 +1,30 @@
 //
-//  StatisticsRouter.swift
+//  CountryRouter.swift
 //  Covid
 //
-//  Created by Kirill Selivanov on 17.07.2020.
+//  Created by Kirill Selivanov on 02.08.2020.
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
 import UIKit
 
-final class StatisticsRouter {
+final class CountryRouter {
     
     // MARK: - Properties
     
-    weak var view: StatisticsViewController!
+    weak var view: CountryViewController!
 }
 
 
-// MARK: - StatisticsRouterInput
-extension StatisticsRouter: StatisticsRouterInput {
+// MARK: - CountryRouterInput
+extension CountryRouter: CountryRouterInput {
+    func dismissView() {
+        view.dismiss(animated: true, completion: nil)
+    }
+    
     func presentFailureAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         view.present(alert, animated: true, completion: nil)
-    }
-    
-    func showCountry() {
-        //let picker = PickerViewController()
-        //view.present(picker, animated: true)
     }
 }

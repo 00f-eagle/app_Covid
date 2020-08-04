@@ -6,8 +6,6 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
-import UIKit
-
 enum Status {
     case confirmed
     case deaths

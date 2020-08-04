@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountriesAssembly {
+final class CountriesAssembly {
     
     static func assembly() -> UIViewController {
         let view = CountriesViewController()

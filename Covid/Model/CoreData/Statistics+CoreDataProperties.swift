@@ -18,7 +18,7 @@ extension Statistics {
     }
 
     @NSManaged public var confirmed: Int64
-    @NSManaged public var country: String?
+    @NSManaged public var country: String
     @NSManaged public var deaths: Int64
     @NSManaged public var incConfirmed: Int64
     @NSManaged public var incDeaths: Int64

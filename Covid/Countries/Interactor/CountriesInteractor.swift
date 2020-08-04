@@ -27,9 +27,9 @@ final class CountriesInteractor {
 // MARK: - StatisticsInteractorInput
 extension CountriesInteractor: CountriesInteractorInput {
     
-    func loadData(status: Status) {
+    func getData(status: Status) {
         
-        guard let countries = statisticsData.getDataByCountries() else {
+        guard let countries = statisticsData.getDataByCountries(), !countries.isEmpty else {
             presenter.failure()
             return
         }
@@ -37,11 +37,11 @@ extension CountriesInteractor: CountriesInteractorInput {
         let countriesSorted: [Statistics]
         switch status {
         case .confirmed:
-            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed})
+            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed })
         case .deaths:
-            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths})
+            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths })
         case .recoverded:
-            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered})
+            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered })
         }
         
         presenter.success(countries: countriesSorted)
@@ -49,11 +49,10 @@ extension CountriesInteractor: CountriesInteractorInput {
     
     func searchCountry(text: String, status: Status) {
         
-        guard let countries = statisticsData.getDataByCountries() else {
+        guard let countries = statisticsData.searchData(text: text) else {
             presenter.failure()
             return
         }
-        
         let countriesSorted: [Statistics]
         switch status {
         case .confirmed:
