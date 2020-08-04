@@ -40,7 +40,7 @@ final class CountryCell: UITableViewCell {
         NSLayoutConstraint.activate([
             nameCountryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameCountryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            nameCountryLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            nameCountryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
         ])
     }
     
@@ -57,7 +57,7 @@ final class CountryCell: UITableViewCell {
         NSLayoutConstraint.activate([
             stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             stack.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor)
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }
     

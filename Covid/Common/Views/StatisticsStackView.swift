@@ -39,12 +39,12 @@ final class StatisticsStackView: UIStackView {
         
         configureTitleLabel()
         
-        configureLabel(label: numberConfirmedLabel, color: Colors.orange)
-        configureLabel(label: incConfirmedLabel, color: Colors.orange)
-        configureLabel(label: numberDeathsLabel, color: Colors.red)
-        configureLabel(label: incDeathsLabel, color: Colors.red)
-        configureLabel(label: numberRecoveredLabel, color: Colors.green)
-        configureLabel(label: incRecoveredLabel, color: Colors.green)
+        configureLabel(label: numberConfirmedLabel, text: Texts.null, color: Colors.orange)
+        configureLabel(label: incConfirmedLabel, text: "+\(Texts.null)", color: Colors.orange)
+        configureLabel(label: numberDeathsLabel, text: Texts.null, color: Colors.red)
+        configureLabel(label: incDeathsLabel, text: "+\(Texts.null)", color: Colors.red)
+        configureLabel(label: numberRecoveredLabel, text: Texts.null, color: Colors.green)
+        configureLabel(label: incRecoveredLabel, text: "+\(Texts.null)", color: Colors.green)
         
         let titleConfirmedLabel = configureTitleStatusLabel(text: Texts.confirmed, color: Colors.orange)
         let titleDeathsLabel = configureTitleStatusLabel(text: Texts.deaths, color: Colors.red)
@@ -70,17 +70,18 @@ final class StatisticsStackView: UIStackView {
     private func configureTitleLabel() {
         titleLabel.textColor = Colors.white
         titleLabel.font = .systemFont(ofSize: 30, weight: .heavy)
+        titleLabel.numberOfLines = 0
     }
     
-    private func configureLabel(label: UILabel, color: UIColor) {
+    private func configureLabel(label: UILabel, text: String, color: UIColor) {
         label.textColor = color
+        label.text = text
         label.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     private func configureTitleStatusLabel(text: String, color: UIColor) -> UILabel {
         let label = UILabel()
-        configureLabel(label: label, color: color)
-        label.text = text
+        configureLabel(label: label, text: text, color: color)
         return label
     }
     

@@ -1,32 +1,35 @@
 //
-//  CountriesAssembly.swift
+//  CountryAssembly.swift
 //  Covid
 //
-//  Created by Kirill Selivanov on 20.07.2020.
+//  Created by Kirill Selivanov on 02.08.2020.
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
 import UIKit
 
-final class CountriesAssembly {
+class CountryAssembly {
     
-    static func assembly() -> UIViewController {
-        let view = CountriesViewController()
-        let presenter = CountriesPresenter()
+    static func assembly(country: String) -> UIViewController {
+        let view = CountryViewController()
+        let presenter = CountryPresenter()
         
+        view.country = country
         view.presenter = presenter
         presenter.view = view
         
         let statisticsData = StatisticsData()
         
-        let interactor = CountriesInteractor(statisticData: statisticsData)
+        let interactor = CountryInteractor(statisticsData: statisticsData)
         interactor.presenter = presenter
         presenter.interactor = interactor
         
-        let router = CountriesRouter()
+        let router = CountryRouter()
         router.view = view
         presenter.router = router
         
         return view
+        
     }
+    
 }

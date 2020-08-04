@@ -15,4 +15,5 @@ enum Texts {
     static let recovered = "Выздоровлений"
     static let chooseCountry = "Выбрать страну"
     static let unknown = "Unknown"
+    static let null = "0"
 }

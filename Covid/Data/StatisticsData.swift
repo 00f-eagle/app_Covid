@@ -72,6 +72,18 @@ final class StatisticsData: StatisticsDataProtocol {
         }
     }
     
+    func getCountries() -> [String]? {
+        let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "country != %@", "World")
+        do {
+            var countries: [String] = []
+            try DataManager.shared.context.fetch(fetchRequest).forEach( { countries.append($0.country!) })
+            return countries
+        } catch {
+            return nil
+        }
+    }
+    
     func removeAll() {
         let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)

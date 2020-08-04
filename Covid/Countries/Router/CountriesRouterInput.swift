@@ -9,5 +9,8 @@
 import UIKit
 
 protocol CountriesRouterInput {
+    
+    func showCountry(country: String)
+    
     func presentFailureAlert(title: String, message: String)
 }

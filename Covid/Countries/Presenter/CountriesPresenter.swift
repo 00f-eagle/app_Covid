@@ -24,11 +24,15 @@ extension CountriesPresenter: CountriesViewOutput {
 
     func loadData(text: String, status: Status) {
         if text.isEmpty {
-            interactor.loadData(status: status)
+            interactor.getData(status: status)
         }
         else {
             interactor.searchCountry(text: text, status: status)
         }
+    }
+    
+    func showCountry(country: String) {
+        router.showCountry(country: country)
     }
     
     func presentFailureAlert(title: String, message: String) {

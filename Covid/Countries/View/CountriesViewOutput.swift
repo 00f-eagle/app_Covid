@@ -11,4 +11,5 @@ import UIKit
 protocol CountriesViewOutput {
     func loadData(text: String, status: Status)
     func presentFailureAlert(title: String, message: String)
+    func showCountry(country: String)
 }

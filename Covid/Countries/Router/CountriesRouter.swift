@@ -19,6 +19,12 @@ final class CountriesRouter {
 
 // MARK: - StatisticsRouterInput
 extension CountriesRouter: CountriesRouterInput {
+    func showCountry(country: String) {
+        let country = CountryAssembly.assembly(country: country)
+        country.modalPresentationStyle = .fullScreen
+        view.present(country, animated: true, completion: nil)
+    }
+    
     func presentFailureAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
