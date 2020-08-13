@@ -31,6 +31,7 @@ final class StatisticsData: StatisticsDataProtocol {
                 statistic.incDeaths = Int64(country.newDeaths)
                 statistic.recovered = Int64(country.totalRecovered)
                 statistic.incRecoverded = Int64(country.newRecovered)
+                statistic.slug = country.slug
             }
             
             DataManager.shared.saveContext()
@@ -78,6 +79,17 @@ final class StatisticsData: StatisticsDataProtocol {
             var countries: [String] = []
             try DataManager.shared.context.fetch(fetchRequest).forEach( { countries.append($0.country) })
             return countries
+        } catch {
+            return nil
+        }
+    }
+    
+    func getSlug(country: String) -> String? {
+        let fetchRequest: NSFetchRequest<Statistics> = Statistics.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "country = %@", country)
+        fetchRequest.fetchLimit = 1
+        do {
+            return try DataManager.shared.context.fetch(fetchRequest).first?.slug
         } catch {
             return nil
         }

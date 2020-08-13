@@ -2,7 +2,7 @@
 //  Statistics+CoreDataProperties.swift
 //  Covid
 //
-//  Created by Kirill Selivanov on 23.07.2020.
+//  Created by Kirill Selivanov on 13.08.2020.
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 //
@@ -24,5 +24,6 @@ extension Statistics {
     @NSManaged public var incDeaths: Int64
     @NSManaged public var incRecoverded: Int64
     @NSManaged public var recovered: Int64
+    @NSManaged public var slug: String
 
 }

@@ -13,14 +13,14 @@ extension Int {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
     
-    var round: Int {
+    var numberOfDigits: Int {
         var p = 1
-        for _ in 1...18 {
+        for size in 1...18 {
             p *= 10
             if p > self {
-                return p
+                return size
             }
         }
-        return 9223372036854775807
+        return 19
     }
 }

@@ -19,7 +19,7 @@ final class StatisticsStackView: UIStackView {
     private let incConfirmedLabel = UILabel()
     private let incDeathsLabel = UILabel()
     private let incRecoveredLabel = UILabel()
-    private let graph = GraphView()
+    private var graph = GraphView()
     
     // MARK: - Init
     

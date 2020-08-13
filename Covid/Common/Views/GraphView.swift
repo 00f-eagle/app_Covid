@@ -18,33 +18,28 @@ final class GraphView: UIView {
         static let marginRight: CGFloat = 10
         static let marginTop: CGFloat = 10
         static let marginBottom: CGFloat = 20
-        static let circleDiameter: CGFloat = 2
-        static let numberWidth: CGFloat = 50
+        static let numberWidth: CGFloat = 49
         static let numberHeight: CGFloat = 10
     }
     
-    private enum length {
-        
-    }
-    
-    private let mainColor = Colors.orange
-    private let startColor = Colors.white
-    private let endColor = Colors.orange
-    private let graphColor = Colors.white
-    private let clippingColor = Colors.whiteClear
-    
     // MARK: - Properties
     
+    private var xLabels: [UILabel] = []
+    private var yLabels: [UILabel] = []
     private var graphPoints: [DayOneModel] = []
+    private var gradient: CGGradient!
     
-    private let averageWaterDrunk = UILabel()
-    private let maxLabel = UILabel()
-    private let stackView = UIStackView()
+    var graphColor: UIColor = .black
+    var clippingColor: UIColor = .clear
+    var lineColor: UIColor = .darkGray
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        xLabels = setupXLabels()
+        yLabels = setupYLabels()
+        setupGradient(startColor: .white, endColor: .gray)
         backgroundColor = Colors.black
     }
     
@@ -56,82 +51,58 @@ final class GraphView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        //        guard let context = UIGraphicsGetCurrentContext() else { return }
-        //        context.setStrokeColor(Colors.orange.cgColor)
-        //        context.strokePath()
-        //        let colors = [startColor.cgColor, endColor.cgColor]
-        //        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        //        let colorLocations: [CGFloat] = [0.0, 1.0]
-        //
-        //        guard let gradient = CGGradient(
-        //            colorsSpace: colorSpace,
-        //            colors: colors as CFArray,
-        //            locations: colorLocations
-        //            ) else {
-        //                return
-        //        }
-        //
-        //        let startPoint = CGPoint.zero
-        //        let endPoint = CGPoint(x: 0, y: bounds.height)
-        //        context.drawLinearGradient(
-        //            gradient,
-        //            start: startPoint,
-        //            end: endPoint,
-        //            options: []
-        //        )
-        
-        
         // Create cornerRadius
-        mainColor.setFill()
         let path = UIBezierPath(roundedRect: rect, cornerRadius: Constants.cornerRadius)
-        path.fill()
+        path.addClip()
+        
+        // Create gradient
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        let startPoint = CGPoint.zero
+        let endPoint = CGPoint(x: 0, y: bounds.height)
+        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
+        
+        // Properties
+        let graphWidth = rect.width - Constants.marginLeft - Constants.marginRight - Constants.numberWidth
+        let graphHeight = rect.height - Constants.marginBottom - Constants.marginTop
+        let yMax = getYMax()
         
         // Calculate the x point
-        
-        let graphWidth = rect.width - Constants.marginLeft - Constants.marginRight - Constants.numberWidth
-        let xSpacing = graphWidth / CGFloat(graphPoints.count - 1)
         let xPoint = { (x: Int) -> CGFloat in
+            let xSpacing = graphWidth / CGFloat(self.graphPoints.count - 1)
             return CGFloat(x) * xSpacing + Constants.marginLeft + Constants.numberWidth
         }
         
         // Calculate the y point
-        
-        let graphHeight = rect.height - Constants.marginBottom - Constants.marginTop
-        
-        var yMax = 100
-        
-        for point in graphPoints {
-            if point.confirmed > yMax {
-                yMax = point.confirmed
-            }
-        }
-        yMax = yMax.round
         let yPoint = { (y: Int) -> CGFloat in
             let yPoint = CGFloat(y) / CGFloat(yMax) * graphHeight
             return graphHeight + Constants.marginTop - yPoint
         }
         
+        // Draw YLabels
         let yLabelInterval = yMax / 5
         let ySpacing = graphHeight / 5
-        
-        for i in 0...5 {
-            
-            let label = axisLabel(text: "\(i * yLabelInterval)")
-            label.frame = CGRect(x: 0, y: graphHeight + Constants.marginTop - Constants.numberHeight/2 - CGFloat(i) * ySpacing , width: Constants.numberWidth, height: Constants.numberHeight)
-            addSubview(label)
-            
+        lineColor.setStroke()
+        for index in 0...5 {
+            yLabels[index].text = "\(index * yLabelInterval)"
+            yLabels[index].frame = CGRect(x: 0, y: graphHeight + Constants.marginTop - Constants.numberHeight/2 - CGFloat(index) * ySpacing , width: Constants.numberWidth, height: Constants.numberHeight)
+            addSubview(yLabels[index])
             let line = UIBezierPath()
-            line.move(to: CGPoint(x: Constants.marginLeft + Constants.numberWidth, y: graphHeight + Constants.marginTop - CGFloat(i) * ySpacing))
-            line.addLine(to: CGPoint(x: rect.width - Constants.marginRight, y: graphHeight + Constants.marginTop - CGFloat(i) * ySpacing))
-            Colors.black.setStroke()
+            line.move(to: CGPoint(x: Constants.marginLeft + Constants.numberWidth, y: graphHeight + Constants.marginTop - CGFloat(index) * ySpacing))
+            line.addLine(to: CGPoint(x: rect.width - Constants.marginRight, y: graphHeight + Constants.marginTop - CGFloat(index) * ySpacing))
             line.stroke()
-            
+        }
+        
+        // Draw XLabels
+        let xLabelsInterval = getXLabelsInterval()
+        for (index, xx) in xLabelsInterval.enumerated() {
+            xLabels[index].text = graphPoints[xx].convertedDate
+            xLabels[index].frame = CGRect(x: xPoint(xx) - Constants.numberWidth, y: graphHeight + Constants.marginTop + Constants.numberHeight/2, width: Constants.numberWidth, height: Constants.numberHeight)
+            addSubview(xLabels[index])
         }
         
         // Draw graph
-        
         let graphPath = UIBezierPath()
-        graphPath.move(to: CGPoint(x: xPoint(0), y: yPoint(0)))
+        graphPath.move(to: CGPoint(x: xPoint(0), y: yPoint(graphPoints[0].confirmed)))
         for index in 1..<graphPoints.count {
             let nextPoint = CGPoint(x: xPoint(index), y: yPoint(graphPoints[index].confirmed))
             graphPath.addLine(to: nextPoint)
@@ -140,62 +111,66 @@ final class GraphView: UIView {
         graphPath.stroke()
         
         // Draw clipping
-        
         guard let clippingPath = graphPath.copy() as? UIBezierPath else { return }
         clippingPath.addLine(to: CGPoint(x: xPoint(graphPoints.count - 1), y: graphHeight + Constants.marginTop))
         clippingPath.addLine(to: CGPoint(x: xPoint(0), y: graphHeight + Constants.marginTop))
         clippingPath.close()
         clippingColor.setFill()
         clippingPath.fill()
-        
-        // Draw the circles on top of the graph stroke
-        
+    }
+    
+    // MARK: - Configurations
+    
+    private func setupYLabels() -> [UILabel] {
+        var labels: [UILabel] = []
+        for _ in 0...5 {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 10)
+            label.textColor = Colors.black
+            label.textAlignment = .right
+            labels.append(label)
+        }
+        return labels
+    }
+    
+    private func setupXLabels() -> [UILabel] {
+        var labels: [UILabel] = []
+        for _ in 0...4 {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 10)
+            label.textColor = Colors.black
+            label.textAlignment = .right
+            labels.append(label)
+        }
+        return labels
+    }
+    
+    private func getXLabelsInterval() -> [Int] {
         let x1 = 0
         let x2 = (graphPoints.count - 2) / 2
         let x3 = (graphPoints.count - 2) / 4
         let x4 = 3 * (graphPoints.count - 2) / 4
         let x5 = graphPoints.count - 1
-        
-        graphColor.setFill()
-        for (index, points) in graphPoints.enumerated() {
-            
-            switch index {
-            case x1, x2, x3, x4, x5:
-                let label = axisLabel(text: graphPoints[index].convertedDate)
-                label.frame = CGRect(x: xPoint(index) - Constants.numberWidth, y: graphHeight + Constants.marginTop + Constants.numberHeight/2, width: Constants.numberWidth, height: Constants.numberHeight)
-                addSubview(label)
-            default:
-                break
-            }
-            
-            var point = CGPoint(x: xPoint(index), y: yPoint(points.confirmed))
-            point.x -= Constants.circleDiameter / 2
-            point.y -= Constants.circleDiameter / 2
-            let circle = UIBezierPath(ovalIn: CGRect(origin: point, size: CGSize(width: Constants.circleDiameter, height: Constants.circleDiameter)))
-            circle.fill()
-            
-            //            if index == 0, index == graphPoints.count - 1 {
-            //                let xLabel = axisLabel(text: points.convertedDate)
-            //                xLabel.frame = CGRect(x: Constants.marginLeft + Constants.numberWidth, y: graphHeight + 20, width: 36, height: 20)
-            //            }
-        }
+        return [x1, x2, x3, x4, x5]
     }
     
-    // Returns an axis label
-    private func axisLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.font = .systemFont(ofSize: 10)
-        label.textColor = Colors.black
-        label.textAlignment = .right
-        return label
+    private func getYMax() -> Int {
+        let maxPoint = graphPoints.max(by: { $0.confirmed < $1.confirmed })?.confirmed ?? 99
+        let everest = Int(pow(Double(10), Double(maxPoint.numberOfDigits))) / 100
+        let firstDigit = maxPoint / everest + 1
+        let yMax = firstDigit * everest
+        return yMax
     }
     
-//    private func xLabel(index: Int) {
-//        let label = axisLabel(text: graphPoints[index].convertedDate)
-//        label.frame = CGRect(x: Constants.marginLeft + Constants.numberWidth + CGFloat(index) - Constants.numberHeight/2, y: graphHeight + Constants.marginTop, width: Constants.numberWidth, height: Constants.numberHeight)
-//        addSubview(label)
-//    }
+    // MARK: - User's config
+    
+    func setupGradient(startColor: UIColor, endColor: UIColor) {
+        let colors = [startColor.cgColor, endColor.cgColor]
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let colorLocations: [CGFloat] = [0.0, 1.0]
+        guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations) else { return }
+        self.gradient = gradient
+    }
     
     func changeGraphPoints(statistics: [DayOneModel]) {
         graphPoints = statistics

@@ -32,6 +32,7 @@ extension NetworkService: NetworkServiceProtocol {
             do {
                 let summaryModel = try JSONDecoder().decode(SummaryModel.self, from: data!)
                 
+                // Костыль с созданием "города" World, так как в json он имеет другой формат
                 let global = CountryModel(country: "World", countryCode: "WORLD", slug: "", newConfirmed: summaryModel.global.newConfirmed, totalConfirmed: summaryModel.global.totalConfirmed, newDeaths: summaryModel.global.newDeaths, totalDeaths: summaryModel.global.totalDeaths, newRecovered: summaryModel.global.newRecovered, totalRecovered: summaryModel.global.totalRecovered, date: summaryModel.date)
                 
                 var countries = summaryModel.countries

@@ -20,6 +20,8 @@ protocol StatisticsDataProtocol {
     
     func getCountries() -> [String]?
     
+    func getSlug(country: String) -> String?
+    
     func removeAll()
 
 }
