@@ -24,15 +24,14 @@ final class StatisticsViewController: UIViewController {
     private let globalStatisticsStackView = StatisticsStackView()
     private let scrollView = UIScrollView()
     
+    private let refreshControl = UIRefreshControl()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         scrollView.isHidden = true
         indicator.startAnimating()
         presenter.getData()
@@ -42,22 +41,13 @@ final class StatisticsViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = Colors.black
-        
-        activityIndicator()
+        configureActivityIndicator()
         configureScrollView()
-        
-        NSLayoutConstraint.activate([
-            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
-            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
-            globalStatisticsStackView.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: Constraints.spacingCountryAndGlobalStack),
-            globalStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
-            globalStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
-            globalStatisticsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
+        configureRefreshControl()
+        configureLayoutConstraintByStatisticsStackView()
     }
     
-    func activityIndicator() {
+    func configureActivityIndicator() {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.backgroundColor = Colors.black
         indicator.style = .white
@@ -73,6 +63,7 @@ final class StatisticsViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(countryStatisticsStackView)
         scrollView.addSubview(globalStatisticsStackView)
+        scrollView.refreshControl = refreshControl
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         var constraints = [
@@ -90,11 +81,38 @@ final class StatisticsViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = Colors.white
+    }
+    
+    private func configureLayoutConstraintByStatisticsStackView() {
+        NSLayoutConstraint.activate([
+            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
+            globalStatisticsStackView.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: Constraints.spacingCountryAndGlobalStack),
+            globalStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
+            globalStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
+            globalStatisticsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+    }
+    
+    // Active
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        presenter.getData()
+        sender.endRefreshing()
+    }
 }
 
 
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
+    func success2(dayOne: [DayOneModel]) {
+        countryStatisticsStackView.changeGraph(data: dayOne)
+    }
     
     func success(global: Statistics, country: Statistics) {
         
@@ -108,6 +126,6 @@ extension StatisticsViewController: StatisticsViewInput {
     func failure() {
         indicator.stopAnimating()
         scrollView.isHidden = false
-        presenter.presentFailureAlert(title: Errors.error, message: Errors.network)
+        presenter.presentFailureAlert(title: Errors.error, message: Errors.data)
     }
 }

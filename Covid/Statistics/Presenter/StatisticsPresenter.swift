@@ -25,10 +25,6 @@ extension StatisticsPresenter: StatisticsViewOutput {
         router.presentFailureAlert(title: title, message: message)
     }
     
-    func changeCountry() {
-        router.showCountry()
-    }
-    
     func getData() {
         interactor.loadData()
     }
@@ -37,6 +33,10 @@ extension StatisticsPresenter: StatisticsViewOutput {
 
 // MARK: - StatisticsInteractorOutput
 extension StatisticsPresenter: StatisticsInteractorOutput {
+    func success2(dayOne: [DayOneModel]) {
+        let dayOne = dayOne.sorted { $0.dateToDate < $1.dateToDate }
+        view.success2(dayOne: dayOne)
+    }
     
     func success(global: Statistics, country: Statistics) {
         view.success(global: global, country: country)

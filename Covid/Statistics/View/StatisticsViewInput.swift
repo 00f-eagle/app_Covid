@@ -10,5 +10,6 @@ import UIKit
 
 protocol StatisticsViewInput: AnyObject {
     func success(global: Statistics, country: Statistics)
+    func success2(dayOne: [DayOneModel])
     func failure()
 }

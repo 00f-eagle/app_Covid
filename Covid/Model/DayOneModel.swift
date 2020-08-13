@@ -11,26 +11,26 @@ import UIKit
 struct DayOneModel: Decodable {
     
     let country: String
-    let countryCode: String
-    let province: String
-    let city: String
-    let cityCode: String
-    let lat: String
-    let lon: String
     let confirmed: Int
     let deaths: Int
     let recovered: Int
     let active: Int
     let date: String
     
+    var dateToDate: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter.date(from: date)!
+    }
+    
+    var convertedDate : String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy"
+        return formatter.string(from: dateToDate)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case country = "Country"
-        case countryCode = "CountryCode"
-        case province = "Province"
-        case city = "City"
-        case cityCode = "CityCode"
-        case lat = "Lat"
-        case lon = "Lon"
         case confirmed = "Confirmed"
         case deaths = "Deaths"
         case recovered = "Recovered"

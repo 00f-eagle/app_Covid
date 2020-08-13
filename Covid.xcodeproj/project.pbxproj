@@ -68,6 +68,7 @@
 		EDA6AEB724D9A67F00485082 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB524D9A67F00485082 /* User+CoreDataClass.swift */; };
 		EDA6AEB824D9A67F00485082 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB624D9A67F00485082 /* User+CoreDataProperties.swift */; };
 		EDA6AEBA24D9A7DC00485082 /* UserDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEB924D9A7DC00485082 /* UserDataProtocol.swift */; };
+		EDA6AEBC24E2F6B900485082 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEBB24E2F6B900485082 /* StackView.swift */; };
 		EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */; };
 		EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */; };
 		EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */; };
@@ -158,6 +159,7 @@
 		EDA6AEB524D9A67F00485082 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EDA6AEB624D9A67F00485082 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EDA6AEB924D9A7DC00485082 /* UserDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProtocol.swift; sourceTree = "<group>"; };
+		EDA6AEBB24E2F6B900485082 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStackView.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				ED34DD1E24C1DAE100A7E6E3 /* Formatter.swift */,
 				ED34DD2024C1DAF500A7E6E3 /* Integer.swift */,
+				EDA6AEBB24E2F6B900485082 /* StackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				EDA6AE8E24D7307700485082 /* CountryAssembly.swift in Sources */,
 				EDA6AE9A24D7317600485082 /* CountryInteractorOutput.swift in Sources */,
 				ED34DD0724C0ADE400A7E6E3 /* StatisticsViewInput.swift in Sources */,
+				EDA6AEBC24E2F6B900485082 /* StackView.swift in Sources */,
 				EDA6AE9824D7316000485082 /* CountryInteractorInput.swift in Sources */,
 				ED34DD3524C50FBE00A7E6E3 /* CountriesPresenter.swift in Sources */,
 				ED34DD3B24C5100600A7E6E3 /* CountriesAssembly.swift in Sources */,

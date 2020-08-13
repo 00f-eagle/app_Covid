@@ -47,7 +47,6 @@ final class CountriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         presenter.loadData(text: searchText, status: status)
     }
     
@@ -193,6 +192,6 @@ extension CountriesViewController: CountriesViewInput {
     }
     
     func failure() {
-        presenter.presentFailureAlert(title: "Ошибка", message: "Не удалось получить данные")
+        presenter.presentFailureAlert(title: Errors.error, message: Errors.data)
     }
 }

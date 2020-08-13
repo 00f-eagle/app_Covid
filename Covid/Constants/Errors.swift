@@ -8,6 +8,5 @@
 
 enum Errors {
     static let error = "Ошибка"
-    static let network = "Не удалось получить данные по сети"
     static let data = "Не удалось получить данные"
 }

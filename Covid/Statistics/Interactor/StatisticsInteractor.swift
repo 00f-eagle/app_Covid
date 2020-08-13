@@ -47,6 +47,18 @@ extension StatisticsInteractor: StatisticsInteractorInput {
                 }
             }
         }
+        
+        loadCovidNetworking.getDayOne(country: getCountry()) { [weak self] (response) in
+            DispatchQueue.main.async {
+                
+                if let model = response {
+                    self?.presenter.success2(dayOne: model)
+                } else {
+                    self?.presenter.failure()
+                }
+                
+            }
+        }
     }
     
     private func getCountry() -> String {

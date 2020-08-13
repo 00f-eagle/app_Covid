@@ -19,6 +19,7 @@ final class StatisticsStackView: UIStackView {
     private let incConfirmedLabel = UILabel()
     private let incDeathsLabel = UILabel()
     private let incRecoveredLabel = UILabel()
+    private let graph = GraphView()
     
     // MARK: - Init
     
@@ -63,6 +64,7 @@ final class StatisticsStackView: UIStackView {
         addArrangedSubview(confirmedStack)
         addArrangedSubview(deathsStack)
         addArrangedSubview(recoveredStack)
+        addArrangedSubview(graph)
     }
     
     private func configureTitleLabel() {
@@ -105,6 +107,11 @@ final class StatisticsStackView: UIStackView {
         return stack
     }
     
+    private func configureGraph() {
+        graph.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([graph.heightAnchor.constraint(equalToConstant: 200)])
+    }
+    
     func changeStatisticsView(statistics: Statistics) {
         titleLabel.text = statistics.country
         numberConfirmedLabel.text = "\(Int(statistics.confirmed).formattedWithSeparator)"
@@ -113,5 +120,10 @@ final class StatisticsStackView: UIStackView {
         incConfirmedLabel.text = "+\(Int(statistics.incConfirmed).formattedWithSeparator)"
         incDeathsLabel.text = "+\(Int(statistics.incDeaths).formattedWithSeparator)"
         incRecoveredLabel.text = "+\(Int(statistics.incRecoverded).formattedWithSeparator)"
+    }
+    
+    func changeGraph(data: [DayOneModel]) {
+        configureGraph()
+        graph.changeGraphPoints(statistics: data)
     }
 }
