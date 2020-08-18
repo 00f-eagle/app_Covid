@@ -9,10 +9,11 @@
 import UIKit
 
 extension UIStackView {
-    func addBackground(color: UIColor) {
+    func addBackground(color: UIColor, cornerRadius: CGFloat) {
         let subView = UIView()
-        subView.backgroundColor = color
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        subView.backgroundColor = color
+        subView.layer.cornerRadius = cornerRadius
         insertSubview(subView, at: 0)
     }
 }

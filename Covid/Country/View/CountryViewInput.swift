@@ -7,6 +7,6 @@
 //
 
 protocol CountryViewInput: AnyObject {
-    func success(statistics: Statistics)
+    func success(statistics: StatisticsModel, dayOne: [[String: [Int]]]?)
     func failure()
 }

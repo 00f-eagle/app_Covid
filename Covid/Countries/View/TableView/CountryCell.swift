@@ -13,14 +13,14 @@ final class CountryCell: UITableViewCell {
     // MARK: - Properties
     
     private let nameCountryLabel = UILabel()
-    private let numberStatusLabel = UILabel()
-    private let incStatusLabel = UILabel()
+    private let totalStatusLabel = UILabel()
+    private let newStatusLabel = UILabel()
     
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Colors.black
+        backgroundColor = Colors.gray
         selectionStyle = .none
         configureNameCountryLabel()
         configureNumberAndIncStack()
@@ -34,7 +34,7 @@ final class CountryCell: UITableViewCell {
     // MARK: - Configurations
     
     private func configureNameCountryLabel() {
-        nameCountryLabel.textColor = Colors.white
+        nameCountryLabel.textColor = Colors.black
         nameCountryLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameCountryLabel)
         NSLayoutConstraint.activate([
@@ -50,8 +50,8 @@ final class CountryCell: UITableViewCell {
         stack.axis = .vertical
         stack.alignment = .trailing
         stack.spacing = 5
-        stack.addArrangedSubview(numberStatusLabel)
-        stack.addArrangedSubview(incStatusLabel)
+        stack.addArrangedSubview(totalStatusLabel)
+        stack.addArrangedSubview(newStatusLabel)
         addSubview(stack)
         
         NSLayoutConstraint.activate([
@@ -61,25 +61,25 @@ final class CountryCell: UITableViewCell {
         ])
     }
     
-    func updateContent(countryModel: Statistics, status: Status) {
+    func updateContent(statistics: StatisticsModel, status: Status) {
         
-        nameCountryLabel.text = countryModel.country
+        nameCountryLabel.text = statistics.name
         switch status {
         case .confirmed:
-            numberStatusLabel.textColor = Colors.orange
-            numberStatusLabel.text = "\(Int(countryModel.confirmed).formattedWithSeparator)"
-            incStatusLabel.textColor = Colors.orange
-            incStatusLabel.text = "+\(Int(countryModel.incConfirmed).formattedWithSeparator)"
+            totalStatusLabel.textColor = Colors.orange
+            totalStatusLabel.text = "\(statistics.totalConfirmed.formattedWithSeparator)"
+            newStatusLabel.textColor = Colors.orange
+            newStatusLabel.text = "+\(statistics.newConfirmed.formattedWithSeparator)"
         case .deaths:
-            numberStatusLabel.textColor = Colors.red
-            numberStatusLabel.text = "\(Int(countryModel.deaths).formattedWithSeparator)"
-            incStatusLabel.textColor = Colors.red
-            incStatusLabel.text = "+\(Int(countryModel.incDeaths).formattedWithSeparator)"
+            totalStatusLabel.textColor = Colors.red
+            totalStatusLabel.text = "\(statistics.totalDeaths.formattedWithSeparator)"
+            newStatusLabel.textColor = Colors.red
+            newStatusLabel.text = "+\(statistics.newDeaths.formattedWithSeparator)"
         case .recoverded:
-            numberStatusLabel.textColor = Colors.green
-            numberStatusLabel.text = "\(Int(countryModel.recovered).formattedWithSeparator)"
-            incStatusLabel.textColor = Colors.green
-            incStatusLabel.text = "+\(Int(countryModel.incRecoverded).formattedWithSeparator)"
+            totalStatusLabel.textColor = Colors.green
+            totalStatusLabel.text = "\(statistics.totalRecovered.formattedWithSeparator)"
+            newStatusLabel.textColor = Colors.green
+            newStatusLabel.text = "+\(statistics.newRecovered.formattedWithSeparator)"
         }
     }
 }

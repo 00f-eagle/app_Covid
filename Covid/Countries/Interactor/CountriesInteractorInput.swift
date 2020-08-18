@@ -10,5 +10,6 @@ import UIKit
 
 protocol CountriesInteractorInput {
     func getData(status: Status)
+    func getCountryCode(country: String)
     func searchCountry(text: String, status: Status)
 }

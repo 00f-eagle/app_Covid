@@ -20,10 +20,6 @@ final class CountriesViewController: UIViewController {
     
     // MARK: - Properties
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     var presenter: CountriesViewOutput!
     
     private var status = Status.confirmed
@@ -32,7 +28,7 @@ final class CountriesViewController: UIViewController {
     private let headerStackView = UIStackView()
     
     private let tableCountries = UITableView()
-    private var cellCountry: [Statistics] = [] {
+    private var cellCountry: [StatisticsModel] = [] {
         didSet {
             tableCountries.reloadData()
         }
@@ -53,64 +49,52 @@ final class CountriesViewController: UIViewController {
     // MARK: - Configurations
     
     private func setupView() {
-        view.backgroundColor = Colors.black
+        view.backgroundColor = Colors.white
         configureHeaderStackView()
         configureTableView()
-        
-        if #available(iOS 11.0, *) {
-            NSLayoutConstraint.activate([
-                headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                tableCountries.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                tableCountries.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                tableCountries.topAnchor.constraint(equalTo: headerStackView.safeAreaLayoutGuide.bottomAnchor, constant: 5),
-                tableCountries.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                tableCountries.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                tableCountries.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                tableCountries.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 5),
-                tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -49)
-            ])
-        }
     }
     
     private func configureHeaderStackView() {
         
-        let statusSegmentedControl = configureSegmentedControl()
-        let countrySearchBar = configureSearchBar()
+        let statusSegmentedControl = createSegmentedControl()
+        let countrySearchBar = createSearchBar()
         headerStackView.addArrangedSubview(countrySearchBar)
         headerStackView.addArrangedSubview(statusSegmentedControl)
         headerStackView.axis = .vertical
         headerStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerStackView)
+        
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Margin.safeAreaTop),
+                headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing)
+            ])
+        }
     }
     
-    private func configureSegmentedControl() -> UISegmentedControl {
+    private func createSegmentedControl() -> UISegmentedControl {
         let segmentedControl = UISegmentedControl(items: Constants.items)
         segmentedControl.addTarget(self, action: #selector(selectedStatus), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.black], for: .selected)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.white], for: .normal)
         return segmentedControl
     }
     
-    private func configureSearchBar() -> UISearchBar {
+    private func createSearchBar() -> UISearchBar {
         let searchBar = UISearchBar()
         searchBar.delegate = self
-        searchBar.barTintColor = Colors.black
         searchBar.placeholder = "Поиск страны"
         searchBar.returnKeyType = .done
         searchBar.enablesReturnKeyAutomatically = false
-        if #available(iOS 11.0, *) {
-            let textField = searchBar.value(forKey: "searchField") as? UITextField
-            textField?.textColor = Colors.white
-        }
+        searchBar.backgroundImage = UIImage()
+        let textField = searchBar.value(forKey: "searchField") as? UITextField
+        textField?.backgroundColor = Colors.gray
         return searchBar
     }
     
@@ -118,15 +102,32 @@ final class CountriesViewController: UIViewController {
         tableCountries.dataSource = self
         tableCountries.delegate = self
         tableCountries.register(CountryCell.self, forCellReuseIdentifier: Constants.identifier)
-        tableCountries.backgroundColor = Colors.black
+        tableCountries.backgroundColor = Colors.gray
+        tableCountries.layer.cornerRadius = 8
         tableCountries.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableCountries)
+        
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                tableCountries.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                tableCountries.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                tableCountries.topAnchor.constraint(equalTo: headerStackView.safeAreaLayoutGuide.bottomAnchor, constant: Margin.top),
+                tableCountries.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Margin.bottom)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableCountries.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                tableCountries.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                tableCountries.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 5),
+                tableCountries.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Margin.heightOfTabBar + Margin.bottom)
+            ])
+        }
     }
     
     // MARK: - Active
     
     @objc private func selectedStatus(_ segmentedControl: UISegmentedControl) {
-        switch (segmentedControl.selectedSegmentIndex) {
+        switch segmentedControl.selectedSegmentIndex {
         case 0:
             status = Status.confirmed
             presenter.loadData(text: searchText, status: status)
@@ -157,12 +158,12 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let countryModel = cellCountry[indexPath.row]
-        cell.updateContent(countryModel: countryModel, status: status)
+        cell.updateContent(statistics: countryModel, status: status)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showCountry(country: cellCountry[indexPath.row].country)
+        presenter.showCountry(countryCode: cellCountry[indexPath.row].countryCode)
     }
 }
 
@@ -187,8 +188,8 @@ extension CountriesViewController: UISearchBarDelegate {
 
 // MARK: - StatisticsViewInput
 extension CountriesViewController: CountriesViewInput {
-    func success(countries: [Statistics]) {
-        cellCountry = countries
+    func success(statistics: [StatisticsModel]) {
+        cellCountry = statistics
     }
     
     func failure() {

@@ -28,11 +28,9 @@ final class TabBarController: UITabBarController {
         countriesViewController.tabBarItem = UITabBarItem(title: "Все страны", image: UIImage(named: "countries.png"), tag: 1)
         
         let tabBarList = [statisticsViewController, countriesViewController]
-        
+    
         tabBar.barTintColor = .clear
         tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
-        
         viewControllers = tabBarList
     }
 }

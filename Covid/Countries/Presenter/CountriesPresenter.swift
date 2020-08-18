@@ -31,8 +31,8 @@ extension CountriesPresenter: CountriesViewOutput {
         }
     }
     
-    func showCountry(country: String) {
-        router.showCountry(country: country)
+    func showCountry(countryCode: String) {
+        router.showCountry(countryCode: countryCode)
     }
     
     func presentFailureAlert(title: String, message: String) {
@@ -44,8 +44,12 @@ extension CountriesPresenter: CountriesViewOutput {
 // MARK: - CountriesInteractorOutput
 extension CountriesPresenter: CountriesInteractorOutput {
     
-    func success(countries: [Statistics]) {
-        view.success(countries: countries)
+    func success(countries: [Country]) {
+        
+        let statistics = countries.map { StatisticsModel(name: $0.country, totalConfirmed: Int($0.totalConfirmed), newConfirmed: Int($0.newConfirmed), totalDeaths: Int($0.totalDeaths), newDeaths: Int($0.newDeaths), totalRecovered: Int($0.totalRecovered), newRecovered: Int($0.newRecovered), date: $0.date, countryCode: $0.countryCode) }
+    
+        
+        view.success(statistics: statistics)
     }
     
     func failure() {

@@ -5,8 +5,13 @@
 //  Created by Kirill Selivanov on 08.07.2020.
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
-
 import UIKit
+
+protocol NetworkServiceProtocol {
+    
+    func getSummary(completionHandler: @escaping (_ model: SummaryModel?) -> ())
+    func getDayOne(countryCode: String, completionHandler: @escaping (_ model: [DayOneModel]?) -> ())
+}
 
 final class NetworkService {
     
@@ -14,14 +19,14 @@ final class NetworkService {
     
     private enum Urls {
         static let summary = URL(string: "https://api.covid19api.com/summary")!
-        static let dayOne = URL(string: "https://api.covid19api.com/dayone/country")!
+        static let dayOne = URL(string: "https://api.covid19api.com/total/country")!
     }
     
 }
 
 // MARK: - NetworkServiceProtocol
 extension NetworkService: NetworkServiceProtocol {
-    func getSummary(completionHandler: @escaping (_ model: [CountryModel]?) -> ()) {
+    func getSummary(completionHandler: @escaping (_ model: SummaryModel?) -> ()) {
         let task = URLSession.shared.dataTask(with: Urls.summary) { data, response, error in
 
             if !self.checkErrors(data: data, response: response, error: error) {
@@ -31,14 +36,7 @@ extension NetworkService: NetworkServiceProtocol {
             
             do {
                 let summaryModel = try JSONDecoder().decode(SummaryModel.self, from: data!)
-                
-                // Костыль с созданием "города" World, так как в json он имеет другой формат
-                let global = CountryModel(country: "World", countryCode: "WORLD", slug: "", newConfirmed: summaryModel.global.newConfirmed, totalConfirmed: summaryModel.global.totalConfirmed, newDeaths: summaryModel.global.newDeaths, totalDeaths: summaryModel.global.totalDeaths, newRecovered: summaryModel.global.newRecovered, totalRecovered: summaryModel.global.totalRecovered, date: summaryModel.date)
-                
-                var countries = summaryModel.countries
-                countries.append(global)
-                
-                completionHandler(countries)
+                completionHandler(summaryModel)
             } catch {
                 print("JSON error!")
             }
@@ -47,8 +45,8 @@ extension NetworkService: NetworkServiceProtocol {
         task.resume()
     }
     
-    func getDayOne(country: String, completionHandler: @escaping (_ model: [DayOneModel]?) -> ()) {
-        let task = URLSession.shared.dataTask(with: Urls.dayOne.appendingPathComponent("/\(country)")) { data, response, error in
+    func getDayOne(countryCode: String, completionHandler: @escaping (_ model: [DayOneModel]?) -> ()) {
+        let task = URLSession.shared.dataTask(with: Urls.dayOne.appendingPathComponent("/\(countryCode)")) { data, response, error in
            
             if !self.checkErrors(data: data, response: response, error: error) {
                 completionHandler(nil)
