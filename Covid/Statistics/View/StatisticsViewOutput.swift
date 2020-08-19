@@ -9,6 +9,7 @@
 import UIKit
 
 protocol StatisticsViewOutput {
-    func getData()
+    func getDataByCountry()
+    func getDataByGlobal()
     func presentFailureAlert(title: String, message: String)
 }

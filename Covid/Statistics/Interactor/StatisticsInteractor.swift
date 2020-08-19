@@ -15,15 +15,17 @@ final class StatisticsInteractor {
     weak var presenter: StatisticsInteractorOutput!
     
     private let loadCovidNetworking: NetworkServiceProtocol
-    private let statisticData: StatisticsDataProtocol
+    private let statisticsData: StatisticsDataProtocol
     private let userData: UserDataProtocol
+    private let globalData: GlobalDataProtocol
     
     // MARK: - Init
     
-    init(loadCovidNetworking: NetworkServiceProtocol, statisticData: StatisticsDataProtocol, userData: UserDataProtocol) {
+    init(loadCovidNetworking: NetworkServiceProtocol, statisticData: StatisticsDataProtocol, userData: UserDataProtocol, globalData: GlobalDataProtocol) {
         self.loadCovidNetworking = loadCovidNetworking
-        self.statisticData = statisticData
+        self.statisticsData = statisticData
         self.userData = userData
+        self.globalData = globalData
     }
 }
 
@@ -31,43 +33,54 @@ final class StatisticsInteractor {
 // MARK: - StatisticsInteractorInput
 extension StatisticsInteractor: StatisticsInteractorInput {
     
-    func loadData() {
-
+    func loadDataByCountry() {
         loadCovidNetworking.getSummary { [weak self] (response) in
             DispatchQueue.main.async {
-                
                 if let model = response {
-                    self?.statisticData.addData(data: model)
+                    self?.statisticsData.addData(data: model.countries)
                 }
                 
-                if let country = self?.getCountry(), let globalStatistics = self?.statisticData.getDataByCountry(country: "World"), let countryStatistics = self?.statisticData.getDataByCountry(country: country) {
-                    self?.presenter.success(global: globalStatistics, country: countryStatistics)
+                if let countryCode = self?.getCountryCode(),
+                    let countryStatistics = self?.statisticsData.getDataByCountry(countryCode: countryCode) {
+                    self?.loadCovidNetworking.getDayOne(countryCode: countryStatistics.countryCode) { [weak self] (response) in
+                        DispatchQueue.main.async {
+                            if let model = response {
+                                self?.presenter.didLoadDataByCountry(country: countryStatistics, dayOne: model)
+                            } else {
+                                self?.presenter.didLoadDataByCountry(country: countryStatistics, dayOne: nil)
+                            }
+                        }
+                    }
                 } else {
                     self?.presenter.failure()
                 }
-            }
-        }
-        
-        loadCovidNetworking.getDayOne(country: getCountry()) { [weak self] (response) in
-            DispatchQueue.main.async {
-                
-                if let model = response {
-                    self?.presenter.success2(dayOne: model)
-                } else {
-                    self?.presenter.failure()
-                }
-                
             }
         }
     }
     
-    private func getCountry() -> String {
+    func loadDataByGlobal() {
+        loadCovidNetworking.getSummary { [weak self] (response) in
+            DispatchQueue.main.async {
+                if let model = response {
+                    self?.globalData.addData(data: model.global, date: model.convertedDate)
+                }
+                
+                if let globalStatistics = self?.globalData.getData() {
+                    self?.presenter.didLoadDataByGlobal(global: globalStatistics)
+                } else {
+                    self?.presenter.failure()
+                }
+            }
+        }
+    }
+    
+    private func getCountryCode() -> String {
         
-        if let country = userData.getData() {
+        if let country = userData.getCountryCode() {
             return country
         } else {
-            userData.addData(country: "Russian Federation")
-            return userData.getData()!
+            userData.addCountryCode(countryCode: "RU")
+            return userData.getCountryCode()!
         }
     }
 }

@@ -25,21 +25,39 @@ extension StatisticsPresenter: StatisticsViewOutput {
         router.presentFailureAlert(title: title, message: message)
     }
     
-    func getData() {
-        interactor.loadData()
+    func getDataByCountry() {
+        interactor.loadDataByCountry()
+    }
+    
+    func getDataByGlobal() {
+        interactor.loadDataByGlobal()
     }
 }
 
 
 // MARK: - StatisticsInteractorOutput
 extension StatisticsPresenter: StatisticsInteractorOutput {
-    func success2(dayOne: [DayOneModel]) {
-        let dayOne = dayOne.sorted { $0.dateToDate < $1.dateToDate }
-        view.success2(dayOne: dayOne)
+    func didLoadDataByCountry(country: Country, dayOne: [DayOneModel]?) {
+        
+        let statistics = StatisticsModel(name: country.country, totalConfirmed: Int(country.totalConfirmed), newConfirmed: Int(country.newConfirmed), totalDeaths: Int(country.totalDeaths), newDeaths: Int(country.newDeaths), totalRecovered: Int(country.totalRecovered), newRecovered: Int(country.newRecovered), date: country.date, countryCode: country.countryCode)
+        
+        guard let dayOne = dayOne else {
+            view.success(statistics: statistics, dayOne: nil)
+            return
+        }
+        
+        var totalDayOne: [[String: [Int]]] = []
+        for day in dayOne {
+            totalDayOne.append([day.convertedDate: [day.confirmed, day.deaths, day.recovered]])
+        }
+        view.success(statistics: statistics, dayOne: totalDayOne)
     }
     
-    func success(global: Statistics, country: Statistics) {
-        view.success(global: global, country: country)
+    func didLoadDataByGlobal(global: Global) {
+        
+        let statistics = StatisticsModel(name: global.name, totalConfirmed: Int(global.totalConfirmed), newConfirmed: Int(global.newConfirmed), totalDeaths: Int(global.totalDeaths), newDeaths: Int(global.newDeaths), totalRecovered: Int(global.totalRecovered), newRecovered: Int(global.newRecovered), date: global.date, countryCode: global.code)
+        
+        view.success(statistics: statistics, dayOne: nil)
     }
     
     func failure() {
