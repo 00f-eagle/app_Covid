@@ -39,11 +39,10 @@ extension CountryPresenter: CountryViewOutput {
 
 //MARK: - CountryInteractorOutput
 extension CountryPresenter: CountryInteractorOutput {
-    func didLoadDataByCountry(country: Country, dayOne: [DayOneModel]?) {
-        let statistics = StatisticsModel(name: country.country, totalConfirmed: Int(country.totalConfirmed), newConfirmed: Int(country.newConfirmed), totalDeaths: Int(country.totalDeaths), newDeaths: Int(country.newDeaths), totalRecovered: Int(country.totalRecovered), newRecovered: Int(country.newRecovered), date: country.date, countryCode: country.countryCode)
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?) {
         
         guard let dayOne = dayOne else {
-            view.success(statistics: statistics, dayOne: nil)
+            view.success(statistics: country, dayOne: nil)
             return
         }
         
@@ -51,7 +50,7 @@ extension CountryPresenter: CountryInteractorOutput {
         for day in dayOne {
             totalDayOne.append([day.convertedDate: [day.confirmed, day.deaths, day.recovered]])
         }
-        view.success(statistics: statistics, dayOne: totalDayOne)
+        view.success(statistics: country, dayOne: totalDayOne)
     }
     
     func failure() {

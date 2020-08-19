@@ -9,6 +9,6 @@
 import UIKit
 
 protocol CountriesInteractorInput {
-    func getData(status: Status)
+    func loadDataByCountries(status: Status)
     func searchCountry(text: String, status: Status)
 }

@@ -37,12 +37,10 @@ extension StatisticsPresenter: StatisticsViewOutput {
 
 // MARK: - StatisticsInteractorOutput
 extension StatisticsPresenter: StatisticsInteractorOutput {
-    func didLoadDataByCountry(country: Country, dayOne: [DayOneModel]?) {
-        
-        let statistics = StatisticsModel(name: country.country, totalConfirmed: Int(country.totalConfirmed), newConfirmed: Int(country.newConfirmed), totalDeaths: Int(country.totalDeaths), newDeaths: Int(country.newDeaths), totalRecovered: Int(country.totalRecovered), newRecovered: Int(country.newRecovered), date: country.date, countryCode: country.countryCode)
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?) {
         
         guard let dayOne = dayOne else {
-            view.success(statistics: statistics, dayOne: nil)
+            view.success(statistics: country, dayOne: nil)
             return
         }
         
@@ -50,14 +48,11 @@ extension StatisticsPresenter: StatisticsInteractorOutput {
         for day in dayOne {
             totalDayOne.append([day.convertedDate: [day.confirmed, day.deaths, day.recovered]])
         }
-        view.success(statistics: statistics, dayOne: totalDayOne)
+        view.success(statistics: country, dayOne: totalDayOne)
     }
     
-    func didLoadDataByGlobal(global: Global) {
-        
-        let statistics = StatisticsModel(name: global.name, totalConfirmed: Int(global.totalConfirmed), newConfirmed: Int(global.newConfirmed), totalDeaths: Int(global.totalDeaths), newDeaths: Int(global.newDeaths), totalRecovered: Int(global.totalRecovered), newRecovered: Int(global.newRecovered), date: global.date, countryCode: global.code)
-        
-        view.success(statistics: statistics, dayOne: nil)
+    func didLoadDataByGlobal(global: StatisticsModel) {
+        view.success(statistics: global, dayOne: nil)
     }
     
     func failure() {

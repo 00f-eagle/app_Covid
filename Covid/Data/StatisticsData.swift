@@ -12,14 +12,14 @@ protocol StatisticsDataProtocol {
     
     func addData(data: [CountryModel])
     
-    func getDataByCountry(countryCode: String) -> Country?
+    func getDataByCountry(countryCode: String) -> StatisticsModel?
     
-    func getDataByCountries() -> [Country]?
+    func getDataByCountries() -> [StatisticsModel]?
     
-    func searchData(text: String) -> [Country]?
+    func searchData(text: String) -> [StatisticsModel]?
     
     func getCountryCode(country: String) -> String?
-
+    
 }
 
 final class StatisticsData: StatisticsDataProtocol {
@@ -32,7 +32,7 @@ final class StatisticsData: StatisticsDataProtocol {
                 fetchRequest.predicate = NSPredicate(format: "country == %@", country.country)
                 let fetchResults = try DataManager.shared.context.fetch(fetchRequest)
                 if let statistic = fetchResults.first {
-                     setData(statistic: statistic, country: country)
+                    setData(statistic: statistic, country: country)
                 } else {
                     let statistic = Country(context: DataManager.shared.context)
                     setData(statistic: statistic, country: country)
@@ -58,31 +58,71 @@ final class StatisticsData: StatisticsDataProtocol {
         statistic.date = country.convertedDate
     }
     
-    func getDataByCountry(countryCode: String) -> Country? {
+    func getDataByCountry(countryCode: String) -> StatisticsModel? {
         let fetchRequest: NSFetchRequest<Country> = Country.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "countryCode = %@", countryCode)
         fetchRequest.fetchLimit = 1
         do {
-            return try DataManager.shared.context.fetch(fetchRequest).first
+            let country = try DataManager.shared.context.fetch(fetchRequest).first!
+            let statisticsModel = StatisticsModel(name: country.country,
+                                                  totalConfirmed: Int(country.totalConfirmed),
+                                                  newConfirmed: Int(country.newConfirmed),
+                                                  totalDeaths: Int(country.totalDeaths),
+                                                  newDeaths: Int(country.newDeaths),
+                                                  totalRecovered: Int(country.totalRecovered),
+                                                  newRecovered: Int(country.newRecovered),
+                                                  date: country.date,
+                                                  countryCode: country.countryCode)
+            return statisticsModel
         } catch {
             return nil
         }
     }
     
-    func getDataByCountries() -> [Country]? {
+    func getDataByCountries() -> [StatisticsModel]? {
         let fetchRequest: NSFetchRequest<Country> = Country.fetchRequest()
         do {
-            return try DataManager.shared.context.fetch(fetchRequest)
+            let countries = try DataManager.shared.context.fetch(fetchRequest)
+            
+            var statistics: [StatisticsModel] = []
+            for country in countries {
+                let statisticsModel = StatisticsModel(name: country.country,
+                                                      totalConfirmed: Int(country.totalConfirmed),
+                                                      newConfirmed: Int(country.newConfirmed),
+                                                      totalDeaths: Int(country.totalDeaths),
+                                                      newDeaths: Int(country.newDeaths),
+                                                      totalRecovered: Int(country.totalRecovered),
+                                                      newRecovered: Int(country.newRecovered),
+                                                      date: country.date,
+                                                      countryCode: country.countryCode)
+                statistics.append(statisticsModel)
+            }
+            return statistics
         } catch {
             return nil
         }
     }
     
-    func searchData(text: String) -> [Country]? {
+    func searchData(text: String) -> [StatisticsModel]? {
         let fetchRequest: NSFetchRequest<Country> = Country.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "country BEGINSWITH[cd] %@", text)
         do {
-            return try DataManager.shared.context.fetch(fetchRequest)
+            let countries = try DataManager.shared.context.fetch(fetchRequest)
+            
+            var statistics: [StatisticsModel] = []
+            for country in countries {
+                let statisticsModel = StatisticsModel(name: country.country,
+                                                      totalConfirmed: Int(country.totalConfirmed),
+                                                      newConfirmed: Int(country.newConfirmed),
+                                                      totalDeaths: Int(country.totalDeaths),
+                                                      newDeaths: Int(country.newDeaths),
+                                                      totalRecovered: Int(country.totalRecovered),
+                                                      newRecovered: Int(country.newRecovered),
+                                                      date: country.date,
+                                                      countryCode: country.countryCode)
+                statistics.append(statisticsModel)
+            }
+            return statistics
         } catch {
             return nil
         }

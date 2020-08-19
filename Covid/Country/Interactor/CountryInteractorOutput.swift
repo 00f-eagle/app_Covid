@@ -7,6 +7,6 @@
 //
 
 protocol CountryInteractorOutput: AnyObject {
-    func didLoadDataByCountry(country: Country, dayOne: [DayOneModel]?)
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?)
     func failure()
 }

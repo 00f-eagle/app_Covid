@@ -76,8 +76,8 @@ extension StatisticsInteractor: StatisticsInteractorInput {
     
     private func getCountryCode() -> String {
         
-        if let country = userData.getCountryCode() {
-            return country
+        if let countryCode = userData.getCountryCode() {
+            return countryCode
         } else {
             userData.addCountryCode(countryCode: "RU")
             return userData.getCountryCode()!

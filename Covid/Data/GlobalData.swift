@@ -12,7 +12,7 @@ protocol GlobalDataProtocol {
     
     func addData(data: GlobalModel, date: String)
     
-    func getData() -> Global?
+    func getData() -> StatisticsModel?
     
 }
 
@@ -48,10 +48,20 @@ final class GlobalData: GlobalDataProtocol {
         global.date = date
     }
     
-    func getData() -> Global? {
+    func getData() -> StatisticsModel? {
         let fetchRequest: NSFetchRequest<Global> = Global.fetchRequest()
         do {
-            return try DataManager.shared.context.fetch(fetchRequest).first
+            let global = try DataManager.shared.context.fetch(fetchRequest).first!
+            let statisticsModel = StatisticsModel(name: global.name,
+                                                  totalConfirmed: Int(global.totalConfirmed),
+                                                  newConfirmed: Int(global.newConfirmed),
+                                                  totalDeaths: Int(global.totalDeaths),
+                                                  newDeaths: Int(global.newDeaths),
+                                                  totalRecovered: Int(global.totalRecovered),
+                                                  newRecovered: Int(global.newRecovered),
+                                                  date: global.date,
+                                                  countryCode: global.code)
+            return statisticsModel
         } catch {
             return nil
         }

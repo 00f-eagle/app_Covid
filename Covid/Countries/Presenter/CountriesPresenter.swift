@@ -24,7 +24,7 @@ extension CountriesPresenter: CountriesViewOutput {
 
     func loadData(text: String, status: Status) {
         if text.isEmpty {
-            interactor.getData(status: status)
+            interactor.loadDataByCountries(status: status)
         }
         else {
             interactor.searchCountry(text: text, status: status)
@@ -44,12 +44,8 @@ extension CountriesPresenter: CountriesViewOutput {
 // MARK: - CountriesInteractorOutput
 extension CountriesPresenter: CountriesInteractorOutput {
     
-    func success(countries: [Country]) {
-        
-        let statistics = countries.map { StatisticsModel(name: $0.country, totalConfirmed: Int($0.totalConfirmed), newConfirmed: Int($0.newConfirmed), totalDeaths: Int($0.totalDeaths), newDeaths: Int($0.newDeaths), totalRecovered: Int($0.totalRecovered), newRecovered: Int($0.newRecovered), date: $0.date, countryCode: $0.countryCode) }
-    
-        
-        view.success(statistics: statistics)
+    func success(countries: [StatisticsModel]) {
+        view.success(statistics: countries)
     }
     
     func failure() {
