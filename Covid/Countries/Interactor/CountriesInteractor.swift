@@ -27,11 +27,6 @@ final class CountriesInteractor {
 // MARK: - StatisticsInteractorInput
 extension CountriesInteractor: CountriesInteractorInput {
     
-    func getCountryCode(country: String) {
-        statisticsData.getCountryCode(country: country)
-        
-    }
-    
     func getData(status: Status) {
         
         guard let countries = statisticsData.getDataByCountries(), !countries.isEmpty else {
