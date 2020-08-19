@@ -78,7 +78,7 @@ final class StatisticsStackView: UIStackView {
     
     private func configureDate() {
         date.textColor = Colors.black
-        daSte.text = Texts.dateDefault
+        date.text = Texts.dateDefault
         date.font = .systemFont(ofSize: 10, weight: .light)
         date.textAlignment = .right
     }
