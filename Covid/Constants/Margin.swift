@@ -16,5 +16,5 @@ enum Margin {
     static let bottom: CGFloat = -5
     static let safeAreaTop: CGFloat = 20
     static let heightOfTabBar: CGFloat = -49
-    
+    static let cornerRadius: CGFloat = 8
 }
