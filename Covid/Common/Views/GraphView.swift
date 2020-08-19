@@ -33,14 +33,14 @@ final class GraphView: UIView {
     private var graphWidth: CGFloat = 0
     private var graphHeight: CGFloat = 0
     private var yMax = 0
-    var graphConfirmedColor: UIColor = Colors.orange
-    var graphDeathsColor: UIColor = Colors.red
-    var graphRecoveredColor: UIColor = Colors.green
-    var clippingConfirmedColor: UIColor = Colors.lightOrange
-    var clippingDeathsColor: UIColor = Colors.lightRed
-    var clippingRecoveredColor: UIColor = Colors.lightGreen
-    var lineColor: UIColor = Colors.darkGray
-    var labelColor: UIColor = Colors.black
+    private var graphConfirmedColor: UIColor = Colors.orange
+    private var graphDeathsColor: UIColor = Colors.red
+    private var graphRecoveredColor: UIColor = Colors.green
+    private var clippingConfirmedColor: UIColor = Colors.lightOrange
+    private var clippingDeathsColor: UIColor = Colors.lightRed
+    private var clippingRecoveredColor: UIColor = Colors.lightGreen
+    private var lineColor: UIColor = Colors.darkGray
+    private var labelColor: UIColor = Colors.black
     
     
     // MARK: - Init
