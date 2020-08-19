@@ -60,7 +60,7 @@ final class StatisticsStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         spacing = 20
-        addBackground(color: Colors.gray, cornerRadius: 8)
+        addBackground(color: Colors.gray, cornerRadius: Margin.cornerRadius)
         addArrangedSubview(titleLabel)
         addArrangedSubview(confirmedStack)
         addArrangedSubview(deathsStack)
