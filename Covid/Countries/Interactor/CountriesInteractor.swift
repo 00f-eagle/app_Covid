@@ -14,12 +14,12 @@ final class CountriesInteractor {
     // MARK: Properties
     
     weak var presenter: CountriesInteractorOutput!
-    private let statisticsData: StatisticsDataProtocol
+    private let countryData: CountryDataProtocol
     
     // MARK: - Init
     
-    init(statisticData: StatisticsDataProtocol) {
-        self.statisticsData = statisticData
+    init(countryData: CountryDataProtocol) {
+        self.countryData = countryData
     }
 }
 
@@ -29,7 +29,7 @@ extension CountriesInteractor: CountriesInteractorInput {
     
     func loadDataByCountries(status: Status) {
         
-        guard let countries = statisticsData.getDataByCountries(), !countries.isEmpty else {
+        guard let countries = countryData.getDataByCountries(), !countries.isEmpty else {
             presenter.failure()
             return
         }
@@ -49,7 +49,7 @@ extension CountriesInteractor: CountriesInteractorInput {
     
     func searchCountry(text: String, status: Status) {
         
-        guard let countries = statisticsData.searchData(text: text) else {
+        guard let countries = countryData.searchData(text: text) else {
             presenter.failure()
             return
         }

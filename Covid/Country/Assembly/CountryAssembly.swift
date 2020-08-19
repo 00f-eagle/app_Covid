@@ -18,10 +18,10 @@ class CountryAssembly {
         presenter.view = view
         
         let loadCovidNetworking = NetworkService()
-        let statisticsData = StatisticsData()
+        let countryData = CountryData()
         let userData = UserData()
         
-        let interactor = CountryInteractor(loadCovidNetworking: loadCovidNetworking, statisticsData: statisticsData, userData: userData, countryCode: countryCode)
+        let interactor = CountryInteractor(loadCovidNetworking: loadCovidNetworking, countryData: countryData, userData: userData, countryCode: countryCode)
         interactor.presenter = presenter
         presenter.interactor = interactor
         

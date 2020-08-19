@@ -15,15 +15,15 @@ final class StatisticsInteractor {
     weak var presenter: StatisticsInteractorOutput!
     
     private let loadCovidNetworking: NetworkServiceProtocol
-    private let statisticsData: StatisticsDataProtocol
+    private let countryData: CountryDataProtocol
     private let userData: UserDataProtocol
     private let globalData: GlobalDataProtocol
     
     // MARK: - Init
     
-    init(loadCovidNetworking: NetworkServiceProtocol, statisticData: StatisticsDataProtocol, userData: UserDataProtocol, globalData: GlobalDataProtocol) {
+    init(loadCovidNetworking: NetworkServiceProtocol, countryData: CountryDataProtocol, userData: UserDataProtocol, globalData: GlobalDataProtocol) {
         self.loadCovidNetworking = loadCovidNetworking
-        self.statisticsData = statisticData
+        self.countryData = countryData
         self.userData = userData
         self.globalData = globalData
     }
@@ -37,11 +37,11 @@ extension StatisticsInteractor: StatisticsInteractorInput {
         loadCovidNetworking.getSummary { [weak self] (response) in
             DispatchQueue.main.async {
                 if let model = response {
-                    self?.statisticsData.addData(data: model.countries)
+                    self?.countryData.addData(data: model.countries)
                 }
                 
                 if let countryCode = self?.getCountryCode(),
-                    let countryStatistics = self?.statisticsData.getDataByCountry(countryCode: countryCode) {
+                    let countryStatistics = self?.countryData.getDataByCountry(countryCode: countryCode) {
                     self?.loadCovidNetworking.getDayOne(countryCode: countryStatistics.countryCode) { [weak self] (response) in
                         DispatchQueue.main.async {
                             if let model = response {

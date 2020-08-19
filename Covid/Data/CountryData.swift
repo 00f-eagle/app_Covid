@@ -1,5 +1,5 @@
 //
-//  StatisticsData.swift
+//  CountryData.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 16.07.2020.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-protocol StatisticsDataProtocol {
+protocol CountryDataProtocol {
     
     func addData(data: [CountryModel])
     
@@ -22,7 +22,7 @@ protocol StatisticsDataProtocol {
     
 }
 
-final class StatisticsData: StatisticsDataProtocol {
+final class CountryData: CountryDataProtocol {
     
     func addData(data: [CountryModel]) {
         let fetchRequest: NSFetchRequest<Country> = Country.fetchRequest()

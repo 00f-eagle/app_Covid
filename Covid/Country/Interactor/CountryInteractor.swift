@@ -14,15 +14,15 @@ final class CountryInteractor {
     
     weak var presenter: CountryInteractorOutput!
     private let loadCovidNetworking: NetworkServiceProtocol
-    private let statisticsData: StatisticsDataProtocol
+    private let countryData: CountryDataProtocol
     private let userData: UserDataProtocol
     private let countryCode: String
     
     // MARK: - Init
     
-    init(loadCovidNetworking: NetworkServiceProtocol, statisticsData: StatisticsDataProtocol, userData: UserDataProtocol, countryCode: String) {
+    init(loadCovidNetworking: NetworkServiceProtocol, countryData: CountryDataProtocol, userData: UserDataProtocol, countryCode: String) {
         self.loadCovidNetworking = loadCovidNetworking
-        self.statisticsData = statisticsData
+        self.countryData = countryData
         self.userData = userData
         self.countryCode = countryCode
     }
@@ -39,7 +39,7 @@ extension CountryInteractor: CountryInteractorInput {
     
     func loadDataByCountry() {
         
-        if let countryStatistics = statisticsData.getDataByCountry(countryCode: countryCode) {
+        if let countryStatistics = countryData.getDataByCountry(countryCode: countryCode) {
             loadCovidNetworking.getDayOne(countryCode: countryStatistics.countryCode) { [weak self] (response) in
                 DispatchQueue.main.async {
                     if let model = response {
