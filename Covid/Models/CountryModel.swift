@@ -6,6 +6,8 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
+import UIKit
+
 struct CountryModel: Decodable {
     let country: String
     let countryCode: String
@@ -17,6 +19,18 @@ struct CountryModel: Decodable {
     let newRecovered: Int
     let totalRecovered: Int
     let date: String
+    
+    var convertedDate : String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter.string(from: dateStringToDate)
+    }
+    
+    private var dateStringToDate: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter.date(from: date)!
+    }
     
     enum CodingKeys: String, CodingKey {
         case country = "Country"

@@ -17,6 +17,6 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var country: String?
+    @NSManaged public var countryCode: String
 
 }
