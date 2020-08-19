@@ -6,19 +6,25 @@
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
+import UIKit
+
 final class CountryInteractor {
     
     // MARK: - Properties
     
     weak var presenter: CountryInteractorOutput!
+    private let loadCovidNetworking: NetworkServiceProtocol
     private let statisticsData: StatisticsDataProtocol
     private let userData: UserDataProtocol
+    private let countryCode: String
     
     // MARK: - Init
     
-    init(statisticsData: StatisticsDataProtocol, userData: UserDataProtocol) {
+    init(loadCovidNetworking: NetworkServiceProtocol, statisticsData: StatisticsDataProtocol, userData: UserDataProtocol, countryCode: String) {
+        self.loadCovidNetworking = loadCovidNetworking
         self.statisticsData = statisticsData
         self.userData = userData
+        self.countryCode = countryCode
     }
     
 }
@@ -26,13 +32,23 @@ final class CountryInteractor {
 
 // MARK: - CountryInteractorInput
 extension CountryInteractor: CountryInteractorInput {
-    func changeDefaultCountry(country: String) {
-        userData.addData(country: country)
+    
+    func changeDefaultCountry() {
+        userData.addCountryCode(countryCode: countryCode)
     }
     
-    func getData(country: String) {
-        if let country = statisticsData.getDataByCountry(country: country) {
-            presenter.success(statistics: country)
+    func loadDataByCountry() {
+        
+        if let countryStatistics = statisticsData.getDataByCountry(countryCode: countryCode) {
+            loadCovidNetworking.getDayOne(countryCode: countryStatistics.countryCode) { [weak self] (response) in
+                DispatchQueue.main.async {
+                    if let model = response {
+                        self?.presenter.didLoadDataByCountry(country: countryStatistics, dayOne: model)
+                    } else {
+                        self?.presenter.didLoadDataByCountry(country: countryStatistics, dayOne: nil)
+                    }
+                }
+            }
         } else {
             presenter.failure()
         }
