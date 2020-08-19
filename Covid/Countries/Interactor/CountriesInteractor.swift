@@ -27,6 +27,11 @@ final class CountriesInteractor {
 // MARK: - StatisticsInteractorInput
 extension CountriesInteractor: CountriesInteractorInput {
     
+    func getCountryCode(country: String) {
+        statisticsData.getCountryCode(country: country)
+        
+    }
+    
     func getData(status: Status) {
         
         guard let countries = statisticsData.getDataByCountries(), !countries.isEmpty else {
@@ -34,14 +39,14 @@ extension CountriesInteractor: CountriesInteractorInput {
             return
         }
         
-        let countriesSorted: [Statistics]
+        let countriesSorted: [Country]
         switch status {
         case .confirmed:
-            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed })
+            countriesSorted = countries.sorted(by: { $0.totalConfirmed > $1.totalConfirmed })
         case .deaths:
-            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths })
+            countriesSorted = countries.sorted(by: { $0.totalDeaths > $1.totalDeaths })
         case .recoverded:
-            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered })
+            countriesSorted = countries.sorted(by: { $0.totalRecovered > $1.totalRecovered })
         }
         
         presenter.success(countries: countriesSorted)
@@ -53,14 +58,14 @@ extension CountriesInteractor: CountriesInteractorInput {
             presenter.failure()
             return
         }
-        let countriesSorted: [Statistics]
+        let countriesSorted: [Country]
         switch status {
         case .confirmed:
-            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed})
+            countriesSorted = countries.sorted(by: { $0.totalConfirmed > $1.totalConfirmed})
         case .deaths:
-            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths})
+            countriesSorted = countries.sorted(by: { $0.totalDeaths > $1.totalDeaths})
         case .recoverded:
-            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered})
+            countriesSorted = countries.sorted(by: { $0.totalRecovered > $1.totalRecovered})
         }
         
         presenter.success(countries: countriesSorted)
