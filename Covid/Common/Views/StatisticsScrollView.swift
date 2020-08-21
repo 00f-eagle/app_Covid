@@ -51,6 +51,8 @@ class StatisticsScrollView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configurations
+    
     private func configureStatisticsScrollView() {
         addSubview(statisticsStackView)
         addSubview(graphLog)
