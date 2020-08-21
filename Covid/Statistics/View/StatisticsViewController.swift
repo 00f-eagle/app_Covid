@@ -16,7 +16,6 @@ final class StatisticsViewController: UIViewController {
     
     private let indicator = UIActivityIndicatorView()
     private let segmentedControl = UISegmentedControl()
-    private let refreshControl = UIRefreshControl()
     private let scrollView = StatisticsScrollView()
     
     private var country = Texts.unknown
@@ -66,9 +65,11 @@ final class StatisticsViewController: UIViewController {
     }
     
     private func configureScrollView() {
-        refreshControl.addTarget(self, action: #selector(getDataBySelectedSegment), for: .valueChanged)
-        refreshControl.tintColor = Colors.black
-        scrollView.refreshControl = refreshControl
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refresh.tintColor = Colors.black
+        scrollView.refreshControl = refresh
         scrollView.isHidden = true
         view.addSubview(scrollView)
         
@@ -103,6 +104,18 @@ final class StatisticsViewController: UIViewController {
             break
         }
     }
+    
+    @objc private func refreshData(_ sender: AnyObject) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            presenter.getDataByCountry()
+        case 1:
+            presenter.getDataByGlobal()
+        default:
+            break
+        }
+        sender.endRefreshing()
+    }
 }
 
 
@@ -124,13 +137,11 @@ extension StatisticsViewController: StatisticsViewInput {
         }
         
         indicator.stopAnimating()
-        refreshControl.endRefreshing()
         scrollView.isHidden = false
     }
     
     func failure() {
         indicator.stopAnimating()
-        refreshControl.endRefreshing()
         presenter.presentFailureAlert(title: Errors.error, message: Errors.data)
     }
 }
