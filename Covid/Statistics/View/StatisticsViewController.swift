@@ -10,12 +10,6 @@ import UIKit
 
 final class StatisticsViewController: UIViewController {
     
-    // MARK: - Constants
-    
-    private enum Locals {
-        static let heightGraph: CGFloat = 200
-    }
-    
     // MARK: - Properties
     
     var presenter: StatisticsViewOutput!
@@ -23,10 +17,7 @@ final class StatisticsViewController: UIViewController {
     private let indicator = UIActivityIndicatorView()
     private let segmentedControl = UISegmentedControl()
     private let refreshControl = UIRefreshControl()
-    private let scrollView = UIScrollView()
-    
-    private let statisticsStackView = StatisticsStackView()
-    private let graph = GraphView()
+    private let scrollView = StatisticsScrollView()
     
     private var country = Texts.unknown
     
@@ -46,22 +37,9 @@ final class StatisticsViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = Colors.white
-        configureActivityIndicator()
         configureSegmentedControl()
         configureScrollView()
-        configureStatisticsStackView()
-        configureGraph()
-    }
-    
-    private func configureActivityIndicator() {
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.hidesWhenStopped = true
-        indicator.startAnimating()
-        view.addSubview(indicator)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        ActivityIndicatorBuilder.configureActivityIndicator(indicator: indicator, view: view)
     }
     
     private func configureSegmentedControl() {
@@ -91,9 +69,6 @@ final class StatisticsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getDataBySelectedSegment), for: .valueChanged)
         refreshControl.tintColor = Colors.black
         scrollView.refreshControl = refreshControl
-        scrollView.addSubview(statisticsStackView)
-        scrollView.addSubview(graph)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isHidden = true
         view.addSubview(scrollView)
         
@@ -112,24 +87,6 @@ final class StatisticsViewController: UIViewController {
                 scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Margin.heightOfTabBar + Margin.bottom)
             ])
         }
-    }
-    
-    private func configureStatisticsStackView() {
-        NSLayoutConstraint.activate([
-        statisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-        statisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
-        statisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
-        ])
-    }
-    
-    private func configureGraph() {
-        NSLayoutConstraint.activate([
-            graph.topAnchor.constraint(equalTo: statisticsStackView.bottomAnchor, constant: Margin.top),
-            graph.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
-            graph.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
-            graph.heightAnchor.constraint(equalToConstant: Locals.heightGraph),
-            graph.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
     }
     
     // MARK: - Action
@@ -152,13 +109,13 @@ final class StatisticsViewController: UIViewController {
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
     func success(statistics: StatisticsModel, dayOne: [[String: [Int]]]?) {
-        statisticsStackView.changeStatisticsView(statistics: statistics)
+        scrollView.statisticsModel = statistics
         
         if let dayOne = dayOne {
-            graph.changeGraphPoints(data: dayOne)
-            graph.isHidden = false
+            scrollView.graphLogPoints = dayOne
+            scrollView.isGraphHidden = false
         } else {
-            graph.isHidden = true
+            scrollView.isGraphHidden = true
         }
         
         if segmentedControl.selectedSegmentIndex == 0, country != statistics.name  {

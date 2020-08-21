@@ -15,10 +15,8 @@ final class CountryViewController: UIViewController {
     var presenter: CountryViewOutput!
     
     private let indicator = UIActivityIndicatorView()
-    private let scrollView = UIScrollView()
     private let buttonsStack = UIStackView()
-    private let countryStatisticsStackView = StatisticsStackView()
-    private let graph = GraphView()
+    private let scrollView = StatisticsScrollView()
     
     // MARK: - Lifecycle
     
@@ -36,22 +34,9 @@ final class CountryViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = Colors.white
-        configureActivityIndicator()
         configureButtonsStack()
         configureScrollView()
-        configureStatisticsStack()
-        configureGraph()
-    }
-    
-    private func configureActivityIndicator() {
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.hidesWhenStopped = true
-        indicator.startAnimating()
-        view.addSubview(indicator)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        ActivityIndicatorBuilder.configureActivityIndicator(indicator: indicator, view: view)
     }
     
     private func configureButtonsStack() {
@@ -95,9 +80,6 @@ final class CountryViewController: UIViewController {
     
     private func configureScrollView() {
         view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(countryStatisticsStackView)
-        scrollView.addSubview(graph)
         scrollView.isHidden = true
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
@@ -116,24 +98,6 @@ final class CountryViewController: UIViewController {
         }
     }
     
-    private func configureStatisticsStack() {
-        NSLayoutConstraint.activate([
-            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
-            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing)
-        ])
-    }
-    
-    private func configureGraph() {
-        NSLayoutConstraint.activate([
-            graph.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: 10),
-            graph.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
-            graph.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
-            graph.heightAnchor.constraint(equalToConstant: 200),
-            graph.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
-    }
-    
     // MARK: - Action
     
     @objc private func backAction() {
@@ -150,13 +114,13 @@ final class CountryViewController: UIViewController {
 // MARK: - CountryViewInput
 extension CountryViewController: CountryViewInput {
     func success(statistics: StatisticsModel, dayOne: [[String : [Int]]]?) {
-        countryStatisticsStackView.changeStatisticsView(statistics: statistics)
+        scrollView.statisticsModel = statistics
         
         if let dayOne = dayOne {
-            graph.changeGraphPoints(data: dayOne)
-            graph.isHidden = false
+            scrollView.graphLogPoints = dayOne
+            scrollView.isGraphHidden = false
         } else {
-            graph.isHidden = true
+            scrollView.isGraphHidden = true
         }
         
         indicator.stopAnimating()
