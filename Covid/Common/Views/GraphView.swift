@@ -12,7 +12,7 @@ final class GraphView: UIView {
     
     // MARK: - Constants
     
-    private enum Constants {
+    private enum Locals {
         static let cornerRadius: CGFloat = 8
         static let marginLeft: CGFloat = 5
         static let marginRight: CGFloat = 10
@@ -24,8 +24,28 @@ final class GraphView: UIView {
     
     // MARK: - Properties
     
-    private var xLabels: [UILabel]!
-    private var yLabels: [UILabel]!
+    private let yLabels = { () -> [UILabel] in
+        var labels: [UILabel] = []
+        for _ in 0...5 {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 10)
+            label.textAlignment = .right
+            labels.append(label)
+        }
+        return labels
+    }()
+    
+    private let xLabels = { () -> [UILabel] in
+        var labels: [UILabel] = []
+        for _ in 0...4 {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 10)
+            label.textAlignment = .right
+            labels.append(label)
+        }
+        return labels
+    }()
+    
     private var xData: [String] = ["0", "0", "0", "0", "0"]
     private var yConfirmedData: [Int] = [0, 0, 0, 0, 0]
     private var yDeathsData: [Int] = [0, 0, 0, 0, 0]
@@ -48,8 +68,6 @@ final class GraphView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        xLabels = setupXLabels()
-        yLabels = setupYLabels()
         backgroundColor = Colors.white
     }
     
@@ -62,13 +80,13 @@ final class GraphView: UIView {
     override func draw(_ rect: CGRect) {
         // Create cornerRadius
         Colors.gray.setFill()
-        let path = UIBezierPath(roundedRect: rect, cornerRadius: Constants.cornerRadius)
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: Locals.cornerRadius)
         path.addClip()
         path.fill()
         
         // Properties
-        graphWidth = rect.width - Constants.marginLeft - Constants.marginRight - Constants.numberWidth
-        graphHeight = rect.height - Constants.marginBottom - Constants.marginTop
+        graphWidth = rect.width - Locals.marginLeft - Locals.marginRight - Locals.numberWidth
+        graphHeight = rect.height - Locals.marginBottom - Locals.marginTop
         yMax = getYMax()
         
         // Draw YLabels
@@ -77,12 +95,12 @@ final class GraphView: UIView {
         lineColor.setStroke()
         for index in 0...5 {
             yLabels[index].text = "\(index * yLabelInterval)"
-            yLabels[index].frame = CGRect(x: 0, y: graphHeight + Constants.marginTop - Constants.numberHeight/2 - CGFloat(index) * ySpacing , width: Constants.numberWidth, height: Constants.numberHeight)
+            yLabels[index].frame = CGRect(x: 0, y: graphHeight + Locals.marginTop - Locals.numberHeight/2 - CGFloat(index) * ySpacing , width: Locals.numberWidth, height: Locals.numberHeight)
             yLabels[index].textColor = labelColor
             addSubview(yLabels[index])
             let line = UIBezierPath()
-            line.move(to: CGPoint(x: Constants.marginLeft + Constants.numberWidth, y: graphHeight + Constants.marginTop - CGFloat(index) * ySpacing))
-            line.addLine(to: CGPoint(x: rect.width - Constants.marginRight, y: graphHeight + Constants.marginTop - CGFloat(index) * ySpacing))
+            line.move(to: CGPoint(x: Locals.marginLeft + Locals.numberWidth, y: graphHeight + Locals.marginTop - CGFloat(index) * ySpacing))
+            line.addLine(to: CGPoint(x: rect.width - Locals.marginRight, y: graphHeight + Locals.marginTop - CGFloat(index) * ySpacing))
             line.stroke()
         }
         
@@ -90,7 +108,7 @@ final class GraphView: UIView {
         let xLabelsInterval = getXLabelsInterval()
         for (index, interval) in xLabelsInterval.enumerated() {
             xLabels[index].text = xData[interval]
-            xLabels[index].frame = CGRect(x: xPoint(x: interval) - Constants.numberWidth, y: graphHeight + Constants.marginTop + Constants.numberHeight/2, width: Constants.numberWidth, height: Constants.numberHeight)
+            xLabels[index].frame = CGRect(x: xPoint(x: interval) - Locals.numberWidth, y: graphHeight + Locals.marginTop + Locals.numberHeight/2, width: Locals.numberWidth, height: Locals.numberHeight)
             xLabels[index].textColor = labelColor
             addSubview(xLabels[index])
         }
@@ -101,40 +119,16 @@ final class GraphView: UIView {
         drawGraph(data: yDeathsData, colorGraph: graphDeathsColor, colorClipping: clippingDeathsColor)
     }
     
-    // MARK: - Configurations
-    
-    private func setupYLabels() -> [UILabel] {
-        var labels: [UILabel] = []
-        for _ in 0...5 {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 10)
-            label.textAlignment = .right
-            labels.append(label)
-        }
-        return labels
-    }
-    
-    private func setupXLabels() -> [UILabel] {
-        var labels: [UILabel] = []
-        for _ in 0...4 {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 10)
-            label.textAlignment = .right
-            labels.append(label)
-        }
-        return labels
-    }
-    
     // MARK: - Calculate
     
     private func xPoint(x: Int) -> CGFloat {
         let xSpacing = self.graphWidth / CGFloat(self.xData.count - 1)
-        return CGFloat(x) * xSpacing + Constants.marginLeft + Constants.numberWidth
+        return CGFloat(x) * xSpacing + Locals.marginLeft + Locals.numberWidth
     }
     
     private func yPoint(y: Int) -> CGFloat {
         let yPoint = CGFloat(y) / CGFloat(yMax) * self.graphHeight
-        return self.graphHeight + Constants.marginTop - yPoint
+        return self.graphHeight + Locals.marginTop - yPoint
     }
     
     private func drawGraph(data: [Int], colorGraph: UIColor, colorClipping: UIColor) {
@@ -148,8 +142,8 @@ final class GraphView: UIView {
         graphPath.stroke()
         
         guard let clippingPathOne = graphPath.copy() as? UIBezierPath else { return }
-        clippingPathOne.addLine(to: CGPoint(x: xPoint(x: xData.count - 1), y: graphHeight + Constants.marginTop))
-        clippingPathOne.addLine(to: CGPoint(x: xPoint(x: 0), y: graphHeight + Constants.marginTop))
+        clippingPathOne.addLine(to: CGPoint(x: xPoint(x: xData.count - 1), y: graphHeight + Locals.marginTop))
+        clippingPathOne.addLine(to: CGPoint(x: xPoint(x: 0), y: graphHeight + Locals.marginTop))
         clippingPathOne.close()
         colorClipping.setFill()
         clippingPathOne.fill()
