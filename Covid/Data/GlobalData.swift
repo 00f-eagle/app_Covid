@@ -51,7 +51,7 @@ final class GlobalData: GlobalDataProtocol {
     func getData() -> StatisticsModel? {
         let fetchRequest: NSFetchRequest<Global> = Global.fetchRequest()
         do {
-            let global = try DataManager.shared.context.fetch(fetchRequest).first!
+            guard let global = try DataManager.shared.context.fetch(fetchRequest).first else { return nil }
             let statisticsModel = StatisticsModel(name: global.name,
                                                   totalConfirmed: Int(global.totalConfirmed),
                                                   newConfirmed: Int(global.newConfirmed),

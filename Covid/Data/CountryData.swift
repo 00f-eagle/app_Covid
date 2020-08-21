@@ -63,7 +63,7 @@ final class CountryData: CountryDataProtocol {
         fetchRequest.predicate = NSPredicate(format: "countryCode = %@", countryCode)
         fetchRequest.fetchLimit = 1
         do {
-            let country = try DataManager.shared.context.fetch(fetchRequest).first!
+            guard let country = try DataManager.shared.context.fetch(fetchRequest).first else { return nil }
             let statisticsModel = StatisticsModel(name: country.country,
                                                   totalConfirmed: Int(country.totalConfirmed),
                                                   newConfirmed: Int(country.newConfirmed),
