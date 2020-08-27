@@ -8,5 +8,5 @@
 
 enum Errors {
     static let error = "Ошибка"
-    static let data = "Не удалось получить данные"
+    static let data = "Проверьте соединение с интернетом"
 }
