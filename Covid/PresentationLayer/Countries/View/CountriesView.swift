@@ -134,7 +134,7 @@ final class CountriesView: UIViewController {
             status = Status.deaths
             presenter.getCountries(searchText: searchText, status: status)
         case 2:
-            status = Status.recoverded
+            status = Status.recovered
             presenter.getCountries(searchText: searchText, status: status)
         default:
             break

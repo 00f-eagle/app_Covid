@@ -46,7 +46,7 @@ extension MainStatisticsPresenter: MainStatisticsInteractorOutput {
         let graphPointsLog = GraphPointsConverter.convertToGraphPointsLogModel(allDays: sortedAllDays)
         let graphPointsLinConfirmed = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .confirmed)
         let graphPointsLinDeaths = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .deaths)
-        let graphPointsLinRecovered = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .recoverded)
+        let graphPointsLinRecovered = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .recovered)
         view.presentGraphsByCountry(graphPointsLog: graphPointsLog, graphPointsLinConfirmed: graphPointsLinConfirmed, graphPointsLinDeaths: graphPointsLinDeaths, graphPointsLinRecovered: graphPointsLinRecovered)
     }
     

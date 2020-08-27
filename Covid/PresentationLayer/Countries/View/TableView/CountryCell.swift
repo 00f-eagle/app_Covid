@@ -89,7 +89,7 @@ final class CountryCell: UITableViewCell {
         case .deaths:
             totalStatusLabel.textColor = Colors.red
             newStatusLabel.textColor = Colors.red
-        case .recoverded:
+        case .recovered:
             totalStatusLabel.textColor = Colors.green
             newStatusLabel.textColor = Colors.green
         }

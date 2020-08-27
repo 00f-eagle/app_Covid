@@ -9,5 +9,5 @@
 enum Status {
     case confirmed
     case deaths
-    case recoverded
+    case recovered
 }

@@ -18,7 +18,7 @@ final class StatisticsOfStatusConverter {
             statisticsSorted = statistics.sorted(by: { $0.totalConfirmed > $1.totalConfirmed})
         case .deaths:
             statisticsSorted = statistics.sorted(by: { $0.totalDeaths > $1.totalDeaths})
-        case .recoverded:
+        case .recovered:
             statisticsSorted = statistics.sorted(by: { $0.totalRecovered > $1.totalRecovered})
         }
         
@@ -29,7 +29,7 @@ final class StatisticsOfStatusConverter {
                 statisticsOfStatus.append(StatisticsOfStatusModel(name: model.name, total: model.totalConfirmed, new: model.newConfirmed, code: model.code))
             case .deaths:
                 statisticsOfStatus.append(StatisticsOfStatusModel(name: model.name, total: model.totalDeaths, new: model.newDeaths, code: model.code))
-            case .recoverded:
+            case .recovered:
                 statisticsOfStatus.append(StatisticsOfStatusModel(name: model.name, total: model.totalRecovered, new: model.newRecovered, code: model.code))
             }
         }

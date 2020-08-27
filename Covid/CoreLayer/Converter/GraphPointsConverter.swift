@@ -27,7 +27,7 @@ struct GraphPointsConverter {
             graphPoints.append(GraphPointsLinModel(status: firstDay.confirmed, date: firstDay.convertedDate))
         case .deaths:
             graphPoints.append(GraphPointsLinModel(status: firstDay.deaths, date: firstDay.convertedDate))
-        case .recoverded:
+        case .recovered:
             graphPoints.append(GraphPointsLinModel(status: firstDay.recovered, date: firstDay.convertedDate))
         }
         
@@ -42,7 +42,7 @@ struct GraphPointsConverter {
                 newStatus = dayNow.confirmed - dayLast.confirmed
             case .deaths:
                 newStatus = dayNow.deaths - dayLast.deaths
-            case .recoverded:
+            case .recovered:
                 newStatus = dayNow.recovered - dayLast.recovered
             }
             
