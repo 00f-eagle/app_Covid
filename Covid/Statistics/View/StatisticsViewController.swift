@@ -12,17 +12,13 @@ final class StatisticsViewController: UIViewController {
     
     // MARK: - Properties
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     var presenter: StatisticsViewOutput!
     
     private let indicator = UIActivityIndicatorView()
+    private let segmentedControl = UISegmentedControl()
+    private let scrollView = StatisticsScrollView()
     
-    private let countryStatisticsStackView = StatisticsStackView()
-    private let globalStatisticsStackView = StatisticsStackView()
-    private let scrollView = UIScrollView()
+    private var country = Texts.unknown
     
     // MARK: - Lifecycle
     
@@ -33,73 +29,112 @@ final class StatisticsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        scrollView.isHidden = true
-        indicator.startAnimating()
-        presenter.getData()
+        getDataBySelectedSegment()
     }
     
     // MARK: - Configurations View
     
     private func setupView() {
-        view.backgroundColor = Colors.black
-        
-        activityIndicator()
+        view.backgroundColor = Colors.white
+        configureSegmentedControl()
         configureScrollView()
-        
-        NSLayoutConstraint.activate([
-            countryStatisticsStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            countryStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
-            countryStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
-            globalStatisticsStackView.topAnchor.constraint(equalTo: countryStatisticsStackView.bottomAnchor, constant: Constraints.spacingCountryAndGlobalStack),
-            globalStatisticsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
-            globalStatisticsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView),
-            globalStatisticsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
+        ActivityIndicatorBuilder.configureActivityIndicator(indicator: indicator, view: view)
     }
     
-    func activityIndicator() {
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.backgroundColor = Colors.black
-        indicator.style = .white
-        indicator.hidesWhenStopped = true
-        view.addSubview(indicator)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+    private func configureSegmentedControl() {
+        segmentedControl.insertSegment(withTitle: country, at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: Texts.world, at: 1, animated: true)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(getDataBySelectedSegment), for: .valueChanged)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segmentedControl)
+        
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Margin.top)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: Margin.safeAreaTop + Margin.safeAreaTop)
+            ])
+        }
     }
     
     private func configureScrollView() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(countryStatisticsStackView)
-        scrollView.addSubview(globalStatisticsStackView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        var constraints = [
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constraints.leadingOfView),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constraints.trailingOfView)
-        ]
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refresh.tintColor = Colors.black
+        scrollView.refreshControl = refresh
+        scrollView.isHidden = true
+        view.addSubview(scrollView)
         
         if #available(iOS 11.0, *) {
-            constraints.append(scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.topOfView))
-            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+            NSLayoutConstraint.activate([
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                scrollView.topAnchor.constraint(equalTo: segmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: Margin.top),
+                scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Margin.bottom)
+            ])
         } else {
-            constraints.append(scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constraints.safeAreaTop + Constraints.safeAreaTop))
-            constraints.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constraints.heightOfTabBar))
+            NSLayoutConstraint.activate([
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin.leading),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Margin.trailing),
+                scrollView.topAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: Margin.safeAreaTop + Margin.safeAreaTop),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Margin.heightOfTabBar + Margin.bottom)
+            ])
         }
-        
-        NSLayoutConstraint.activate(constraints)
+    }
+    
+    // MARK: - Action
+    
+    @objc private func getDataBySelectedSegment() {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            indicator.startAnimating()
+            presenter.getDataByCountry()
+        case 1:
+            indicator.startAnimating()
+            presenter.getDataByGlobal()
+        default:
+            break
+        }
+    }
+    
+    @objc private func refreshData(_ sender: AnyObject) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            presenter.getDataByCountry()
+        case 1:
+            presenter.getDataByGlobal()
+        default:
+            break
+        }
+        sender.endRefreshing()
     }
 }
 
 
 // MARK: - StatisticsViewInput
 extension StatisticsViewController: StatisticsViewInput {
-    
-    func success(global: Statistics, country: Statistics) {
+    func success(statistics: StatisticsModel, dayOne: [[String: [Int]]]?) {
+        scrollView.statisticsModel = statistics
         
-        countryStatisticsStackView.changeStatisticsView(statistics: country)
-        globalStatisticsStackView.changeStatisticsView(statistics: global)
+        if let dayOne = dayOne {
+            scrollView.graphLogPoints = dayOne
+            scrollView.isGraphHidden = false
+        } else {
+            scrollView.isGraphHidden = true
+        }
+        
+        if segmentedControl.selectedSegmentIndex == 0, country != statistics.name  {
+            country = statistics.name
+            segmentedControl.setTitle(country, forSegmentAt: 0)
+        }
         
         indicator.stopAnimating()
         scrollView.isHidden = false
@@ -107,7 +142,6 @@ extension StatisticsViewController: StatisticsViewInput {
     
     func failure() {
         indicator.stopAnimating()
-        scrollView.isHidden = false
-        presenter.presentFailureAlert(title: Errors.error, message: Errors.network)
+        presenter.presentFailureAlert(title: Errors.error, message: Errors.data)
     }
 }

@@ -10,18 +10,18 @@ import UIKit
 
 class CountryAssembly {
     
-    static func assembly(country: String) -> UIViewController {
+    static func assembly(countryCode: String) -> UIViewController {
         let view = CountryViewController()
         let presenter = CountryPresenter()
         
-        view.country = country
         view.presenter = presenter
         presenter.view = view
         
-        let statisticsData = StatisticsData()
+        let loadCovidNetworking = NetworkService()
+        let countryData = CountryData()
         let userData = UserData()
         
-        let interactor = CountryInteractor(statisticsData: statisticsData, userData: userData)
+        let interactor = CountryInteractor(loadCovidNetworking: loadCovidNetworking, countryData: countryData, userData: userData, countryCode: countryCode)
         interactor.presenter = presenter
         presenter.interactor = interactor
         

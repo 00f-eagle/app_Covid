@@ -19,12 +19,12 @@ final class CountryPresenter {
 
 //MARK: = CountryViewOutput
 extension CountryPresenter: CountryViewOutput {
-    func changeDefaultCountry(country: String) {
-        interactor.changeDefaultCountry(country: country)
+    func changeDefaultCountry() {
+        interactor.changeDefaultCountry()
     }
     
-    func loadData(country: String) {
-        interactor.getData(country: country)
+    func getData() {
+        interactor.loadDataByCountry()
     }
     
     func dismissView() {
@@ -39,9 +39,18 @@ extension CountryPresenter: CountryViewOutput {
 
 //MARK: - CountryInteractorOutput
 extension CountryPresenter: CountryInteractorOutput {
-    
-    func success(statistics: Statistics) {
-        view.success(statistics: statistics)
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?) {
+        
+        guard let dayOne = dayOne else {
+            view.success(statistics: country, dayOne: nil)
+            return
+        }
+        
+        var totalDayOne: [[String: [Int]]] = []
+        for day in dayOne {
+            totalDayOne.append([day.convertedDate: [day.confirmed, day.deaths, day.recovered]])
+        }
+        view.success(statistics: country, dayOne: totalDayOne)
     }
     
     func failure() {

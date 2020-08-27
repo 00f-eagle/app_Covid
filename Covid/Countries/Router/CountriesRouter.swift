@@ -19,8 +19,8 @@ final class CountriesRouter {
 
 // MARK: - StatisticsRouterInput
 extension CountriesRouter: CountriesRouterInput {
-    func showCountry(country: String) {
-        let country = CountryAssembly.assembly(country: country)
+    func showCountry(countryCode: String) {
+        let country = CountryAssembly.assembly(countryCode: countryCode)
         country.modalPresentationStyle = .fullScreen
         view.present(country, animated: true, completion: nil)
     }

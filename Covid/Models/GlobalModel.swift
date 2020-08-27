@@ -1,27 +1,13 @@
 //
-//  SummaryModel.swift
+//  GlobalModel.swift
 //  Covid
 //
-//  Created by Kirill Selivanov on 23.07.2020.
+//  Created by Kirill Selivanov on 18.08.2020.
 //  Copyright © 2020 Kirill Selivanov. All rights reserved.
 //
 
 import UIKit
 
-// MARK: - SummaryModel
-struct SummaryModel: Decodable {
-    let global: GlobalModel
-    let date: String
-    let countries: [CountryModel]
-    
-    enum CodingKeys: String, CodingKey {
-        case global = "Global"
-        case date = "Date"
-        case countries = "Countries"
-    }
-}
-
-// MARK: - GlobalModel
 struct GlobalModel: Decodable {
     let newConfirmed: Int
     let totalConfirmed: Int

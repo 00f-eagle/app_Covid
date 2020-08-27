@@ -10,12 +10,6 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    // MARK: - Properties
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -31,7 +25,6 @@ final class TabBarController: UITabBarController {
         
         tabBar.barTintColor = .clear
         tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
         
         viewControllers = tabBarList
     }

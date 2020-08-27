@@ -7,8 +7,8 @@
 //
 
 protocol CountryViewOutput {
-    func loadData(country: String)
+    func getData()
     func dismissView()
     func presentFailureAlert(title: String, message: String)
-    func changeDefaultCountry(country: String)
+    func changeDefaultCountry()
 }

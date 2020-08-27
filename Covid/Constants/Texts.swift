@@ -12,6 +12,9 @@ enum Texts {
     static let deaths = "Смертей"
     static let recovered = "Выздоровлений"
     static let chooseCountry = "Выбрать страну"
-    static let unknown = "Unknown"
+    static let unknown = "-"
     static let null = "0"
+    static let back = "< Назад"
+    static let setupDefault = "По умолчанию"
+    static let dateDefault = "01.01.2020"
 }

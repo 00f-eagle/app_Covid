@@ -14,12 +14,12 @@ final class CountriesInteractor {
     // MARK: Properties
     
     weak var presenter: CountriesInteractorOutput!
-    private let statisticsData: StatisticsDataProtocol
+    private let countryData: CountryDataProtocol
     
     // MARK: - Init
     
-    init(statisticData: StatisticsDataProtocol) {
-        self.statisticsData = statisticData
+    init(countryData: CountryDataProtocol) {
+        self.countryData = countryData
     }
 }
 
@@ -27,21 +27,21 @@ final class CountriesInteractor {
 // MARK: - StatisticsInteractorInput
 extension CountriesInteractor: CountriesInteractorInput {
     
-    func getData(status: Status) {
+    func loadDataByCountries(status: Status) {
         
-        guard let countries = statisticsData.getDataByCountries(), !countries.isEmpty else {
+        guard let countries = countryData.getDataByCountries(), !countries.isEmpty else {
             presenter.failure()
             return
         }
         
-        let countriesSorted: [Statistics]
+        let countriesSorted: [StatisticsModel]
         switch status {
         case .confirmed:
-            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed })
+            countriesSorted = countries.sorted(by: { $0.totalConfirmed > $1.totalConfirmed })
         case .deaths:
-            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths })
+            countriesSorted = countries.sorted(by: { $0.totalDeaths > $1.totalDeaths })
         case .recoverded:
-            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered })
+            countriesSorted = countries.sorted(by: { $0.totalRecovered > $1.totalRecovered })
         }
         
         presenter.success(countries: countriesSorted)
@@ -49,18 +49,18 @@ extension CountriesInteractor: CountriesInteractorInput {
     
     func searchCountry(text: String, status: Status) {
         
-        guard let countries = statisticsData.searchData(text: text) else {
+        guard let countries = countryData.searchData(text: text) else {
             presenter.failure()
             return
         }
-        let countriesSorted: [Statistics]
+        let countriesSorted: [StatisticsModel]
         switch status {
         case .confirmed:
-            countriesSorted = countries.sorted(by: { $0.confirmed > $1.confirmed})
+            countriesSorted = countries.sorted(by: { $0.totalConfirmed > $1.totalConfirmed})
         case .deaths:
-            countriesSorted = countries.sorted(by: { $0.deaths > $1.deaths})
+            countriesSorted = countries.sorted(by: { $0.totalDeaths > $1.totalDeaths})
         case .recoverded:
-            countriesSorted = countries.sorted(by: { $0.recovered > $1.recovered})
+            countriesSorted = countries.sorted(by: { $0.totalRecovered > $1.totalRecovered})
         }
         
         presenter.success(countries: countriesSorted)

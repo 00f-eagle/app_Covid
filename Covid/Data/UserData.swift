@@ -8,30 +8,37 @@
 
 import CoreData
 
+protocol UserDataProtocol {
+    
+    func addCountryCode(countryCode: String)
+    
+    func getCountryCode() -> String?
+
+}
+
 final class UserData: UserDataProtocol {
     
-    func addData(country: String) {
+    func addCountryCode(countryCode: String) {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         
         do {
             let fetchResults = try DataManager.shared.context.fetch(fetchRequest)
-            let user: User
-            if !fetchResults.isEmpty {
-                user = fetchResults.first!
+            if let user = fetchResults.first {
+                user.countryCode = countryCode
             } else {
-                user = User(context: DataManager.shared.context)
+                let user = User(context: DataManager.shared.context)
+                user.countryCode = countryCode
             }
-            user.country = country
             DataManager.shared.saveContext()
         } catch {
             print("Неожиданная ошибка: \(error).")
         }
     }
     
-    func getData() -> String? {
+    func getCountryCode() -> String? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         do {
-            return try DataManager.shared.context.fetch(fetchRequest).first?.country
+            return try DataManager.shared.context.fetch(fetchRequest).first?.countryCode
         } catch {
             return nil
         }

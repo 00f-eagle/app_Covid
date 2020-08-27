@@ -8,14 +8,13 @@
 
 import UIKit
 
-enum Constraints {
+enum Margin {
     
-    static let leadingOfView: CGFloat = 5
-    static let trailingOfView: CGFloat = -5
-    static let topOfView: CGFloat = 10
-    static let BottomOfView: CGFloat = -5
+    static let leading: CGFloat = 5
+    static let trailing: CGFloat = -5
+    static let top: CGFloat = 10
+    static let bottom: CGFloat = -5
     static let safeAreaTop: CGFloat = 20
     static let heightOfTabBar: CGFloat = -49
-    static let spacingCountryAndGlobalStack: CGFloat = 30
-    
+    static let cornerRadius: CGFloat = 8
 }

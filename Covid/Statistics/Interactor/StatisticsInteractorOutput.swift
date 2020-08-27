@@ -9,6 +9,7 @@
 import UIKit
 
 protocol StatisticsInteractorOutput: AnyObject {
-    func success(global: Statistics, country: Statistics)
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?)
+    func didLoadDataByGlobal(global: StatisticsModel)
     func failure()
 }

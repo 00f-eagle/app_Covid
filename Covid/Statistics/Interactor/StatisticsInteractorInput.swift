@@ -9,5 +9,6 @@
 import UIKit
 
 protocol StatisticsInteractorInput {
-    func loadData()
+    func loadDataByCountry()
+    func loadDataByGlobal()
 }

@@ -23,9 +23,4 @@ extension StatisticsRouter: StatisticsRouterInput {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         view.present(alert, animated: true, completion: nil)
     }
-    
-    func showCountry() {
-        //let picker = PickerViewController()
-        //view.present(picker, animated: true)
-    }
 }

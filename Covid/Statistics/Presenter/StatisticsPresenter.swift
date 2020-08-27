@@ -25,21 +25,34 @@ extension StatisticsPresenter: StatisticsViewOutput {
         router.presentFailureAlert(title: title, message: message)
     }
     
-    func changeCountry() {
-        router.showCountry()
+    func getDataByCountry() {
+        interactor.loadDataByCountry()
     }
     
-    func getData() {
-        interactor.loadData()
+    func getDataByGlobal() {
+        interactor.loadDataByGlobal()
     }
 }
 
 
 // MARK: - StatisticsInteractorOutput
 extension StatisticsPresenter: StatisticsInteractorOutput {
+    func didLoadDataByCountry(country: StatisticsModel, dayOne: [DayOneModel]?) {
+        
+        guard let dayOne = dayOne else {
+            view.success(statistics: country, dayOne: nil)
+            return
+        }
+        
+        var totalDayOne: [[String: [Int]]] = []
+        for day in dayOne {
+            totalDayOne.append([day.convertedDate: [day.confirmed, day.deaths, day.recovered]])
+        }
+        view.success(statistics: country, dayOne: totalDayOne)
+    }
     
-    func success(global: Statistics, country: Statistics) {
-        view.success(global: global, country: country)
+    func didLoadDataByGlobal(global: StatisticsModel) {
+        view.success(statistics: global, dayOne: nil)
     }
     
     func failure() {
