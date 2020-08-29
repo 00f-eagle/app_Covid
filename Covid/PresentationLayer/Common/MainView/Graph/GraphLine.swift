@@ -1,5 +1,5 @@
 //
-//  GraphLin.swift
+//  GraphLine.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 30.07.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GraphLin: UICollectionViewCell {
+final class GraphLine: UICollectionViewCell {
     
     // MARK: - Constants
     
@@ -49,7 +49,7 @@ final class GraphLin: UICollectionViewCell {
     }()
     
     var graphColor: UIColor = Colors.orange
-    var graphPoints: [GraphPointsLinModel]? {
+    var graphPoints: [GraphPointsLineModel]? {
         didSet {
             if let graphPoints = graphPoints {
                 updateGraphPoints(graphPoints: graphPoints)
@@ -165,7 +165,7 @@ final class GraphLin: UICollectionViewCell {
         return yMax
     }
     
-    private func updateGraphPoints(graphPoints: [GraphPointsLinModel]) {
+    private func updateGraphPoints(graphPoints: [GraphPointsLineModel]) {
         guard graphPoints.count >= 5 else { return }
         xData = graphPoints.map { $0.date }
         yData = graphPoints.map { $0.status }

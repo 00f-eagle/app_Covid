@@ -11,6 +11,6 @@ import UIKit
 protocol MainStatisticsViewInput: AnyObject {
     func presentMainStatisticsByCountry(statistics: StatisticsModel)
     func presentMainStatisticsByGlobal(statistics: StatisticsModel)
-    func presentGraphsByCountry(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLinModel], graphPointsLinDeaths: [GraphPointsLinModel], graphPointsLinRecovered: [GraphPointsLinModel])
+    func presentGraphsByCountry(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLineModel], graphPointsLinDeaths: [GraphPointsLineModel], graphPointsLinRecovered: [GraphPointsLineModel])
     func failure()
 }

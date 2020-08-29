@@ -44,9 +44,9 @@ extension MainStatisticsPresenter: MainStatisticsInteractorOutput {
     func didLoadAllDaysByCountry(allDays: [DayModel]) {
         let sortedAllDays = allDays.sorted(by: { $0.convertedDateToDate < $1.convertedDateToDate })
         let graphPointsLog = GraphPointsConverter.convertToGraphPointsLogModel(allDays: sortedAllDays)
-        let graphPointsLinConfirmed = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .confirmed)
-        let graphPointsLinDeaths = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .deaths)
-        let graphPointsLinRecovered = GraphPointsConverter.convertToGraphPointsLinModel(allDays: sortedAllDays, status: .recovered)
+        let graphPointsLinConfirmed = GraphPointsConverter.convertToGraphPointsLineModel(allDays: sortedAllDays, status: .confirmed)
+        let graphPointsLinDeaths = GraphPointsConverter.convertToGraphPointsLineModel(allDays: sortedAllDays, status: .deaths)
+        let graphPointsLinRecovered = GraphPointsConverter.convertToGraphPointsLineModel(allDays: sortedAllDays, status: .recovered)
         view.presentGraphsByCountry(graphPointsLog: graphPointsLog, graphPointsLinConfirmed: graphPointsLinConfirmed, graphPointsLinDeaths: graphPointsLinDeaths, graphPointsLinRecovered: graphPointsLinRecovered)
     }
     

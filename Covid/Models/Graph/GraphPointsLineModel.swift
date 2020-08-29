@@ -1,5 +1,5 @@
 //
-//  GraphPointsLinModel.swift
+//  GraphPointsLineModel.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 26.08.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct GraphPointsLinModel {
+struct GraphPointsLineModel {
     
     let status: Int
     let date: String

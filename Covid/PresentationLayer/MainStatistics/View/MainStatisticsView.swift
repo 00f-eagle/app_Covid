@@ -144,7 +144,7 @@ extension MainStatisticsView: MainStatisticsViewInput {
         updateProgress(progress: 0.5)
     }
     
-    func presentGraphsByCountry(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLinModel], graphPointsLinDeaths: [GraphPointsLinModel], graphPointsLinRecovered: [GraphPointsLinModel]) {
+    func presentGraphsByCountry(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLineModel], graphPointsLinDeaths: [GraphPointsLineModel], graphPointsLinRecovered: [GraphPointsLineModel]) {
         mainCountryView.graphLogPoints = graphPointsLog
         mainCountryView.graphsLinPoints = [graphPointsLinConfirmed, graphPointsLinDeaths, graphPointsLinRecovered]
         mainCountryView.isGraphHidden = false

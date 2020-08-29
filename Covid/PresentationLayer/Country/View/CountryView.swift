@@ -132,7 +132,7 @@ extension CountryView: CountryViewInput {
         updateProgress(progress: 0.5)
     }
     
-    func presentGraphs(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLinModel], graphPointsLinDeaths: [GraphPointsLinModel], graphPointsLinRecovered: [GraphPointsLinModel]) {
+    func presentGraphs(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLineModel], graphPointsLinDeaths: [GraphPointsLineModel], graphPointsLinRecovered: [GraphPointsLineModel]) {
         mainView.graphLogPoints = graphPointsLog
         mainView.graphsLinPoints = [graphPointsLinConfirmed, graphPointsLinDeaths, graphPointsLinRecovered]
         mainView.isGraphHidden = false

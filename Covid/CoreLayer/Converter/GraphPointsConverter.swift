@@ -18,17 +18,17 @@ struct GraphPointsConverter {
         return graphPointsLog
     }
     
-    static func convertToGraphPointsLinModel(allDays: [DayModel], status: Status) -> [GraphPointsLinModel] {
+    static func convertToGraphPointsLineModel(allDays: [DayModel], status: Status) -> [GraphPointsLineModel] {
         guard let firstDay = allDays.first else { return [] }
-        var graphPoints: [GraphPointsLinModel] = []
+        var graphPoints: [GraphPointsLineModel] = []
         
         switch status {
         case .confirmed:
-            graphPoints.append(GraphPointsLinModel(status: firstDay.confirmed, date: firstDay.convertedDate))
+            graphPoints.append(GraphPointsLineModel(status: firstDay.confirmed, date: firstDay.convertedDate))
         case .deaths:
-            graphPoints.append(GraphPointsLinModel(status: firstDay.deaths, date: firstDay.convertedDate))
+            graphPoints.append(GraphPointsLineModel(status: firstDay.deaths, date: firstDay.convertedDate))
         case .recovered:
-            graphPoints.append(GraphPointsLinModel(status: firstDay.recovered, date: firstDay.convertedDate))
+            graphPoints.append(GraphPointsLineModel(status: firstDay.recovered, date: firstDay.convertedDate))
         }
         
         for index in 1..<allDays.count {
@@ -47,7 +47,7 @@ struct GraphPointsConverter {
             }
             
             newStatus < 0 ? newStatus = 0 : nil
-            graphPoints.append(GraphPointsLinModel(status: newStatus, date: dayNow.convertedDate))
+            graphPoints.append(GraphPointsLineModel(status: newStatus, date: dayNow.convertedDate))
         }
         
         return graphPoints

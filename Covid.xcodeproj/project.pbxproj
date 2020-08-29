@@ -17,10 +17,10 @@
 		ED196F1224C9707500C60C4F /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED196F1124C9707500C60C4F /* DayModel.swift */; };
 		ED196F1C24C97F9400C60C4F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED196F1B24C97F9400C60C4F /* CoreDataManager.swift */; };
 		ED1B0ADF24F65EC600EFAA68 /* RefreshControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0ADE24F65EC600EFAA68 /* RefreshControlBuilder.swift */; };
-		ED1B0AE424F6A2CE00EFAA68 /* CollectionGraphLin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLin.swift */; };
+		ED1B0AE424F6A2CE00EFAA68 /* CollectionGraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLine.swift */; };
 		ED1B0AF424F6B1AC00EFAA68 /* GraphPointsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AF324F6B1AC00EFAA68 /* GraphPointsConverter.swift */; };
 		ED1B0AF924F6B38600EFAA68 /* GraphPointsLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AF824F6B38600EFAA68 /* GraphPointsLogModel.swift */; };
-		ED1B0AFB24F6B39600EFAA68 /* GraphPointsLinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AFA24F6B39600EFAA68 /* GraphPointsLinModel.swift */; };
+		ED1B0AFB24F6B39600EFAA68 /* GraphPointsLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0AFA24F6B39600EFAA68 /* GraphPointsLineModel.swift */; };
 		ED1B0B0924F6C8BF00EFAA68 /* StatisticsOfStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0B0824F6C8BF00EFAA68 /* StatisticsOfStatusModel.swift */; };
 		ED1B0B0B24F6CAC100EFAA68 /* StatisticsOfStatusConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0B0A24F6CAC100EFAA68 /* StatisticsOfStatusConverter.swift */; };
 		ED1B0B1224F79DD900EFAA68 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1B0B1124F79DD900EFAA68 /* Notification.Name.swift */; };
@@ -77,9 +77,10 @@
 		EDA6AEBC24E2F6B900485082 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEBB24E2F6B900485082 /* StackView.swift */; };
 		EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */; };
 		EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */; };
+		EDAB698A24F954CB0022A82D /* MainStatisticsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */; };
 		EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */; };
 		EDF7A06E24F41905000D947E /* StatisticsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A06D24F41905000D947E /* StatisticsStorage.swift */; };
-		EDF7A07624F42B8E000D947E /* GraphLin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A07524F42B8E000D947E /* GraphLin.swift */; };
+		EDF7A07624F42B8E000D947E /* GraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A07524F42B8E000D947E /* GraphLine.swift */; };
 		EDF7A07824F47136000D947E /* ProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A07724F47136000D947E /* ProgressViewBuilder.swift */; };
 		EDF7A0A324F5B97F000D947E /* LastDayEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A09B24F5B97F000D947E /* LastDayEntity+CoreDataClass.swift */; };
 		EDF7A0A424F5B97F000D947E /* LastDayEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A09C24F5B97F000D947E /* LastDayEntity+CoreDataProperties.swift */; };
@@ -123,10 +124,10 @@
 		ED196F1124C9707500C60C4F /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		ED196F1B24C97F9400C60C4F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		ED1B0ADE24F65EC600EFAA68 /* RefreshControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControlBuilder.swift; sourceTree = "<group>"; };
-		ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGraphLin.swift; sourceTree = "<group>"; };
+		ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGraphLine.swift; sourceTree = "<group>"; };
 		ED1B0AF324F6B1AC00EFAA68 /* GraphPointsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPointsConverter.swift; sourceTree = "<group>"; };
 		ED1B0AF824F6B38600EFAA68 /* GraphPointsLogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPointsLogModel.swift; sourceTree = "<group>"; };
-		ED1B0AFA24F6B39600EFAA68 /* GraphPointsLinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPointsLinModel.swift; sourceTree = "<group>"; };
+		ED1B0AFA24F6B39600EFAA68 /* GraphPointsLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPointsLineModel.swift; sourceTree = "<group>"; };
 		ED1B0B0824F6C8BF00EFAA68 /* StatisticsOfStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsOfStatusModel.swift; sourceTree = "<group>"; };
 		ED1B0B0A24F6CAC100EFAA68 /* StatisticsOfStatusConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsOfStatusConverter.swift; sourceTree = "<group>"; };
 		ED1B0B1124F79DD900EFAA68 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
@@ -183,9 +184,10 @@
 		EDA6AEBB24E2F6B900485082 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsPresenterTest.swift; sourceTree = "<group>"; };
 		EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStackView.swift; sourceTree = "<group>"; };
 		EDF7A06D24F41905000D947E /* StatisticsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStorage.swift; sourceTree = "<group>"; };
-		EDF7A07524F42B8E000D947E /* GraphLin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLin.swift; sourceTree = "<group>"; };
+		EDF7A07524F42B8E000D947E /* GraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLine.swift; sourceTree = "<group>"; };
 		EDF7A07724F47136000D947E /* ProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewBuilder.swift; sourceTree = "<group>"; };
 		EDF7A09B24F5B97F000D947E /* LastDayEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LastDayEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EDF7A09C24F5B97F000D947E /* LastDayEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LastDayEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		ED0C0D5C24AB29EC008646D6 /* CovidTests */ = {
 			isa = PBXGroup;
 			children = (
+				EDAB698424F954560022A82D /* MainStatisticsTest */,
 				ED0C0D5D24AB29EC008646D6 /* CovidTests.swift */,
 				ED0C0D5F24AB29EC008646D6 /* Info.plist */,
 			);
@@ -295,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				ED1B0AF824F6B38600EFAA68 /* GraphPointsLogModel.swift */,
-				ED1B0AFA24F6B39600EFAA68 /* GraphPointsLinModel.swift */,
+				ED1B0AFA24F6B39600EFAA68 /* GraphPointsLineModel.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -354,9 +357,9 @@
 		ED1B0B0324F6C40E00EFAA68 /* Graph */ = {
 			isa = PBXGroup;
 			children = (
-				ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLin.swift */,
+				ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLine.swift */,
 				EDA6AE7C24D3175C00485082 /* GraphLog.swift */,
-				EDF7A07524F42B8E000D947E /* GraphLin.swift */,
+				EDF7A07524F42B8E000D947E /* GraphLine.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -672,6 +675,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		EDAB698424F954560022A82D /* MainStatisticsTest */ = {
+			isa = PBXGroup;
+			children = (
+				EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */,
+			);
+			path = MainStatisticsTest;
+			sourceTree = "<group>";
+		};
 		EDF7A0AB24F5C9AE000D947E /* Facade */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,7 +838,7 @@
 				ED34DD3324C50FA400A7E6E3 /* CountriesInteractorOutput.swift in Sources */,
 				ED0C0D4724AB29E9008646D6 /* AppDelegate.swift in Sources */,
 				ED34DD3124C50F9300A7E6E3 /* CountriesInteractorInput.swift in Sources */,
-				ED1B0AFB24F6B39600EFAA68 /* GraphPointsLinModel.swift in Sources */,
+				ED1B0AFB24F6B39600EFAA68 /* GraphPointsLineModel.swift in Sources */,
 				ED2FB15D24EFBA1D009CD200 /* StatisticsView.swift in Sources */,
 				ED61437F24BDB7C20019E45C /* MainStatisticsPresenter.swift in Sources */,
 				ED34DD1224C1CA4600A7E6E3 /* MainStatisticsInteractor.swift in Sources */,
@@ -846,7 +857,7 @@
 				ED34DD0024C0988400A7E6E3 /* Covid.xcdatamodeld in Sources */,
 				EDF7A0AD24F5C9C7000D947E /* CovidFacade.swift in Sources */,
 				EDF7A0A624F5B97F000D947E /* UserEntity+CoreDataProperties.swift in Sources */,
-				EDF7A07624F42B8E000D947E /* GraphLin.swift in Sources */,
+				EDF7A07624F42B8E000D947E /* GraphLine.swift in Sources */,
 				ED1B0B2224F7B00700EFAA68 /* GlobalEntity+CoreDataProperties.swift in Sources */,
 				ED34DD2D24C50EF600A7E6E3 /* CountriesRouterInput.swift in Sources */,
 				EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */,
@@ -878,7 +889,7 @@
 				ED1B0B0924F6C8BF00EFAA68 /* StatisticsOfStatusModel.swift in Sources */,
 				ED34DD0524C0ADD100A7E6E3 /* MainStatisticsViewOutput.swift in Sources */,
 				EDF7A0A324F5B97F000D947E /* LastDayEntity+CoreDataClass.swift in Sources */,
-				ED1B0AE424F6A2CE00EFAA68 /* CollectionGraphLin.swift in Sources */,
+				ED1B0AE424F6A2CE00EFAA68 /* CollectionGraphLine.swift in Sources */,
 				ED34DD3724C50FE400A7E6E3 /* CountriesViewOutput.swift in Sources */,
 				EDA6AE9024D730DD00485082 /* CountryViewInput.swift in Sources */,
 				EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */,
@@ -893,6 +904,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAB698A24F954CB0022A82D /* MainStatisticsPresenterTest.swift in Sources */,
 				ED0C0D5E24AB29EC008646D6 /* CovidTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

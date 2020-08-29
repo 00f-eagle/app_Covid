@@ -115,13 +115,9 @@ final class StatisticsStorage: StatisticsStorageProtocol {
     func addLastDays(countryCode: String, data: [DayModel]) {
         let fetchRequest: NSFetchRequest<LastDayEntity> = LastDayEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "code = %@", countryCode)
+        let request = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
         do {
-            
-            let lastDays = try CoreDataManager.shared.context.fetch(fetchRequest)
-            
-            lastDays.forEach({ lastDay in
-                CoreDataManager.shared.context.delete(lastDay)
-            })
+            try CoreDataManager.shared.context.execute(request)
             
             data.forEach { day in
                 let lastDay = LastDayEntity(context: CoreDataManager.shared.context)

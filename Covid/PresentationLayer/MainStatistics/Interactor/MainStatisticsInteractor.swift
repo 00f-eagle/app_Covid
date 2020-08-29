@@ -34,18 +34,22 @@ extension MainStatisticsInteractor: MainStatisticsInteractorInput {
         let countryCode = getCountryCode()
         
         covidFacade.getAllDaysByCountry(countryCode: countryCode) { [weak self] allDays in
+            guard let self = self else { return }
+            
             if let allDays = allDays {
-                self?.presenter.didLoadAllDaysByCountry(allDays: allDays)
+                self.presenter.didLoadAllDaysByCountry(allDays: allDays)
             } else {
-                self?.presenter.failure()
+                self.presenter.failure()
             }
         }
         
         covidFacade.getMainStatisticsByCountry(countryCode: countryCode) { [weak self] statistics in
+            guard let self = self else { return }
+            
             if let statistics = statistics {
-                self?.presenter.didLoadMainStatisticsByCountry(statistics: statistics)
+                self.presenter.didLoadMainStatisticsByCountry(statistics: statistics)
             } else {
-                self?.presenter.failure()
+                self.presenter.failure()
             }
         }
     }
@@ -53,10 +57,12 @@ extension MainStatisticsInteractor: MainStatisticsInteractorInput {
     func loadStatisticsByGlobal() {
         
         covidFacade.getMainStatisticsByGlobal { [weak self] statistics in
+            guard let self = self else { return }
+            
             if let statistics = statistics {
-                self?.presenter.didLoadMainStatisticsByGlobal(statistics: statistics)
+                self.presenter.didLoadMainStatisticsByGlobal(statistics: statistics)
             } else {
-                self?.presenter.failure()
+                self.presenter.failure()
             }
         }
     }

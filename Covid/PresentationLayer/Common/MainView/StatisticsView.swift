@@ -20,7 +20,7 @@ final class StatisticsView: UIScrollView {
     
     private let statisticsStackView = StatisticsStackView()
     private let graphLog = GraphLog()
-    private let collectionGraphLin = CollectionGraphLin(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let collectionGraphLine = CollectionGraphLine(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     var isMainStatisticsHidden: Bool? {
         didSet {
@@ -34,7 +34,7 @@ final class StatisticsView: UIScrollView {
         didSet {
             if let isGraphHidden = isGraphHidden {
                 graphLog.isHidden = isGraphHidden
-                collectionGraphLin.isHidden = isGraphHidden
+                collectionGraphLine.isHidden = isGraphHidden
             }
         }
     }
@@ -55,10 +55,10 @@ final class StatisticsView: UIScrollView {
         }
     }
     
-    var graphsLinPoints: [[GraphPointsLinModel]]? {
+    var graphsLinPoints: [[GraphPointsLineModel]]? {
         didSet {
             if let graphsLinPoints = graphsLinPoints {
-                collectionGraphLin.graphPoints = graphsLinPoints
+                collectionGraphLine.graphPoints = graphsLinPoints
             }
         }
     }
@@ -70,16 +70,18 @@ final class StatisticsView: UIScrollView {
         configureStatisticsScrollView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+         fatalError("init(coder:) has not been implemented")
+     }
+
     
     // MARK: - Configurations
     
     private func configureStatisticsScrollView() {
         addSubview(statisticsStackView)
         addSubview(graphLog)
-        addSubview(collectionGraphLin)
+        addSubview(collectionGraphLine)
         showsVerticalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -88,10 +90,10 @@ final class StatisticsView: UIScrollView {
             graphLog.topAnchor.constraint(equalTo: statisticsStackView.bottomAnchor, constant: Margin.top),
             graphLog.widthAnchor.constraint(equalTo: widthAnchor),
             graphLog.heightAnchor.constraint(equalToConstant: Locals.graphHeight),
-            collectionGraphLin.topAnchor.constraint(equalTo: graphLog.bottomAnchor, constant: Margin.top),
-            collectionGraphLin.widthAnchor.constraint(equalTo: widthAnchor),
-            collectionGraphLin.heightAnchor.constraint(equalToConstant: Locals.graphHeight),
-            collectionGraphLin.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionGraphLine.topAnchor.constraint(equalTo: graphLog.bottomAnchor, constant: Margin.top),
+            collectionGraphLine.widthAnchor.constraint(equalTo: widthAnchor),
+            collectionGraphLine.heightAnchor.constraint(equalToConstant: Locals.graphHeight),
+            collectionGraphLine.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

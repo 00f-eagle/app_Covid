@@ -1,5 +1,5 @@
 //
-//  CollectionGraphLin.swift
+//  CollectionGraphLine.swift
 //  Covid
 //
 //  Created by Kirill Selivanov on 26.08.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CollectionGraphLin: UICollectionView {
+final class CollectionGraphLine: UICollectionView {
     
     // MARK: - Constants
     
@@ -18,7 +18,7 @@ final class CollectionGraphLin: UICollectionView {
     
     // MARK: - Properties
     
-    var graphPoints: [[GraphPointsLinModel]] = [[], [], []] {
+    var graphPoints: [[GraphPointsLineModel]] = [[], [], []] {
         didSet {
             reloadData()
         }
@@ -45,7 +45,7 @@ final class CollectionGraphLin: UICollectionView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = Colors.white
         showsHorizontalScrollIndicator = false
-        register(GraphLin.self, forCellWithReuseIdentifier: Locals.identifierCell)
+        register(GraphLine.self, forCellWithReuseIdentifier: Locals.identifierCell)
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
@@ -54,13 +54,13 @@ final class CollectionGraphLin: UICollectionView {
 
 
 // MARK: - UICollectionViewDataSource
-extension CollectionGraphLin: UICollectionViewDataSource {
+extension CollectionGraphLine: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         graphPoints.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Locals.identifierCell, for: indexPath) as? GraphLin {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Locals.identifierCell, for: indexPath) as? GraphLine {
             cell.graphPoints = graphPoints[indexPath.row]
             cell.graphColor = colors[indexPath.row]
             return cell
@@ -71,7 +71,7 @@ extension CollectionGraphLin: UICollectionViewDataSource {
 
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CollectionGraphLin: UICollectionViewDelegateFlowLayout {
+extension CollectionGraphLine: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

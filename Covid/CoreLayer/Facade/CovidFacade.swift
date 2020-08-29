@@ -27,12 +27,21 @@ final class CovidFacade: CovidFacadeProtocol {
     func getMainStatisticsByCountry(countryCode: String, completionHandler: @escaping (StatisticsModel?) -> Void) {
         covidNetworking.getSummary { [weak self] (model) in
             DispatchQueue.main.async {
+                
+                guard let self = self else {
+                    completionHandler(nil)
+                    return
+                }
+                
                 if let model = model {
-                    self?.statisticsData.addCountries(countries: model.countries)
+                    self.statisticsData.addCountries(countries: model.countries)
+                }
+                
+                if let countryStatistics = self.statisticsData.getCountry(countryCode: countryCode) {
+                    completionHandler(countryStatistics)
                 } else {
                     completionHandler(nil)
                 }
-                if let countryStatistics = self?.statisticsData.getCountry(countryCode: countryCode) { completionHandler(countryStatistics) }
             }
         }
     }
@@ -40,13 +49,17 @@ final class CovidFacade: CovidFacadeProtocol {
     func getAllDaysByCountry(countryCode: String, completionHandler: @escaping ([DayModel]?) -> Void) {
         covidNetworking.getAllDays(countryCode: countryCode) { [weak self] (model) in
             DispatchQueue.main.async {
-                guard let model = model else {
-                    if let allDays = self?.statisticsData.getLastDays(countryCode: countryCode) { completionHandler(allDays) }
+                guard let self = self else {
                     completionHandler(nil)
                     return
                 }
+                
+                guard let model = model else {
+                    if let allDays = self.statisticsData.getLastDays(countryCode: countryCode) { completionHandler(allDays) }
+                    return
+                }
                 completionHandler(model)
-                self?.statisticsData.addLastDays(countryCode: countryCode, data: model)
+                self.statisticsData.addLastDays(countryCode: countryCode, data: model)
             }
         }
     }
@@ -54,12 +67,22 @@ final class CovidFacade: CovidFacadeProtocol {
     func getMainStatisticsByGlobal(completionHandler: @escaping (StatisticsModel?) -> Void) {
         covidNetworking.getSummary { [weak self] (model) in
             DispatchQueue.main.async {
+                guard let self = self else {
+                    completionHandler(nil)
+                    return
+                }
+                
                 if let model = model {
-                    self?.statisticsData.addGlobal(data: model.global, date: model.convertedDate)
+                    self.statisticsData.addGlobal(data: model.global, date: model.convertedDate)
                 } else {
                     completionHandler(nil)
                 }
-                if let globalStatistics = self?.statisticsData.getGlobal() { completionHandler(globalStatistics) }
+                
+                if let globalStatistics = self.statisticsData.getGlobal() {
+                    completionHandler(globalStatistics)
+                } else {
+                    completionHandler(nil)
+                }
             }
         }
     }

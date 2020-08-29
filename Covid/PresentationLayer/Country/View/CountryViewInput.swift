@@ -8,6 +8,6 @@
 
 protocol CountryViewInput: AnyObject {
     func presetMainStatistics(statistics: StatisticsModel)
-    func presentGraphs(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLinModel], graphPointsLinDeaths: [GraphPointsLinModel], graphPointsLinRecovered: [GraphPointsLinModel])
+    func presentGraphs(graphPointsLog: [GraphPointsLogModel], graphPointsLinConfirmed: [GraphPointsLineModel], graphPointsLinDeaths: [GraphPointsLineModel], graphPointsLinRecovered: [GraphPointsLineModel])
     func failure()
 }
