@@ -11,8 +11,6 @@
 		ED0C0D4B24AB29E9008646D6 /* MainStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C0D4A24AB29E9008646D6 /* MainStatisticsView.swift */; };
 		ED0C0D5024AB29EC008646D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0C0D4F24AB29EC008646D6 /* Assets.xcassets */; };
 		ED0C0D5324AB29EC008646D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0C0D5124AB29EC008646D6 /* LaunchScreen.storyboard */; };
-		ED0C0D5E24AB29EC008646D6 /* CovidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C0D5D24AB29EC008646D6 /* CovidTests.swift */; };
-		ED0C0D6924AB29EC008646D6 /* CovidUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C0D6824AB29EC008646D6 /* CovidUITests.swift */; };
 		ED196F1024C9703800C60C4F /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED196F0F24C9703800C60C4F /* SummaryModel.swift */; };
 		ED196F1224C9707500C60C4F /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED196F1124C9707500C60C4F /* DayModel.swift */; };
 		ED196F1C24C97F9400C60C4F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED196F1B24C97F9400C60C4F /* CoreDataManager.swift */; };
@@ -59,6 +57,15 @@
 		ED61437F24BDB7C20019E45C /* MainStatisticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61437E24BDB7C20019E45C /* MainStatisticsPresenter.swift */; };
 		ED61438724BE4CFD0019E45C /* MainStatisticsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61438624BE4CFD0019E45C /* MainStatisticsAssembly.swift */; };
 		ED70139C24FE77D60020DACB /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70139B24FE77D60020DACB /* Graph.swift */; };
+		ED70139F24FF8AC70020DACB /* MainStatisticsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70139E24FF8AC70020DACB /* MainStatisticsInteractorTests.swift */; };
+		ED7013A224FF91C20020DACB /* MainStatisticsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A124FF91C20020DACB /* MainStatisticsPresenterTests.swift */; };
+		ED7013A424FFA1140020DACB /* MockMainStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A324FFA1140020DACB /* MockMainStatisticsView.swift */; };
+		ED7013A624FFA13C0020DACB /* MockMainStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A524FFA13C0020DACB /* MockMainStatisticsInteractor.swift */; };
+		ED7013A824FFAAA80020DACB /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A724FFAAA80020DACB /* ModelTests.swift */; };
+		ED7013B124FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */; };
+		ED7013B724FFD6150020DACB /* MockMainStatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */; };
+		ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BC2500190F0020DACB /* MockCovidFacade.swift */; };
+		ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BE2500198C0020DACB /* MockUserStorage.swift */; };
 		ED7AC40324CEB51C00279807 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7AC40224CEB51C00279807 /* CountryModel.swift */; };
 		ED7AC42B24D080C800279807 /* countries.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42924D080C800279807 /* countries.png */; };
 		ED7AC42C24D080C800279807 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42A24D080C800279807 /* statistics.png */; };
@@ -78,7 +85,6 @@
 		EDA6AEBC24E2F6B900485082 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6AEBB24E2F6B900485082 /* StackView.swift */; };
 		EDA81A5A24B5DB5B0005BEC0 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */; };
 		EDA81A6024B5DF1E0005BEC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */; };
-		EDAB698A24F954CB0022A82D /* MainStatisticsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */; };
 		EDDA369A24BF477700AD3C1C /* StatisticsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */; };
 		EDF7A06E24F41905000D947E /* StatisticsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A06D24F41905000D947E /* StatisticsStorage.swift */; };
 		EDF7A07624F42B8E000D947E /* GraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7A07524F42B8E000D947E /* GraphLine.swift */; };
@@ -99,13 +105,6 @@
 			remoteGlobalIDString = ED0C0D4224AB29E9008646D6;
 			remoteInfo = Covid;
 		};
-		ED0C0D6524AB29EC008646D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ED0C0D3B24AB29E9008646D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ED0C0D4224AB29E9008646D6;
-			remoteInfo = Covid;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -116,11 +115,7 @@
 		ED0C0D5224AB29EC008646D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED0C0D5424AB29EC008646D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED0C0D5924AB29EC008646D6 /* CovidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED0C0D5D24AB29EC008646D6 /* CovidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidTests.swift; sourceTree = "<group>"; };
 		ED0C0D5F24AB29EC008646D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED0C0D6424AB29EC008646D6 /* CovidUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovidUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED0C0D6824AB29EC008646D6 /* CovidUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidUITests.swift; sourceTree = "<group>"; };
-		ED0C0D6A24AB29EC008646D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED196F0F24C9703800C60C4F /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
 		ED196F1124C9707500C60C4F /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		ED196F1B24C97F9400C60C4F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -167,6 +162,15 @@
 		ED61437E24BDB7C20019E45C /* MainStatisticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsPresenter.swift; sourceTree = "<group>"; };
 		ED61438624BE4CFD0019E45C /* MainStatisticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsAssembly.swift; sourceTree = "<group>"; };
 		ED70139B24FE77D60020DACB /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		ED70139E24FF8AC70020DACB /* MainStatisticsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsInteractorTests.swift; sourceTree = "<group>"; };
+		ED7013A124FF91C20020DACB /* MainStatisticsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsPresenterTests.swift; sourceTree = "<group>"; };
+		ED7013A324FFA1140020DACB /* MockMainStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsView.swift; sourceTree = "<group>"; };
+		ED7013A524FFA13C0020DACB /* MockMainStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsInteractor.swift; sourceTree = "<group>"; };
+		ED7013A724FFAAA80020DACB /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsInteractorOutput.swift; sourceTree = "<group>"; };
+		ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsRouter.swift; sourceTree = "<group>"; };
+		ED7013BC2500190F0020DACB /* MockCovidFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCovidFacade.swift; sourceTree = "<group>"; };
+		ED7013BE2500198C0020DACB /* MockUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStorage.swift; sourceTree = "<group>"; };
 		ED7AC40224CEB51C00279807 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		ED7AC42924D080C800279807 /* countries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countries.png; sourceTree = "<group>"; };
 		ED7AC42A24D080C800279807 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
@@ -186,7 +190,6 @@
 		EDA6AEBB24E2F6B900485082 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		EDA81A5924B5DB5B0005BEC0 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		EDA81A5F24B5DF1D0005BEC0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsPresenterTest.swift; sourceTree = "<group>"; };
 		EDDA369924BF477700AD3C1C /* StatisticsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStackView.swift; sourceTree = "<group>"; };
 		EDF7A06D24F41905000D947E /* StatisticsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStorage.swift; sourceTree = "<group>"; };
 		EDF7A07524F42B8E000D947E /* GraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLine.swift; sourceTree = "<group>"; };
@@ -214,13 +217,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ED0C0D6124AB29EC008646D6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -229,7 +225,6 @@
 			children = (
 				ED0C0D4524AB29E9008646D6 /* Covid */,
 				ED0C0D5C24AB29EC008646D6 /* CovidTests */,
-				ED0C0D6724AB29EC008646D6 /* CovidUITests */,
 				ED0C0D4424AB29E9008646D6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -239,7 +234,6 @@
 			children = (
 				ED0C0D4324AB29E9008646D6 /* Covid.app */,
 				ED0C0D5924AB29EC008646D6 /* CovidTests.xctest */,
-				ED0C0D6424AB29EC008646D6 /* CovidUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,21 +255,12 @@
 		ED0C0D5C24AB29EC008646D6 /* CovidTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED7013A924FFAC520020DACB /* Mocks */,
 				ED70139424FD1A4B0020DACB /* ModelTests */,
 				EDAB698424F954560022A82D /* MainStatisticsTest */,
-				ED0C0D5D24AB29EC008646D6 /* CovidTests.swift */,
 				ED0C0D5F24AB29EC008646D6 /* Info.plist */,
 			);
 			path = CovidTests;
-			sourceTree = "<group>";
-		};
-		ED0C0D6724AB29EC008646D6 /* CovidUITests */ = {
-			isa = PBXGroup;
-			children = (
-				ED0C0D6824AB29EC008646D6 /* CovidUITests.swift */,
-				ED0C0D6A24AB29EC008646D6 /* Info.plist */,
-			);
-			path = CovidUITests;
 			sourceTree = "<group>";
 		};
 		ED196F1D24C984D200C60C4F /* DataManager */ = {
@@ -617,8 +602,38 @@
 		ED70139424FD1A4B0020DACB /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED7013A724FFAAA80020DACB /* ModelTests.swift */,
 			);
 			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		ED70139D24FF8A2D0020DACB /* MainStatisticsInteractorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED70139E24FF8AC70020DACB /* MainStatisticsInteractorTests.swift */,
+				ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */,
+				ED7013BC2500190F0020DACB /* MockCovidFacade.swift */,
+				ED7013BE2500198C0020DACB /* MockUserStorage.swift */,
+			);
+			path = MainStatisticsInteractorTests;
+			sourceTree = "<group>";
+		};
+		ED7013A024FF91A50020DACB /* MainStatisticsPresenterTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013A124FF91C20020DACB /* MainStatisticsPresenterTests.swift */,
+				ED7013A324FFA1140020DACB /* MockMainStatisticsView.swift */,
+				ED7013A524FFA13C0020DACB /* MockMainStatisticsInteractor.swift */,
+				ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */,
+			);
+			path = MainStatisticsPresenterTests;
+			sourceTree = "<group>";
+		};
+		ED7013A924FFAC520020DACB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		EDA6AE8524D72FD600485082 /* Country */ = {
@@ -689,7 +704,8 @@
 		EDAB698424F954560022A82D /* MainStatisticsTest */ = {
 			isa = PBXGroup;
 			children = (
-				EDAB698924F954CB0022A82D /* MainStatisticsPresenterTest.swift */,
+				ED7013A024FF91A50020DACB /* MainStatisticsPresenterTests */,
+				ED70139D24FF8A2D0020DACB /* MainStatisticsInteractorTests */,
 			);
 			path = MainStatisticsTest;
 			sourceTree = "<group>";
@@ -740,24 +756,6 @@
 			productReference = ED0C0D5924AB29EC008646D6 /* CovidTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		ED0C0D6324AB29EC008646D6 /* CovidUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ED0C0D7324AB29EC008646D6 /* Build configuration list for PBXNativeTarget "CovidUITests" */;
-			buildPhases = (
-				ED0C0D6024AB29EC008646D6 /* Sources */,
-				ED0C0D6124AB29EC008646D6 /* Frameworks */,
-				ED0C0D6224AB29EC008646D6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ED0C0D6624AB29EC008646D6 /* PBXTargetDependency */,
-			);
-			name = CovidUITests;
-			productName = CovidUITests;
-			productReference = ED0C0D6424AB29EC008646D6 /* CovidUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -772,10 +770,6 @@
 						CreatedOnToolsVersion = 11.5;
 					};
 					ED0C0D5824AB29EC008646D6 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = ED0C0D4224AB29E9008646D6;
-					};
-					ED0C0D6324AB29EC008646D6 = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = ED0C0D4224AB29E9008646D6;
 					};
@@ -796,7 +790,6 @@
 			targets = (
 				ED0C0D4224AB29E9008646D6 /* Covid */,
 				ED0C0D5824AB29EC008646D6 /* CovidTests */,
-				ED0C0D6324AB29EC008646D6 /* CovidUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -815,13 +808,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		ED0C0D5724AB29EC008646D6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED0C0D6224AB29EC008646D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -916,16 +902,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDAB698A24F954CB0022A82D /* MainStatisticsPresenterTest.swift in Sources */,
-				ED0C0D5E24AB29EC008646D6 /* CovidTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED0C0D6024AB29EC008646D6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ED0C0D6924AB29EC008646D6 /* CovidUITests.swift in Sources */,
+				ED7013A424FFA1140020DACB /* MockMainStatisticsView.swift in Sources */,
+				ED7013B124FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift in Sources */,
+				ED7013B724FFD6150020DACB /* MockMainStatisticsRouter.swift in Sources */,
+				ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */,
+				ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */,
+				ED7013A224FF91C20020DACB /* MainStatisticsPresenterTests.swift in Sources */,
+				ED70139F24FF8AC70020DACB /* MainStatisticsInteractorTests.swift in Sources */,
+				ED7013A824FFAAA80020DACB /* ModelTests.swift in Sources */,
+				ED7013A624FFA13C0020DACB /* MockMainStatisticsInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,11 +921,6 @@
 			isa = PBXTargetDependency;
 			target = ED0C0D4224AB29E9008646D6 /* Covid */;
 			targetProxy = ED0C0D5A24AB29EC008646D6 /* PBXContainerItemProxy */;
-		};
-		ED0C0D6624AB29EC008646D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ED0C0D4224AB29E9008646D6 /* Covid */;
-			targetProxy = ED0C0D6524AB29EC008646D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1148,44 +1128,6 @@
 			};
 			name = Release;
 		};
-		ED0C0D7424AB29EC008646D6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CovidUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ks.CovidUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Covid;
-			};
-			name = Debug;
-		};
-		ED0C0D7524AB29EC008646D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CovidUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ks.CovidUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Covid;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1212,15 +1154,6 @@
 			buildConfigurations = (
 				ED0C0D7124AB29EC008646D6 /* Debug */,
 				ED0C0D7224AB29EC008646D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ED0C0D7324AB29EC008646D6 /* Build configuration list for PBXNativeTarget "CovidUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ED0C0D7424AB29EC008646D6 /* Debug */,
-				ED0C0D7524AB29EC008646D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
