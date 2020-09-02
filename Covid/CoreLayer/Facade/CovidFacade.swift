@@ -55,7 +55,11 @@ final class CovidFacade: CovidFacadeProtocol {
                 }
                 
                 guard let model = model else {
-                    if let allDays = self.statisticsData.getLastDays(countryCode: countryCode) { completionHandler(allDays) }
+                    if let allDays = self.statisticsData.getLastDays(countryCode: countryCode) {
+                        completionHandler(allDays)
+                    } else {
+                        completionHandler(nil)
+                    }
                     return
                 }
                 completionHandler(model)
@@ -74,8 +78,6 @@ final class CovidFacade: CovidFacadeProtocol {
                 
                 if let model = model {
                     self.statisticsData.addGlobal(data: model.global, date: model.convertedDate)
-                } else {
-                    completionHandler(nil)
                 }
                 
                 if let globalStatistics = self.statisticsData.getGlobal() {

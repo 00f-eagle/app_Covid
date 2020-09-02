@@ -58,6 +58,7 @@
 		ED61437C24BCC4550019E45C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61437B24BCC4550019E45C /* TabBarController.swift */; };
 		ED61437F24BDB7C20019E45C /* MainStatisticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61437E24BDB7C20019E45C /* MainStatisticsPresenter.swift */; };
 		ED61438724BE4CFD0019E45C /* MainStatisticsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61438624BE4CFD0019E45C /* MainStatisticsAssembly.swift */; };
+		ED70139C24FE77D60020DACB /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED70139B24FE77D60020DACB /* Graph.swift */; };
 		ED7AC40324CEB51C00279807 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7AC40224CEB51C00279807 /* CountryModel.swift */; };
 		ED7AC42B24D080C800279807 /* countries.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42924D080C800279807 /* countries.png */; };
 		ED7AC42C24D080C800279807 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42A24D080C800279807 /* statistics.png */; };
@@ -165,6 +166,7 @@
 		ED61437B24BCC4550019E45C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		ED61437E24BDB7C20019E45C /* MainStatisticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsPresenter.swift; sourceTree = "<group>"; };
 		ED61438624BE4CFD0019E45C /* MainStatisticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatisticsAssembly.swift; sourceTree = "<group>"; };
+		ED70139B24FE77D60020DACB /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		ED7AC40224CEB51C00279807 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		ED7AC42924D080C800279807 /* countries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countries.png; sourceTree = "<group>"; };
 		ED7AC42A24D080C800279807 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		ED0C0D5C24AB29EC008646D6 /* CovidTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED70139424FD1A4B0020DACB /* ModelTests */,
 				EDAB698424F954560022A82D /* MainStatisticsTest */,
 				ED0C0D5D24AB29EC008646D6 /* CovidTests.swift */,
 				ED0C0D5F24AB29EC008646D6 /* Info.plist */,
@@ -360,6 +363,7 @@
 				ED1B0AE324F6A2CE00EFAA68 /* CollectionGraphLine.swift */,
 				EDA6AE7C24D3175C00485082 /* GraphLog.swift */,
 				EDF7A07524F42B8E000D947E /* GraphLine.swift */,
+				ED70139B24FE77D60020DACB /* Graph.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -610,6 +614,13 @@
 			path = mainIcon;
 			sourceTree = "<group>";
 		};
+		ED70139424FD1A4B0020DACB /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
 		EDA6AE8524D72FD600485082 /* Country */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +865,7 @@
 				ED34DD1624C1CAA400A7E6E3 /* MainStatisticsInteractorOutput.swift in Sources */,
 				ED1B0B0B24F6CAC100EFAA68 /* StatisticsOfStatusConverter.swift in Sources */,
 				ED196F1224C9707500C60C4F /* DayModel.swift in Sources */,
+				ED70139C24FE77D60020DACB /* Graph.swift in Sources */,
 				ED34DD0024C0988400A7E6E3 /* Covid.xcdatamodeld in Sources */,
 				EDF7A0AD24F5C9C7000D947E /* CovidFacade.swift in Sources */,
 				EDF7A0A624F5B97F000D947E /* UserEntity+CoreDataProperties.swift in Sources */,
