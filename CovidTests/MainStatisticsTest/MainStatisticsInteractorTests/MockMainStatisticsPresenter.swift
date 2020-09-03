@@ -1,5 +1,5 @@
 //
-//  MockMainStatisticsInteractorOutput.swift
+//  MockMainStatisticsPresenter.swift
 //  CovidTests
 //
 //  Created by Kirill Selivanov on 02.09.2020.
@@ -8,7 +8,7 @@
 
 @testable import Covid
 
-final class MockMainStatisticsInteractorOutput: MainStatisticsInteractorOutput {
+final class MockMainStatisticsPresenter: MainStatisticsInteractorOutput {
     
     var isCalledSuccess = false
     var isCalledFailure = false

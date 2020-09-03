@@ -10,7 +10,7 @@
 
 final class MockUserStorage: UserStorageProtocol {
     
-    private var countryCode: String?
+    var countryCode: String?
     
     func addCountryCode(countryCode: String) {
         self.countryCode = countryCode

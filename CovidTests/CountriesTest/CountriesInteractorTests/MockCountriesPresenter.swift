@@ -11,9 +11,9 @@ import UIKit
 
 final class MockCountriesPresenter: CountriesInteractorOutput {
     
-    var isCalled = false
+    var isCalledDidLoadCountries = false
     
     func didLoadCountries(countries: [StatisticsModel], status: Status) {
-        isCalled = true
+        isCalledDidLoadCountries = true
     }
 }

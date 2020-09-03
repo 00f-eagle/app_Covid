@@ -12,14 +12,14 @@ import XCTest
 final class MainStatisticsInteractorTests: XCTestCase {
     
     private var interactor: MainStatisticsInteractor!
-    private var presenter: MockMainStatisticsInteractorOutput!
+    private var presenter: MockMainStatisticsPresenter!
     private var covidFacade: MockCovidFacade!
     private var userStorage: MockUserStorage!
 
     override func setUpWithError() throws {
         covidFacade = MockCovidFacade()
         userStorage = MockUserStorage()
-        presenter = MockMainStatisticsInteractorOutput()
+        presenter = MockMainStatisticsPresenter()
         interactor = MainStatisticsInteractor(covidFacade: covidFacade, userStorage: userStorage)
         interactor.presenter = presenter
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CountryModel: Decodable {
+struct CountryModel: Decodable, Equatable {
     let name: String
     let code: String
     let newConfirmed: Int

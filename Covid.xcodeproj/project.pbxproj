@@ -62,7 +62,7 @@
 		ED7013A424FFA1140020DACB /* MockMainStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A324FFA1140020DACB /* MockMainStatisticsView.swift */; };
 		ED7013A624FFA13C0020DACB /* MockMainStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A524FFA13C0020DACB /* MockMainStatisticsInteractor.swift */; };
 		ED7013A824FFAAA80020DACB /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013A724FFAAA80020DACB /* ModelTests.swift */; };
-		ED7013B124FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */; };
+		ED7013B124FFC8810020DACB /* MockMainStatisticsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B024FFC8810020DACB /* MockMainStatisticsPresenter.swift */; };
 		ED7013B724FFD6150020DACB /* MockMainStatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */; };
 		ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BC2500190F0020DACB /* MockCovidFacade.swift */; };
 		ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BE2500198C0020DACB /* MockUserStorage.swift */; };
@@ -71,6 +71,12 @@
 		ED7013D92501038C0020DACB /* CountriesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013D82501038C0020DACB /* CountriesInteractorTests.swift */; };
 		ED7013DB2501040E0020DACB /* MockStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013DA2501040E0020DACB /* MockStatisticsData.swift */; };
 		ED7013DD2501050D0020DACB /* MockCountriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013DC2501050D0020DACB /* MockCountriesPresenter.swift */; };
+		ED7013DF250153040020DACB /* CovidFacadeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013DE250153040020DACB /* CovidFacadeTests.swift */; };
+		ED7013E1250153A70020DACB /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013E0250153A70020DACB /* MockNetworkService.swift */; };
+		ED7013E825015F3B0020DACB /* CountryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013E725015F3B0020DACB /* CountryInteractorTests.swift */; };
+		ED7013EA25015F5B0020DACB /* CountryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013E925015F5B0020DACB /* CountryPresenterTests.swift */; };
+		ED7013EC25015F730020DACB /* CountriesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013EB25015F730020DACB /* CountriesPresenterTests.swift */; };
+		ED7013EE250160AD0020DACB /* MockCountryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013ED250160AD0020DACB /* MockCountryPresenter.swift */; };
 		ED7AC40324CEB51C00279807 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7AC40224CEB51C00279807 /* CountryModel.swift */; };
 		ED7AC42B24D080C800279807 /* countries.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42924D080C800279807 /* countries.png */; };
 		ED7AC42C24D080C800279807 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42A24D080C800279807 /* statistics.png */; };
@@ -172,7 +178,7 @@
 		ED7013A324FFA1140020DACB /* MockMainStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsView.swift; sourceTree = "<group>"; };
 		ED7013A524FFA13C0020DACB /* MockMainStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsInteractor.swift; sourceTree = "<group>"; };
 		ED7013A724FFAAA80020DACB /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
-		ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsInteractorOutput.swift; sourceTree = "<group>"; };
+		ED7013B024FFC8810020DACB /* MockMainStatisticsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsPresenter.swift; sourceTree = "<group>"; };
 		ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsRouter.swift; sourceTree = "<group>"; };
 		ED7013BC2500190F0020DACB /* MockCovidFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCovidFacade.swift; sourceTree = "<group>"; };
 		ED7013BE2500198C0020DACB /* MockUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStorage.swift; sourceTree = "<group>"; };
@@ -181,6 +187,12 @@
 		ED7013D82501038C0020DACB /* CountriesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesInteractorTests.swift; sourceTree = "<group>"; };
 		ED7013DA2501040E0020DACB /* MockStatisticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStatisticsData.swift; sourceTree = "<group>"; };
 		ED7013DC2501050D0020DACB /* MockCountriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountriesPresenter.swift; sourceTree = "<group>"; };
+		ED7013DE250153040020DACB /* CovidFacadeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidFacadeTests.swift; sourceTree = "<group>"; };
+		ED7013E0250153A70020DACB /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		ED7013E725015F3B0020DACB /* CountryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInteractorTests.swift; sourceTree = "<group>"; };
+		ED7013E925015F5B0020DACB /* CountryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPresenterTests.swift; sourceTree = "<group>"; };
+		ED7013EB25015F730020DACB /* CountriesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesPresenterTests.swift; sourceTree = "<group>"; };
+		ED7013ED250160AD0020DACB /* MockCountryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCountryPresenter.swift; sourceTree = "<group>"; };
 		ED7AC40224CEB51C00279807 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		ED7AC42924D080C800279807 /* countries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countries.png; sourceTree = "<group>"; };
 		ED7AC42A24D080C800279807 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
@@ -265,6 +277,9 @@
 		ED0C0D5C24AB29EC008646D6 /* CovidTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED7013EF250163610020DACB /* Mocks */,
+				ED7013E325015EF60020DACB /* CountryTest */,
+				ED7013E2250159B60020DACB /* CovidFacade */,
 				ED7013D62501034D0020DACB /* CountriesTest */,
 				ED7013CF2500EC180020DACB /* Networking */,
 				ED7013CC2500E9E20020DACB /* Converter */,
@@ -623,9 +638,7 @@
 			isa = PBXGroup;
 			children = (
 				ED70139E24FF8AC70020DACB /* MainStatisticsInteractorTests.swift */,
-				ED7013B024FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift */,
-				ED7013BC2500190F0020DACB /* MockCovidFacade.swift */,
-				ED7013BE2500198C0020DACB /* MockUserStorage.swift */,
+				ED7013B024FFC8810020DACB /* MockMainStatisticsPresenter.swift */,
 			);
 			path = MainStatisticsInteractorTests;
 			sourceTree = "<group>";
@@ -660,6 +673,7 @@
 		ED7013D62501034D0020DACB /* CountriesTest */ = {
 			isa = PBXGroup;
 			children = (
+				ED7013E625015F1D0020DACB /* CountriesPresenterTests */,
 				ED7013D7250103580020DACB /* CountriesInteractorTests */,
 			);
 			path = CountriesTest;
@@ -669,10 +683,62 @@
 			isa = PBXGroup;
 			children = (
 				ED7013D82501038C0020DACB /* CountriesInteractorTests.swift */,
-				ED7013DA2501040E0020DACB /* MockStatisticsData.swift */,
 				ED7013DC2501050D0020DACB /* MockCountriesPresenter.swift */,
 			);
 			path = CountriesInteractorTests;
+			sourceTree = "<group>";
+		};
+		ED7013E2250159B60020DACB /* CovidFacade */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013DE250153040020DACB /* CovidFacadeTests.swift */,
+				ED7013E0250153A70020DACB /* MockNetworkService.swift */,
+			);
+			path = CovidFacade;
+			sourceTree = "<group>";
+		};
+		ED7013E325015EF60020DACB /* CountryTest */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013E525015F150020DACB /* CountryPresenterTests */,
+				ED7013E425015F0A0020DACB /* CountryInteractorTests */,
+			);
+			path = CountryTest;
+			sourceTree = "<group>";
+		};
+		ED7013E425015F0A0020DACB /* CountryInteractorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013E725015F3B0020DACB /* CountryInteractorTests.swift */,
+				ED7013ED250160AD0020DACB /* MockCountryPresenter.swift */,
+			);
+			path = CountryInteractorTests;
+			sourceTree = "<group>";
+		};
+		ED7013E525015F150020DACB /* CountryPresenterTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013E925015F5B0020DACB /* CountryPresenterTests.swift */,
+			);
+			path = CountryPresenterTests;
+			sourceTree = "<group>";
+		};
+		ED7013E625015F1D0020DACB /* CountriesPresenterTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013EB25015F730020DACB /* CountriesPresenterTests.swift */,
+			);
+			path = CountriesPresenterTests;
+			sourceTree = "<group>";
+		};
+		ED7013EF250163610020DACB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013DA2501040E0020DACB /* MockStatisticsData.swift */,
+				ED7013BE2500198C0020DACB /* MockUserStorage.swift */,
+				ED7013BC2500190F0020DACB /* MockCovidFacade.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		EDA6AE8524D72FD600485082 /* Country */ = {
@@ -942,16 +1008,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7013DB2501040E0020DACB /* MockStatisticsData.swift in Sources */,
+				ED7013EA25015F5B0020DACB /* CountryPresenterTests.swift in Sources */,
 				ED7013A424FFA1140020DACB /* MockMainStatisticsView.swift in Sources */,
-				ED7013B124FFC8810020DACB /* MockMainStatisticsInteractorOutput.swift in Sources */,
+				ED7013B124FFC8810020DACB /* MockMainStatisticsPresenter.swift in Sources */,
 				ED7013B724FFD6150020DACB /* MockMainStatisticsRouter.swift in Sources */,
 				ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */,
 				ED7013DD2501050D0020DACB /* MockCountriesPresenter.swift in Sources */,
 				ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */,
 				ED7013A224FF91C20020DACB /* MainStatisticsPresenterTests.swift in Sources */,
+				ED7013E1250153A70020DACB /* MockNetworkService.swift in Sources */,
+				ED7013EE250160AD0020DACB /* MockCountryPresenter.swift in Sources */,
+				ED7013DF250153040020DACB /* CovidFacadeTests.swift in Sources */,
 				ED7013CE2500E9F20020DACB /* ConverterTests.swift in Sources */,
+				ED7013EC25015F730020DACB /* CountriesPresenterTests.swift in Sources */,
 				ED7013D92501038C0020DACB /* CountriesInteractorTests.swift in Sources */,
 				ED70139F24FF8AC70020DACB /* MainStatisticsInteractorTests.swift in Sources */,
+				ED7013E825015F3B0020DACB /* CountryInteractorTests.swift in Sources */,
 				ED7013A824FFAAA80020DACB /* ModelTests.swift in Sources */,
 				ED7013C92500DFD50020DACB /* NetworkServiceTests.swift in Sources */,
 				ED7013A624FFA13C0020DACB /* MockMainStatisticsInteractor.swift in Sources */,
