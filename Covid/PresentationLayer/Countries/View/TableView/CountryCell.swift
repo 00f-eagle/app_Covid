@@ -77,7 +77,7 @@ final class CountryCell: UITableViewCell {
     
     private func updateContent(statistics: StatisticsOfStatusModel) {
         nameCountryLabel.text = statistics.name
-        totalStatusLabel.text = "+\(statistics.total.formattedWithSeparator)"
+        totalStatusLabel.text = statistics.total.formattedWithSeparator
         newStatusLabel.text = "+\(statistics.new.formattedWithSeparator)"
     }
     
