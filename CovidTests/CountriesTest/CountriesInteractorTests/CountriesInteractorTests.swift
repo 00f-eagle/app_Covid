@@ -32,14 +32,14 @@ final class CountriesInteractorTests: XCTestCase {
         statisticsData.countries = []
         interactor.loadCountries(searchText: "", status: .confirmed)
         XCTAssertTrue(statisticsData.isCalledGetCountries)
-        XCTAssertTrue(presenter.isCalledSuccess)
+        XCTAssertTrue(presenter.isCalled)
     }
     
     func testLoadCountriesWithFailureStatisticsData() {
         statisticsData.countries = nil
         interactor.loadCountries(searchText: "", status: .confirmed)
         XCTAssertTrue(statisticsData.isCalledGetCountries)
-        XCTAssertFalse(presenter.isCalledSuccess)
+        XCTAssertFalse(presenter.isCalled)
     }
     
 }
