@@ -102,6 +102,10 @@ final class CountryView: UIViewController {
     
     private func updateProgress(progress: Float) {
         progressView.progress += progress
+        UIView.animate(withDuration: 0.5) {
+            self.progressView.layoutIfNeeded()
+        }
+        
         if progressView.progress == 1.0 {
             progressView.isHidden = true
             progressView.progress = 0
