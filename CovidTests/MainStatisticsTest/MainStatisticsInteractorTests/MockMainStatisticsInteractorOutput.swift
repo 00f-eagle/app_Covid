@@ -10,23 +10,22 @@
 
 final class MockMainStatisticsInteractorOutput: MainStatisticsInteractorOutput {
     
-    var mainStatisticsByCountry: StatisticsModel?
-    var mainStatisticsByGlobal: StatisticsModel?
-    var error = false
+    var isCalledSuccess = false
+    var isCalledFailure = false
     
     func didLoadMainStatisticsByCountry(statistics: StatisticsModel) {
-        mainStatisticsByCountry = statistics
+        isCalledSuccess = true
     }
     
     func didLoadMainStatisticsByGlobal(statistics: StatisticsModel) {
-        mainStatisticsByGlobal = statistics
+        isCalledSuccess = true
     }
     
     func didLoadAllDaysByCountry(allDays: [DayModel]) {
-        
+        isCalledSuccess = true
     }
     
     func failure() {
-        error = true
+        isCalledFailure = true
     }
 }

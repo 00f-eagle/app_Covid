@@ -60,6 +60,7 @@ final class ModelTests: XCTestCase {
         XCTAssertEqual(countryModel.newRecovered, 142)
         XCTAssertEqual(countryModel.date, "2020-09-02T08:47:27Z")
         XCTAssertEqual(countryModel.code, "AF")
+        XCTAssertEqual(countryModel.convertedDate, "02.09.2020")
     }
 
 }

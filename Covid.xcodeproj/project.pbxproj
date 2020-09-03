@@ -66,6 +66,8 @@
 		ED7013B724FFD6150020DACB /* MockMainStatisticsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */; };
 		ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BC2500190F0020DACB /* MockCovidFacade.swift */; };
 		ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013BE2500198C0020DACB /* MockUserStorage.swift */; };
+		ED7013C92500DFD50020DACB /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013C82500DFD50020DACB /* NetworkServiceTests.swift */; };
+		ED7013CE2500E9F20020DACB /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7013CD2500E9F20020DACB /* ConverterTests.swift */; };
 		ED7AC40324CEB51C00279807 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7AC40224CEB51C00279807 /* CountryModel.swift */; };
 		ED7AC42B24D080C800279807 /* countries.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42924D080C800279807 /* countries.png */; };
 		ED7AC42C24D080C800279807 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7AC42A24D080C800279807 /* statistics.png */; };
@@ -171,6 +173,8 @@
 		ED7013B624FFD6150020DACB /* MockMainStatisticsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainStatisticsRouter.swift; sourceTree = "<group>"; };
 		ED7013BC2500190F0020DACB /* MockCovidFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCovidFacade.swift; sourceTree = "<group>"; };
 		ED7013BE2500198C0020DACB /* MockUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStorage.swift; sourceTree = "<group>"; };
+		ED7013C82500DFD50020DACB /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		ED7013CD2500E9F20020DACB /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 		ED7AC40224CEB51C00279807 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		ED7AC42924D080C800279807 /* countries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countries.png; sourceTree = "<group>"; };
 		ED7AC42A24D080C800279807 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
@@ -255,7 +259,8 @@
 		ED0C0D5C24AB29EC008646D6 /* CovidTests */ = {
 			isa = PBXGroup;
 			children = (
-				ED7013A924FFAC520020DACB /* Mocks */,
+				ED7013CF2500EC180020DACB /* Networking */,
+				ED7013CC2500E9E20020DACB /* Converter */,
 				ED70139424FD1A4B0020DACB /* ModelTests */,
 				EDAB698424F954560022A82D /* MainStatisticsTest */,
 				ED0C0D5F24AB29EC008646D6 /* Info.plist */,
@@ -629,11 +634,20 @@
 			path = MainStatisticsPresenterTests;
 			sourceTree = "<group>";
 		};
-		ED7013A924FFAC520020DACB /* Mocks */ = {
+		ED7013CC2500E9E20020DACB /* Converter */ = {
 			isa = PBXGroup;
 			children = (
+				ED7013CD2500E9F20020DACB /* ConverterTests.swift */,
 			);
-			path = Mocks;
+			path = Converter;
+			sourceTree = "<group>";
+		};
+		ED7013CF2500EC180020DACB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				ED7013C82500DFD50020DACB /* NetworkServiceTests.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		EDA6AE8524D72FD600485082 /* Country */ = {
@@ -908,8 +922,10 @@
 				ED7013BF2500198C0020DACB /* MockUserStorage.swift in Sources */,
 				ED7013BD2500190F0020DACB /* MockCovidFacade.swift in Sources */,
 				ED7013A224FF91C20020DACB /* MainStatisticsPresenterTests.swift in Sources */,
+				ED7013CE2500E9F20020DACB /* ConverterTests.swift in Sources */,
 				ED70139F24FF8AC70020DACB /* MainStatisticsInteractorTests.swift in Sources */,
 				ED7013A824FFAAA80020DACB /* ModelTests.swift in Sources */,
+				ED7013C92500DFD50020DACB /* NetworkServiceTests.swift in Sources */,
 				ED7013A624FFA13C0020DACB /* MockMainStatisticsInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

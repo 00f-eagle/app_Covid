@@ -11,10 +11,16 @@ import UIKit
 
 final class MockCovidFacade: CovidFacadeProtocol {
     
-    var networkService = NetworkService()
-    var statisticsData = StatisticsStorage()
+    var statisticsModelByCountry: StatisticsModel?
+    var statisticsModelByGlobal: StatisticsModel?
     
     func getMainStatisticsByCountry(countryCode: String, completionHandler: @escaping (StatisticsModel?) -> Void) {
+        
+        if let statisticsModel = statisticsModelByCountry {
+            completionHandler(statisticsModel)
+        } else {
+            completionHandler(nil)
+        }
         
     }
     
@@ -23,6 +29,10 @@ final class MockCovidFacade: CovidFacadeProtocol {
     }
     
     func getMainStatisticsByGlobal(completionHandler: @escaping (StatisticsModel?) -> Void) {
-        
+        if let statisticsModel = statisticsModelByGlobal {
+            completionHandler(statisticsModel)
+        } else {
+            completionHandler(nil)
+        }
     }
 }
