@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct StatisticsModel {
+struct StatisticsModel: Equatable {
     
     let name: String
     let totalConfirmed: Int
